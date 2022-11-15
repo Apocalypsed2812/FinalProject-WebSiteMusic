@@ -1,0 +1,101 @@
+.new__music-title{
+    font-size: 36px;
+    color: $white-color;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+
+    .new__music-icon-play{
+        color: #7200a1;
+        margin-left: 10px;
+    }
+}
+
+.new__music-song{
+    color: $white-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+
+    .new__music-song-action{
+        position: absolute;
+        right: 4px;
+        display: none;
+        i{
+            margin: 16px;
+            cursor: pointer;
+        }
+    }
+
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+    &:hover .new__music-song-click{
+        display: block;
+    }
+
+    &:hover .new__music-song-action{
+        display: block;
+    }
+
+    &:hover .new__music-song-time{
+        color: transparent;
+    }
+}
+
+.new__music-song-rank{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+
+    .new__music-song-rank-number{
+        font-size: 38px;
+        font-weight: 900;
+    }
+
+    .new__music-song-rank-separate{
+        font-size: 30px;
+    }
+}
+
+.new__music-song-info-o{
+    color: #817d87;
+}
+
+// .new__music-song:nth-child(1) .new__music-song-rank-number{
+//     color: blue;
+// }
+
+// .new__music-song:nth-child(2) .new__music-song-rank-number{
+//     color: green;
+// }
+
+// .new__music-song:nth-child(3) .new__music-song-rank-number{
+//     color: yellow;
+// }
+
+.new__music-song-info{
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    img{
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .new__music-song-click{
+        position: absolute;
+        left: 10px;
+        display: none;
+        cursor: pointer;
+    }
+}

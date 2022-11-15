@@ -1,0 +1,215 @@
+/* Mobile & tablet */
+@media (max-width: 1024px){
+    .header__playlist-add{
+        display: none;
+    }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px){
+    .hide-on-tablet{
+        display: none;
+    }
+
+    .container-tablet{
+        overflow: hidden;
+    }
+
+    .container{
+        padding-left: 130px;
+    }
+
+    .container__header{
+        padding-left: 130px;
+    }
+
+    .container__header-with-search{
+        width: 340px;
+    }
+
+    .header{
+        width: 100px;
+    }
+
+    .header__item-link span{
+        display: none;
+    }
+
+    .header__logo-img{
+        display: none;
+    }
+
+    .header__logo{
+        display: flex;
+        justify-content: center;
+
+        .header__logo-tablet{
+            display: block;
+        }
+    }
+
+    .header__list{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header__item-tablet-icon-right{
+        display: block;
+    }
+
+    .header__playlist-add{
+        display: none;
+    }
+
+    //Search
+    .search__header-list{
+        min-width: 300px;
+    }
+
+    .search__impress{
+        margin-bottom: 16px;
+    }
+
+    .container__artist{
+        margin-bottom: 16px;
+    }
+
+    .music__play-song-action{
+        display: none;
+    }
+
+    // Music list
+    .music__list-des{
+        margin-top: 16px;
+        padding-right: 8px;
+    }
+
+    // Zing chart
+    .zing__chart-item{
+        margin-bottom: 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 739px){
+    .hide-on-mobile{
+        display: none;
+    }
+
+    .header{
+        display: none;
+    }
+
+    .container{
+        padding: 0 8px;
+    }
+
+    .container__header{
+        padding: 16px 78px 8px 16px;
+    }
+
+    .container__header-search .container__header-search-icon{
+        display: none;
+    }
+
+    .container__header-control{
+        display: none;
+    }
+
+    .container__header-with-search{
+        width: 270px;
+    }
+
+    .container__header-with-search input{
+        padding: 8px;
+    }
+
+    .container__header-control-mobile{
+        display: block;
+    }
+
+    .container__header-search .container__header-search-menu-mobile{
+        display: block;
+    }
+
+    .container__slider{
+        display: none;
+    }
+
+    .music-new-mobile{
+        margin-top: 80px;
+    }
+
+    .header__item-link span{
+        display: none;
+    }
+
+    .header__item-link span{
+        display: block;
+    }
+
+    .header__logo-img{
+        display: block;
+    }
+
+    .header__item{
+        width: 100%;
+    }
+
+    .header__item-link{
+        width: 100%;
+        display: flex;
+    }
+
+    .nav__input-header:checked .header{
+        display: block;
+    }
+
+    .nav__input-header:checked .container__header-overlay{
+        display: block;
+    }
+
+    .btn-repeat, .btn-random, .music__play-song-singer, .music__play-song-action, .music__play-song-title, .music__play-add{
+        display: none;
+    }
+
+    .music__play{
+        padding: 0 16px;
+        justify-content: center;
+    }
+
+    .music__play-control{
+        margin-right: 40px;
+    }
+
+    //Search
+    .search__header-list{
+        min-width: 300px;
+    }
+
+    .search__header-text{
+        margin-left: 40px;
+    }
+
+    // Follow
+    .follow__post{
+        margin-top: 50px;
+    }
+
+    // New music
+    .new__music-song-action{
+        display: none;
+    }
+
+    // Music list
+    .music__list-des{
+        margin-top: 16px;
+    }
+
+    // Zing chart
+    .zing__chart-item{
+        margin-bottom: 16px;
+    }
+}

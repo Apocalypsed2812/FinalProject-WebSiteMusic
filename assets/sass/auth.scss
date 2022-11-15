@@ -1,0 +1,159 @@
+.form-group1 {
+    position: relative;
+    width: 100%;
+    margin: 0 0 32px 0;
+}
+
+.form-group1 input[type=text],
+.form-group1 input[type=password] {
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    transition: 0.25s ease;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    outline: none;
+}
+
+.form-group1 label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 21px;
+    user-select: none;
+    color: #999;
+    pointer-events: none;
+    font-size: 16px;
+    transition: 0.25s ease;
+}
+
+.form-group1 input[type=text]:focus,
+.form-group1 input[type=password]:focus {
+    border: 1px solid #6a5af9;
+}
+
+.form-group1 input[type=text]:not(:placeholder-shown)+label,
+.form-group1 input[type=password]:not(:placeholder-shown)+label,
+.form-group1 input[type=text]:focus+label,
+.form-group1 input[type=password]:focus+label {
+    top: 0;
+    left: 11px;
+    padding: 0 10px;
+    display: inline-block;
+    background-color: #ffff;
+    color: #6a5af9;
+}
+
+.form-group1 input:hover{
+    border: solid 2px rgb(39, 42, 192);
+}
+button:hover {
+    opacity: 0.8;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+@media (max-width: 400px) {
+    body {
+        font-size: 12px;
+    }
+
+    .wrapper {
+        margin-top: 30px;
+    }
+}
+
+.login, 
+.forgot,
+.change-password {
+    background: #abdcff;
+    background: linear-gradient(85deg, #432275 0%, #be9df0 100%);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form,
+.forgot-form,
+.change-password-form {
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 16px;
+    width: 500px;
+    padding: 24px 50px;
+}
+
+@media (max-width: 400px) {
+    .login-form a {
+        font-size: 14px;
+    }
+}
+
+.login-form form,
+.forgot-form form,
+.change-password-form form {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-form form input,
+.forgot-form form input,
+.change-password-form form input {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.login-form form img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form form h1,
+.forgot-form form h2,
+.change-password-form form h2 {
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.login-form form button,
+.forgot-form form button,
+.change-password-form form button {
+    width: 100%;
+    background-color: #FE2E64;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.login-form form button:hover~ion-icon {
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 520px) {
+    .login-form,
+    .forgot-form,
+    .change-password-form {
+        width: 95%;
+    }
+}
