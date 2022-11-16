@@ -93,12 +93,12 @@
                 $role = $data['role'];
                 if($role == 'admin'){
                     $_SESSION['role'] = 'user';
-                    header('Location: ./admin/home.html');
+                    header('Location: ./admin/home.php');
                     exit();
                 }
                 else{
                     $_SESSION['role'] = 'user';
-                    header('Location: ./user/home.html');
+                    header('Location: ./user/home.php');
                     exit();
                 }               
             } 

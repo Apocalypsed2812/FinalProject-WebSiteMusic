@@ -16,85 +16,13 @@
 
 <body class="AdminPage">
     <div class="app">
-        <input type="checkbox" id="navbar__mobile-header" class="nav__input-header">
-        <label for="navbar__mobile-header" class="container__header-overlay"></label>
-        <header class="header">
-            <div class="header__logo">
-                <a href="">
-                    <img src="../assets/images/logo.png" alt="" class="header__logo-img">
-                    <img src="../assets/images/logo_tablet.png" alt="" class="header__logo-tablet">
-                </a>
-            </div>
-            <p class="header__admin-text">Admin</p>
-            <div class="header__list-separate"></div>
-            <div class="header__content">
-                <ul class="header__list">
-                    <li class="header__item">
-                        <a href="./categories.html" class="header__item-link">
-                            <i class="fa-sharp fa-solid fa-bars"></i>
-                            <span>Chuyên mục</span>
-                        </a>
-                    </li>
-                    <li class="header__item header__item--active">
-                        <a href="" class="header__item-link">
-                            <i class="fa-solid fa-music"></i>
-                            <span>Bài hát</span>
-                        </a>
-                    </li>
-                    <li class="header__item">
-                        <a href="./user.html" class="header__item-link">
-                            <i class="fa-solid fa-users"></i>
-                            <span>User</span>
-                        </a>
-                    </li>
-                    <li class="header__item">
-                        <a href="./rank.html" class="header__item-link">
-                            <i class="fa-sharp fa-solid fa-chart-simple"></i>
-                            <span>Bảng xếp hạng</span>
-                        </a>
-                    </li>
-                    <li class="header__item">
-                        <a href="./setting.html" class="header__item-link">
-                            <i class="fa-solid fa-gear"></i>
-                            <span>Cài đặt</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </header>
+        <?php
+            require_once('../includes/Sidebar/SidebarAdmin.php')
+        ?>
         <div class="container">
-            <div class="container__header">
-                <div class="container__header-search">
-                    <i class="fa-solid fa-arrow-left container__header-search-icon"></i>
-                    <i class="fa-solid fa-arrow-right container__header-search-icon"></i>
-                    <label for="navbar__mobile-header"><i
-                            class="fa-solid fa-bars container__header-search-menu-mobile"></i></label>
-                    <div class="container__header-with-search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Tìm kiếm bài hát,..."
-                            class="container__header-with-search-input">
-                        <div class="container__header-with-search-result">
-                            <h4>Đề xuất cho bạn</h4>
-                            <p>chưa quên</p>
-                            <p>mono</p>
-                            <p>thuyền quyên</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="container__header-control">
-                    <a class="container__header-control-item hide-on-tablet">
-                        <i class="fa-solid fa-bell"></i>
-                    </a>
-                    <a class="container__header-control-item">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
-                </div>
-                <div class="container__header-control-mobile">
-                    <a class="container__header-control-item">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
-                </div>
-            </div>
+            <?php
+                require_once('../includes/Header/HeaderAdmin.php')
+            ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
                     <div class="col l-12">
