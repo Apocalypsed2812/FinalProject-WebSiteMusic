@@ -1,0 +1,45 @@
+/* -------------------Admin Page CSS---------------------------------*/
+.AdminPage {
+    background-color: #170f23 !important;
+}
+
+#myModal_AddSong{
+    display: flex;
+    align-items: center ;
+    justify-content: center ;
+}
+input[type="file"]#song_files_add_song{
+    padding: 8px 12px;
+}
+textarea#song_Lyric_add_song{
+    resize: none;
+    height: 100px ;
+    padding: 10px 12px;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 2px;
+    border: 1px solid #dbdbdb;
+    outline: none;
+}
+
+.add-form_input{
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    border-radius: 2px;
+    border: 1px solid #dbdbdb;
+    outline: none;
+}
+.add-form_label{
+    margin-top: 16px;
+    display: inline-block;
+    font-family:Sans-serif;  
+    margin-bottom: 2px; 
+}
+.auth-form__header{
+    padding-left: 0 !important;
+    font-family:Sans-serif;   
+
+}
+  /*-------------------------------------------------------------------*/

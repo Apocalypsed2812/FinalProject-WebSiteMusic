@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zing MP3</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script> -->
+
 </head>
-<body>
+
+<body class="AdminPage">
     <div class="app">
         <input type="checkbox" id="navbar__mobile-header" class="nav__input-header">
         <label for="navbar__mobile-header" class="container__header-overlay"></label>
@@ -24,7 +30,7 @@
             <div class="header__content">
                 <ul class="header__list">
                     <li class="header__item">
-                        <a href="" class="header__item-link">
+                        <a href="./categories.html" class="header__item-link">
                             <i class="fa-sharp fa-solid fa-bars"></i>
                             <span>Chuyên mục</span>
                         </a>
@@ -36,19 +42,19 @@
                         </a>
                     </li>
                     <li class="header__item">
-                        <a href="" class="header__item-link">
+                        <a href="./user.html" class="header__item-link">
                             <i class="fa-solid fa-users"></i>
                             <span>User</span>
                         </a>
                     </li>
                     <li class="header__item">
-                        <a href="" class="header__item-link">
+                        <a href="./rank.html" class="header__item-link">
                             <i class="fa-sharp fa-solid fa-chart-simple"></i>
                             <span>Bảng xếp hạng</span>
                         </a>
                     </li>
                     <li class="header__item">
-                        <a href="" class="header__item-link">
+                        <a href="./setting.html" class="header__item-link">
                             <i class="fa-solid fa-gear"></i>
                             <span>Cài đặt</span>
                         </a>
@@ -61,10 +67,12 @@
                 <div class="container__header-search">
                     <i class="fa-solid fa-arrow-left container__header-search-icon"></i>
                     <i class="fa-solid fa-arrow-right container__header-search-icon"></i>
-                    <label for="navbar__mobile-header"><i class="fa-solid fa-bars container__header-search-menu-mobile"></i></label>
+                    <label for="navbar__mobile-header"><i
+                            class="fa-solid fa-bars container__header-search-menu-mobile"></i></label>
                     <div class="container__header-with-search">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Tìm kiếm bài hát,..." class="container__header-with-search-input">
+                        <input type="text" placeholder="Tìm kiếm bài hát,..."
+                            class="container__header-with-search-input">
                         <div class="container__header-with-search-result">
                             <h4>Đề xuất cho bạn</h4>
                             <p>chưa quên</p>
@@ -95,9 +103,9 @@
                         </p>
                     </div>
                 </div>
-               <div class="row mt-32">
-                   <div class="col l-12 m-12 c-12 admin__song">
-                       <table border="1" class="admin__song-table">
+                <div class="row mt-32">
+                    <div class="col l-12 m-12 c-12 admin__song">
+                        <table border="1" class="admin__song-table">
                             <thead class="admin__song-table-head">
                                 <tr>
                                     <td>ID</td>
@@ -108,7 +116,7 @@
                                     <td>Action</td>
                                 </tr>
                             </thead>
-                            <tbody class="admin__song-table-body">
+                            <tbody class="admin__song-table-body" id="table-body">
                                 <tr>
                                     <td>1</td>
                                     <td>Ân tình trong em</td>
@@ -146,10 +154,10 @@
                                     </td>
                                 </tr>
                             </tbody>
-                       </table>
-                   </div>
-               </div>
-               <div class="row mt-32">
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <ul class="admin__song-pagination-list">
                             <li class="admin__song-pagination-item">
@@ -168,58 +176,186 @@
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
-                            <button>+ thêm bài hát</button>
+                            <button>thêm bài hát</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-
-    <!-- Modal add song -->
-    <div class="modal modal-add-staff">
-        <div class="modal__overlay modal__overlay-register"></div>
-        <div class="modal__body modal__container">
-            <!-- Register form -->
-            <div class="auth-form auth-form-register">
-                <div class="auth-form__container">
-                    <div class="auth-form__header">
-                        <h2>Thêm nhân viên</h2>
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                <form action="" method="post">
-                    <div class="auth-form__form">
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Vui lòng nhập mã nhân viên" name="staff_id" id="staff_id_add_staff">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Vui lòng nhập username" name="username" id="username_add_staff">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Vui lòng nhập email" name="email" id="email_add_staff">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Vui lòng nhập tên" name="name" id="name_add_staff">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Vui lòng nhập số điện thoại" name="phone" id="phone_add_staff">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Vui lòng nhập địa chỉ" name="address" id="address_add_staff">
-                        </div>
-                    </div>
-    
-                    <div class="auth-form__controls auth-form__controls-add">
-                        <button type="button" class="btn auth-form__controls-back btn--normal btn-close-add-staff">Hủy</button>
-                        <button type="submit" class="btn btn--primary btn-add-staff">Thêm</button>
-                    </div>
-                </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal add song -->
+    <div class="modal modal-add-song" id="myModal_AddSong">
+        <div class="modal__overlay modal__overlay-register"></div>
+        <div class="modal__body modal__container">
+            <div class="auth-form auth-form-register">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h2>Thêm bài hát</h2>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <form id="myForm" action="./songs-api/add-mp3-files.php" method="post"
+                        enctype="multipart/form-data">
+                        <div class="auth-form__form">
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_name_add_song">Tên bài hát</label>
+                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập tên bài hát"
+                                    name="song_name" id="song_name_add_song">
+                            </div>
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_singer_add_song">Tên Ca sĩ</label>
+                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập tên ca sĩ"
+                                    name="song_singer" id="song_singer_add_song">
+                            </div>
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_Category_add_song">Thể loại nhạc</label>
+                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập thể loại"
+                                    name="song_Category" id="song_Category_add_song">
+                            </div>
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_Lyric_add_song">Lyric</label>
+                                <textarea id="song_Lyric_add_song" placeholder="Lyric" name="song_Lyric" rows="10"
+                                    cols="57"></textarea>
+                                <!-- <input type="text" class="add-form__input" placeholder="Lyric" name="song_Lyric"
+                                    id="song_Lyric_add_song"> -->
+                            </div>
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_files_add_song">File nhạc</label>
+                                <input type="file" class="add-form_input" name="song_files" id="song_files_add_song">
+                            </div>
+                            <span id="Add_Error_Mess">Error messageas</span>
 
-    <script src="../assets/js/main.js"></script>
+                        </div>
+
+                        <div class="auth-form__controls auth-form__controls-add">
+
+                            <button type="button" id="btn-close-add-song"
+                                class="btn auth-form__controls-back btn--normal btn-close-add-staff">Hủy</button>
+                            <button type="submit" id="btn-submit-add-song" onclick="add_song()"
+                                class="btn btn--primary btn-add-staff">Thêm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://malsup.github.io/jquery.form.js"></script>
+
+<!-- <script src="../assets/js/main.js"></script> -->
+<!-- <script src="../assets/js/admin.js"></script> -->
+
+<script>
+    let addBtn = $(".admin__song-btn button"),
+        XIcon = $(".auth-form__header i.fa-xmark"),
+        cancelSongForm = $("#btn-close-add-song"),
+        Add_form = $(".modal-add-song");
+
+
+    $(document).ready(function () {
+        getData();
+    });
+
+
+    // Các nút trong form Add bài hát
+    // nút 'Thêm bài hát' => hiện form
+    addBtn.click(function () {
+        Add_form.show();
+        Add_form.css("display", "flex");
+    });
+    // nút 'X' và 'hủy' => đóng form
+    XIcon.click(function () {
+        Add_form.css("display", "none");
+
+    });
+    cancelSongForm.click(function () {
+        Add_form.css("display", "none");
+    });
+
+    // hàm lấy dữ liệu db chèn vào table
+    function getData() {
+        $.get("http://localhost:" + location.port + "/admin/songs-api/get-song.php", function (data, status) {
+            let TableBody = ''
+            data['data'].forEach(e => {
+                TableBody += '<tr><td>' + e['id'] +
+                    '</td><td>' + e['name'] +
+                    '</td><td>' + e['singer'] +
+                    '</td><td>' + e['listens'] +
+                    '</td><td>' + e['comments'] +
+                    '</td>' +
+                    '<td> <i class="fa-solid fa-eye"></i> <i class="fa-solid fa-trash-can"></i> <i class="fa-solid fa-pen-to-square"></i> </td></tr>'
+                // '<td><a href="#" onclick="Open_Dialog_edit_Product($(this).parents().get(1))">Edit</a> | <a href="#" onclick="Open_Dialog_delete_Product($(this).parents().get(1))" class="delete">Delete</a></td>' +
+                // '<td style="display: none" >' + e['id'] + '</td>'
+            });
+            $("#table-body").html(TableBody)
+        }, "json");
+    }
+
+    function add_song() {
+        let error = 0,
+            nameBox = $("#song_name_add_song").val(),
+            singer = $("#song_singer_add_song").val(),
+            category = $("#song_Category_add_song").val(),
+            lyric = $("#song_Lyric_add_song").val();
+        try {
+            song = $("#song_files_add_song").get(0).files[0].name;
+        } catch (error) {
+            song = '';
+        }
+        console.log(nameBox);
+        console.log(singer);
+        console.log(category);
+        console.log(lyric);
+        console.log(song);
+        $("#myForm").ajaxForm({
+            complete: function (xhr) {
+                if (nameBox == "" || singer == "" || category == "") {
+                    error = 1
+                    $("#Add_Error_Mess").html("Please complete all information");
+                    $("#Add_Error_Mess").css("display", "inline-block");
+                } else {
+                    if (xhr.responseText) {
+                        $i = xhr.responseText.split("\n");
+                        $("#Add_Error_Mess").html($i[$i.length - 1]);
+                        $("#Add_Error_Mess").css("display", "inline-block");
+                        console.log("2");
+
+                        error = 1;
+                    } else {
+                        console.log("ok")
+                        // $.post("http://localhost:"+location.port+"/admin/songs-api/add-song.php", {
+                        //     name: nameBox,
+                        //     price: singer,
+                        //     image: song,
+                        //     description: lyric
+                        // }); // add student
+                        // $('#myModal_Add').modal('toggle');
+                        // // getData();
+
+                        // // xóa thông tin các ô vừa nhập
+                        // $("#name").val('')
+                        // $("#price").val('')
+                        // $("#image").val('')
+                        // $("#description").val('')
+
+                        // // hiện thông báo thành công
+                        // $("#Add_alert").html(nameBox + "has been added")
+                        // $(".alert-success").show();
+                        // $(".alert-success").delay(3000).slideUp(200, function () {
+                        //     $(".alert-success").hide(); // ẩn sau 3s
+                        //     getData();
+                        // });
+                        // getData();
+
+                    }
+                }
+            },
+        });
+    }
+</script>
+<tr>
+
+
 </html>
