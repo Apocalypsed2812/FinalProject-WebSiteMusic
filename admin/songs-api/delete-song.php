@@ -7,7 +7,7 @@ if (!isset($_POST['id'])) {
 
 $id = $_POST['id'];
 
-$sql = 'DELETE FROM product where id = ?';
+$sql = 'DELETE FROM songs where id = ?';
 
 echo "id: " . $id;
 

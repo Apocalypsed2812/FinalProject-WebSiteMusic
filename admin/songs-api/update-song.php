@@ -1,21 +1,21 @@
 <?php
 require_once('connection.php');
 
-if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['singer']) || !isset($_POST['listens']) || !isset($_POST['comments'])) {
+if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['singer']) || !isset($_POST['category'])) {
     die(json_encode(array('status' => false, 'data' => 'Parameters not valid')));
 }
 
 $id = $_POST['id'];
 $name = $_POST['name'];
 $singer = $_POST['singer'];
-$listens = $_POST['listens'];
-$comments = $_POST['comments'];
+$category = $_POST['category'];
+$lyric = $_POST['lyric'];
 
-$sql = 'UPDATE songs set name = ?, singer = ?, listens = ? , comments = ? where id = ?';
+$sql = 'UPDATE songs set name = ?, singer = ?, category = ? , lyric = ? where id = ?';
 
 try {
     $stmt = $dbCon->prepare($sql);
-    $stmt->execute(array($name, $singer, $listens, $comments, $id));
+    $stmt->execute(array($name, $singer, $category, $lyric, $id));
 
     $count = $stmt->rowCount();
 

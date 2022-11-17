@@ -14,31 +14,31 @@
     <div class="header__content">
         <ul class="header__list">
             <li class="header__item">
-                <a href="./categories.html" class="header__item-link">
+                <a href="./categories.php" class="header__item-link">
                     <i class="fa-sharp fa-solid fa-bars"></i>
                     <span>Chuyên mục</span>
                 </a>
             </li>
-            <li class="header__item header__item--active">
-                <a href="" class="header__item-link">
+            <li class="header__item">
+                <a href="./home.php" class="header__item-link">
                     <i class="fa-solid fa-music"></i>
                     <span>Bài hát</span>
                 </a>
             </li>
             <li class="header__item">
-                <a href="./user.html" class="header__item-link">
+                <a href="./user.php" class="header__item-link">
                     <i class="fa-solid fa-users"></i>
                     <span>User</span>
                 </a>
             </li>
             <li class="header__item">
-                <a href="./rank.html" class="header__item-link">
+                <a href="./rank.php" class="header__item-link">
                     <i class="fa-sharp fa-solid fa-chart-simple"></i>
                     <span>Bảng xếp hạng</span>
                 </a>
             </li>
             <li class="header__item">
-                <a href="./setting.html" class="header__item-link">
+                <a href="./setting.php" class="header__item-link">
                     <i class="fa-solid fa-gear"></i>
                     <span>Cài đặt</span>
                 </a>

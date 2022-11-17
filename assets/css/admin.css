@@ -1,17 +1,12 @@
-/* -------------------Admin Page CSS---------------------------------*/
 .AdminPage {
     background-color: #170f23 !important;
 }
 
-#myModal_AddSong{
-    display: flex;
-    align-items: center ;
-    justify-content: center ;
-}
+
 input[type="file"]#song_files_add_song{
     padding: 8px 12px;
 }
-textarea#song_Lyric_add_song{
+textarea#song_Lyric_add_song,textarea#song_lyric_edit_song{
     resize: none;
     height: 100px ;
     padding: 10px 12px;
@@ -21,7 +16,6 @@ textarea#song_Lyric_add_song{
     border: 1px solid #dbdbdb;
     outline: none;
 }
-
 .add-form_input{
     width: 100%;
     height: 40px;
@@ -42,4 +36,45 @@ textarea#song_Lyric_add_song{
     font-family:Sans-serif;   
 
 }
-  /*-------------------------------------------------------------------*/
+.AdminPage .modal{
+    align-items: center ;
+    justify-content: center ;
+    display: none ;
+}
+#Add_Error_Mess,#edit_Error_Mess{
+    color: red;
+    margin-top: 10px;
+    display: inline-block;
+    visibility:hidden;
+}
+.new__music-title{
+    font-size: 25px;
+}
+#title_home{
+    flex-direction: row;
+    width: 100%;
+}
+#title_home span:first-child{
+    display: inline-block;
+}
+#Add_alert{
+    position: fixed;
+    display: none;
+    background-color: #198754;
+    line-height: 50px;
+    text-align: center;
+    width: 150px;
+    border-radius: 5px;
+    color: white;
+    right: 50%;
+    left: 50%;
+    top: 70px;
+    z-index: 100;
+}
+
+.auth-form__controls{
+    margin-top: 20px;
+}
+#myModal_deleteSong p{
+    margin-top: 10px;
+}
