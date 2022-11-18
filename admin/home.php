@@ -205,6 +205,63 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal view song -->
+    <div class="modal modal-add-song" id="myModal_ViewSong">
+        <div class="modal__overlay modal__overlay-register"></div>
+        <div class="modal__body modal__container">
+            <div class="auth-form auth-form-register">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h2>Sửa thông tin bài hát</h2>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <form id="myViewForm" action="#">
+                        <div class="add-form_input">
+                            <b>ID</b>
+                            <span id="viewSong_id">12</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Tên bài hát</b>
+                            <span id="viewSong_name">Ân tình trong em</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Ca sĩ</b>
+                            <span id="viewSong_singer">Châu Khải Phong</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Ngày đăng</b>
+                            <span id="viewSong_date">2000-11-16 12:58:41</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Thể Loại</b>
+                            <span id="viewSong_category">Nhạc Pop</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Lượt nghe</b>
+                            <span id="viewSong_listens">12222</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Lượt bình luận</b>
+                            <span id="viewSong_comments">685</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>File nhạc</b>
+                            <span id="viewSong_file">AnTinhTrongEm1.mp3</span>
+                        </div>
+                        <div class="add-form_input div_lyric_view_song">
+                            <b class="label_lyric_view_song">Lời nhạc</b>
+                            <textarea id="song_lyric_view_song" placeholder="Lyric" name="song_Lyric"></textarea>
+                        </div>
+
+                        <div class="auth-form__controls auth-form__controls-edit">
+                            <button type="button" id="btn-close-view-song" class="btn auth-form__controls-back btn--normal btn-close-edit-staff">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -220,6 +277,7 @@
         Add_form = $("#myModal_AddSong"),
         Delete_form = $("#myModal_DeleteSong"),
         Edit_form = $("#myModal_EditSong"),
+        View_form = $("#myModal_ViewSong"),
         FormAdd_InputBtn = $("#myModal_AddSong input[type='text']"),
         FormEdit_InputBtn = $("#myModal_EditSong input[type='text']"),
         DeleteSong_name = $("#deleteSong_Name");
@@ -268,18 +326,30 @@
     function getData() {
         $.get("http://localhost:" + location.port + "/admin/songs-api/get-song.php", function(data, status) {
             let TableBody = ''
+            let text;
             data['data'].forEach(e => {
+                lyric = e['lyric'].replaceAll("\n", ",")
                 TableBody += '<tr><td>' + e['id'] +
                     '</td><td>' + e['name'] +
                     '</td><td>' + e['singer'] +
                     '</td><td>' + e['listens'] +
                     '</td><td>' + e['comments'] +
                     '</td><td> ' +
-                    '<i class="fa-solid fa-eye"></i>' +
+                    '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
+                    e['id'] + ', \'' +
+                    e['name'] + '\'' + ', \'' +
+                    e['singer'] + '\'' + ', \'' +
+                    e['date'] + '\'' + ', \'' +
+                    e['category'] + '\'' + ', \'' +
+                    lyric + '\'' + ', \'' +
+                    e['listens'] + '\'' + ', \'' +
+                    e['comments'] + '\'' + ', \'' +
+                    e['file'] + '\')"></i>' +
                     '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e['id'] + ', \'' + e['name'] + '\')"></i>' +
-                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e['id'] + ', \'' + e['name'] + '\'' + ', \'' + e['singer'] + '\'' + ', \'' + e['category'] + '\'' + ', \'' + e['lyric'] + '\')"></i>' +
+                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e['id'] + ', \'' + e['name'] + '\'' + ', \'' + e['singer'] + '\'' + ', \'' + e['category'] + '\'' + ', \'' + text + '\')"></i>' +
                     '</td><td style="display: none">' + e['category'] +
                     '</td><td style="display: none">' + e['lyric'] +
+                    '</td><td style="display: none">' + e['file'] +
                     '</td></tr>'
             });
             $("#table-body").html(TableBody)
@@ -360,6 +430,7 @@
                         $("#Add_alert").show();
                         $("#Add_alert").delay(2000).slideUp(200, function() {
                             $("#Add_alert").hide(); // ẩn sau 3s
+                            getData()
                         });
 
                     }
@@ -383,9 +454,23 @@
         $("#song_name_edit_song").val(name);
         $("#song_singer_edit_song").val(singer);
         $("#song_category_edit_song").val(category);
-        $("#song_lyric_edit_song").val(lyric);
+        $("#song_lyric_edit_song").val(lyric.replaceAll(",", "\n"));
         Edit_form.css("display", "flex");
 
+    }
+    // Mở dialog view bài hát
+    function Open_Dialog_View(id, name, singer, date, category, lyric, listens, comments, file) {
+        $("#viewSong_id").val(id);
+        $("#viewSong_name").val(name);
+        $("#viewSong_singer").val(singer);
+        $("#viewSong_date").val(date);
+        $("#viewSong_category").val(category);
+        $("#song_lyric_view_song").val(lyric.replaceAll(",", "\n"));
+        $("#viewSong_listens").val(listens);
+        $("#viewSong_comments").val(comments);
+        $("#viewSong_file").val(file);
+
+        View_form.css("display", "flex");
     }
     //Hàm xóa bài hát
     function delete_song() {
@@ -414,53 +499,53 @@
         console.log(category)
         console.log(lyric)
 
-        if (nameBox == "" || singer == "" || category == "") {
-            if (nameBox == "") {
-                $("#edit_Error_Mess").html("Vui lòng nhập tên bài hát");
-                $("#song_name_edit_song").css({
-                    "border": "1px solid red"
-                })
-                $("#song_name_edit_song").focus();
-            } else if (singer == "") {
-                $("#edit_Error_Mess").html("Vui lòng nhập tên ca sỹ");
-                $("#song_singer_edit_song").css({
-                    "border": "1px solid red"
-                })
-                $("#song_singer_edit_song").focus();
-            } else if (category == "") {
-                $("#edit_Error_Mess").html("Vui lòng nhập thể loại nhạc");
-                $("#song_category_edit_song").css({
-                    "border": "1px solid red"
-                })
-                $("#song_category_edit_song").focus();
-            }
-            $("#edit_Error_Mess").css("visibility", "visible");
-        } else {
-            $.post("http://localhost:" + location.port + "/admin/songs-api/update-song.php", {
-                id: target_id,
-                name: nameBox,
-                singer: singer,
-                category: category,
-                lyric: lyric
-            });
-            getData();
-            $('#myModal_EditSong').css("display", "none");
-            // // getData();
+        // if (nameBox == "" || singer == "" || category == "") {
+        //     if (nameBox == "") {
+        //         $("#edit_Error_Mess").html("Vui lòng nhập tên bài hát");
+        //         $("#song_name_edit_song").css({
+        //             "border": "1px solid red"
+        //         })
+        //         $("#song_name_edit_song").focus();
+        //     } else if (singer == "") {
+        //         $("#edit_Error_Mess").html("Vui lòng nhập tên ca sỹ");
+        //         $("#song_singer_edit_song").css({
+        //             "border": "1px solid red"
+        //         })
+        //         $("#song_singer_edit_song").focus();
+        //     } else if (category == "") {
+        //         $("#edit_Error_Mess").html("Vui lòng nhập thể loại nhạc");
+        //         $("#song_category_edit_song").css({
+        //             "border": "1px solid red"
+        //         })
+        //         $("#song_category_edit_song").focus();
+        //     }
+        //     $("#edit_Error_Mess").css("visibility", "visible");
+        // } else {
+        //     // $.post("http://localhost:" + location.port + "/admin/songs-api/update-song.php", {
+        //     //     id: target_id,
+        //     //     name: nameBox,
+        //     //     singer: singer,
+        //     //     category: category,
+        //     //     lyric: lyric
+        //     // });
+        //     // getData();
+        //     // $('#myModal_EditSong').css("display", "none");
+        //     // // // getData();
 
-            // // xóa thông tin các ô vừa nhập
-            $("#song_name_edit_song").val("");
-            $("#song_singer_edit_song").val("");
-            $("#song_category_edit_song").val("");
-            $("#song_lyric_edit_song").val("");
+        //     // // // xóa thông tin các ô vừa nhập
+        //     // $("#song_name_edit_song").val("");
+        //     // $("#song_singer_edit_song").val("");
+        //     // $("#song_category_edit_song").val("");
+        //     // $("#song_lyric_edit_song").val("");
 
-            // // hiện thông báo thành công
-            $("#Add_alert").html("Thay đổi thành công")
-            $("#Add_alert").show();
-            $("#Add_alert").delay(2000).slideUp(200, function() {
-                $("#Add_alert").hide(); // ẩn sau 3s
-            });
-        }
-        getData();
+        //     // // // hiện thông báo thành công
+        //     // $("#Add_alert").html("Thay đổi thành công")
+        //     // $("#Add_alert").show();
+        //     // $("#Add_alert").delay(2000).slideUp(200, function() {
+        //     //     $("#Add_alert").hide(); // ẩn sau 3s
+        //     // });
+        // }
+        // getData();
     }
 </script>
 
