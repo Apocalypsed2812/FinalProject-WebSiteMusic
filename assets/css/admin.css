@@ -110,4 +110,48 @@ input[type="file"]#song_files_add_song{
     padding: 8px 14px;
     border-radius: 50%;
     margin: 0 8px !important;
-  }
+}
+.container__header-with-search-result{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    top: 17px
+}
+.container__header-with-search-result{
+    z-index: -1;
+    padding: 8px 10px 16px 14px;
+}
+.container__header-with-search-result h4{
+    margin-top: 30px;
+}
+.fa-magnifying-glass{
+    margin-right: 10px !important;
+    margin-left: 20px !important;
+}
+
+
+.container__header-with-search-input{
+    width: 100% !important;
+}
+
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+
+.autocomplete-items div {
+    color: #fff;
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 8px;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #ccc;
+  cursor: pointer;
+}
+
