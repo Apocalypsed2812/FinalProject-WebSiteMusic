@@ -93,69 +93,24 @@ function getData() {
                 }
                 lyric = e["lyric"].replaceAll("\n", ",");
                 TableBody.push(
-                    "<tr><td>" +
-                        e["id"] +
-                        "</td><td>" +
-                        e["name"] +
-                        "</td><td>" +
-                        e["singer"] +
-                        "</td><td>" +
-                        e["listens"] +
-                        "</td><td>" +
-                        e["comments"] +
-                        "</td><td> " +
-                        '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "'" +
-                        ", '" +
-                        e["singer"] +
-                        "'" +
-                        ", '" +
-                        e["date"] +
-                        "'" +
-                        ", '" +
-                        e["category"] +
-                        "'" +
-                        ", '" +
-                        lyric +
-                        "'" +
-                        ", '" +
-                        e["listens"] +
-                        "'" +
-                        ", '" +
-                        e["comments"] +
-                        "'" +
-                        ", '" +
-                        e["file"] +
-                        "')\"></i>" +
-                        '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "')\"></i>" +
-                        '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "'" +
-                        ", '" +
-                        e["singer"] +
-                        "'" +
-                        ", '" +
-                        e["category"] +
-                        "'" +
-                        ", '" +
-                        lyric +
-                        "')\"></i>" +
-                        '</td><td style="display: none">' +
-                        e["category"] +
-                        '</td><td style="display: none">' +
-                        e["lyric"] +
-                        '</td><td style="display: none">' +
-                        e["file"] +
-                        "</td></tr>"
+                    "<tr><td>" + e["id"] + "</td><td>"
+                    + e["name"] + "</td><td>"
+                    + e["singer"] + "</td><td>"
+                    + e["listens"] + "</td><td>"
+                    + e["comments"] + "</td><td> " +
+                    '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "'" + ", '"
+                    + e["singer"] + "'" + ", '" + e["date"] + "'" + ", '" + e["category"] + "'" + ", '" + lyric + "'" + ", '"
+                    + e["listens"] + "'" + ", '" + e["comments"] + "'" + ", '" + e["file"] + "')\"></i>" +
+                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ", '" + e["name"] + "')\"></i>" +
+                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
+                    e["id"] + ", '" + e["name"] + "'" + ", '" + e["singer"] + "'" + ", '" + e["category"] + "'" + ", '" + lyric + "')\"></i>" +
+                    '</td><td style="display: none">' +
+                    e["category"] +
+                    '</td><td style="display: none">' +
+                    e["lyric"] +
+                    '</td><td style="display: none">' +
+                    e["file"] +
+                    "</td></tr>"
                 );
             });
 
@@ -251,8 +206,8 @@ function add_song() {
                 } else {
                     $.post(
                         "http://localhost:" +
-                            location.port +
-                            "/admin/songs-api/add-song.php",
+                        location.port +
+                        "/admin/songs-api/add-song.php",
                         {
                             name: nameBox,
                             singer: singer,
@@ -337,14 +292,7 @@ function delete_song() {
     if ($("#table-body tr").length == 1) {
         current_tablePage -= 1;
     }
-    $.post(
-        "http://localhost:" +
-            location.port +
-            "/admin/songs-api/delete-song.php",
-        {
-            id: target_id,
-        }
-    );
+    $.post("http://localhost:" + location.port + "/admin/songs-api/delete-song.php", { id: target_id, });
 
     getData();
     Delete_form.css("display", "none");
@@ -390,8 +338,8 @@ function edit_song() {
     } else {
         $.post(
             "http://localhost:" +
-                location.port +
-                "/admin/songs-api/update-song.php",
+            location.port +
+            "/admin/songs-api/update-song.php",
             {
                 id: target_id,
                 name: nameBox,
@@ -549,7 +497,7 @@ function autocomplete(inp, arr) {
             /*check if the item starts with the same letters as the text field value:*/
             if (
                 arr[i].substr(0, val.length).toUpperCase() ==
-                    val.toUpperCase() &&
+                val.toUpperCase() &&
                 n < 5
             ) {
                 /*create a DIV element for each matching element:*/

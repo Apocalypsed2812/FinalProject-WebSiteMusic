@@ -43,7 +43,7 @@ input[type="file"]#song_files_add_song{
     justify-content: center ;
     display: none ;
 }
-#Add_Error_Mess,#edit_Error_Mess{
+#Add_Error_Mess,#edit_Error_Mess,.Error_Mess{
     color: red;
     margin-top: 10px;
     display: inline-block;
@@ -59,7 +59,7 @@ input[type="file"]#song_files_add_song{
 #title_home span:first-child{
     display: inline-block;
 }
-#Add_alert{
+.alert_admin{
     position: fixed;
     display: none;
     background-color: #198754;
@@ -81,17 +81,20 @@ input[type="file"]#song_files_add_song{
     margin-top: 10px;
 }
 
-#song_id_edit_song{
+#song_id_edit_song,.EditForm_IdInput{
     background-color: #dbdbdb !important;
     cursor: not-allowed;
 }
 
 .add-form_input b{
     display: inline-block;
-    width: 100px;
+    width: 120px;
     line-height: 40px;
 }
-#myViewForm .add-form_input{
+#myInput{
+    border: none !important;
+}
+#myViewForm .add-form_input,.ViewForm .add-form_input{
     margin-top: 5px;
 }
 #song_lyric_view_song{

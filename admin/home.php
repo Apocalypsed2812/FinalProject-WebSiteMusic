@@ -29,7 +29,7 @@
                         <span class="new__music-title">
                             Thông tin bài hát
                         </span>
-                        <span id="Add_alert">ADD Successful</span>
+                        <span class="alert_admin" id="Add_alert">ADD Successful</span>
                     </div>
                 </div>
                 <div class="row mt-32">
