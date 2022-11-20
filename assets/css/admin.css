@@ -6,7 +6,9 @@
 input[type="file"]#song_files_add_song{
     padding: 8px 12px;
 }
-textarea#song_Lyric_add_song,textarea#song_lyric_edit_song{
+#song_Lyric_add_song,
+#song_lyric_edit_song,
+#song_lyric_view_song{
     resize: none;
     height: 100px ;
     padding: 10px 12px;
@@ -41,7 +43,7 @@ textarea#song_Lyric_add_song,textarea#song_lyric_edit_song{
     justify-content: center ;
     display: none ;
 }
-#Add_Error_Mess,#edit_Error_Mess{
+#Add_Error_Mess,#edit_Error_Mess,.Error_Mess{
     color: red;
     margin-top: 10px;
     display: inline-block;
@@ -57,7 +59,7 @@ textarea#song_Lyric_add_song,textarea#song_lyric_edit_song{
 #title_home span:first-child{
     display: inline-block;
 }
-#Add_alert{
+.alert_admin{
     position: fixed;
     display: none;
     background-color: #198754;
@@ -78,3 +80,81 @@ textarea#song_Lyric_add_song,textarea#song_lyric_edit_song{
 #myModal_deleteSong p{
     margin-top: 10px;
 }
+
+#song_id_edit_song,.EditForm_IdInput{
+    background-color: #dbdbdb !important;
+    cursor: not-allowed;
+}
+
+.add-form_input b{
+    display: inline-block;
+    width: 120px;
+    line-height: 40px;
+}
+#myInput{
+    border: none !important;
+}
+#myViewForm .add-form_input,.ViewForm .add-form_input{
+    margin-top: 5px;
+}
+#song_lyric_view_song{
+    width: 330px;
+    padding-left: 0 !important;
+    border: 1px solid transparent;
+}
+.div_lyric_view_song{
+    height: 100px;
+    display: flex;
+    padding-right: 0 !important;
+}
+
+.admin__song-pagination-item a {
+    background-color: inherit;
+    padding: 8px 14px;
+    border-radius: 50%;
+    margin: 0 8px !important;
+}
+.container__header-with-search-result{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    top: 17px
+}
+.container__header-with-search-result{
+    z-index: -1;
+    padding: 8px 10px 16px 14px;
+}
+.container__header-with-search-result h4{
+    margin-top: 30px;
+}
+.fa-magnifying-glass{
+    margin-right: 10px !important;
+    margin-left: 20px !important;
+}
+
+
+.container__header-with-search-input{
+    width: 100% !important;
+}
+
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+
+.autocomplete-items div {
+    color: #fff;
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 8px;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #ccc;
+  cursor: pointer;
+}
+

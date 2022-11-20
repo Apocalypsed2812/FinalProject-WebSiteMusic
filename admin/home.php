@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="AdminPage">
+<body class="AdminPage HomePage">
     <div class="app">
         <?php
         require_once('../includes/Sidebar/SidebarAdmin.php')
@@ -29,7 +29,7 @@
                         <span class="new__music-title">
                             Thông tin bài hát
                         </span>
-                        <span id="Add_alert">ADD Successful</span>
+                        <span class="alert_admin" id="Add_alert">ADD Successful</span>
                     </div>
                 </div>
                 <div class="row mt-32">
@@ -43,6 +43,7 @@
                                     <td>Lượt nghe</td>
                                     <td>Bình luận</td>
                                     <td>Action</td>
+                                    <td id="Search_value" style="display: none;">a</td>
                                 </tr>
                             </thead>
                             <tbody class="admin__song-table-body" id="table-body">
@@ -64,15 +65,15 @@
                 </div>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
-                        <ul class="admin__song-pagination-list">
-                            <li class="admin__song-pagination-item">
-                                <a href="" class="admin__song-pagination-link admin__song-pagination-link--active">1</a>
+                        <ul class="admin__song-pagination-list" id="Table_pagination">
+                            <li class="admin__song-pagination-item" onclick="Pagination_click($(this))">
+                                <a class="admin__song-pagination-link">1</a>
                             </li>
-                            <li class="admin__song-pagination-item">
-                                <a href="" class="admin__song-pagination-link">2</a>
+                            <li class="admin__song-pagination-item" onclick="Pagination_click($(this))">
+                                <a class="admin__song-pagination-link">2</a>
                             </li>
-                            <li class="admin__song-pagination-item">
-                                <a href="" class="admin__song-pagination-link">3</a>
+                            <li class="admin__song-pagination-item" onclick="Pagination_click($(this))">
+                                <a class="admin__song-pagination-link">3</a>
                             </li>
                         </ul>
                     </div>
@@ -205,264 +206,71 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal view song -->
+    <div class="modal modal-add-song" id="myModal_ViewSong">
+        <div class="modal__overlay modal__overlay-register"></div>
+        <div class="modal__body modal__container">
+            <div class="auth-form auth-form-register">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h2>Thông tin bài hát</h2>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <form id="myViewForm" action="#">
+                        <div class="add-form_input">
+                            <b>ID</b>
+                            <span id="viewSong_id">12</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Tên bài hát</b>
+                            <span id="viewSong_name">Ân tình trong em</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Ca sĩ</b>
+                            <span id="viewSong_singer">Châu Khải Phong</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Ngày đăng</b>
+                            <span id="viewSong_date">2000-11-16 12:58:41</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Thể Loại</b>
+                            <span id="viewSong_category">Nhạc Pop</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Lượt nghe</b>
+                            <span id="viewSong_listens">12222</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Lượt bình luận</b>
+                            <span id="viewSong_comments">685</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>File nhạc</b>
+                            <span id="viewSong_file">AnTinhTrongEm1.mp3</span>
+                        </div>
+                        <div class="add-form_input div_lyric_view_song">
+                            <b class="label_lyric_view_song">Lời nhạc</b>
+                            <textarea readonly id="song_lyric_view_song" placeholder="Lyric" name="song_Lyric"></textarea>
+                        </div>
+
+                        <div class="auth-form__controls auth-form__controls-edit">
+                            <button type="button" id="btn-close-view-song" class="btn auth-form__controls-back btn--normal btn-close-edit-staff">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="https://malsup.github.io/jquery.form.js"></script>
 
 <!-- <script src="../assets/js/main.js"></script> -->
-<!-- <script src="../assets/js/admin.js"></script> -->
+<script src="../assets/js/admin_home.js"></script>
 
-<script>
-    let addBtn = $(".admin__song-btn button"),
-        XIcon = $(".auth-form__header i.fa-xmark"),
-        cancelSongForm = $(".auth-form__controls-back"),
-        Add_form = $("#myModal_AddSong"),
-        Delete_form = $("#myModal_DeleteSong"),
-        Edit_form = $("#myModal_EditSong"),
-        FormAdd_InputBtn = $("#myModal_AddSong input[type='text']"),
-        FormEdit_InputBtn = $("#myModal_EditSong input[type='text']"),
-        DeleteSong_name = $("#deleteSong_Name");
-
-    // sau khi trang tải xong 
-    $(document).ready(function() {
-        // Add active cho sidebar
-        $(".header__item:nth-child(2)").addClass("header__item--active");
-        // Lấy dữ liệu bài hát
-        getData();
-    });
-
-    // đổi màu border và ẩn thông báo lỗi
-    //form Add
-    FormAdd_InputBtn.click(function() {
-        FormAdd_InputBtn.css({
-            "border": "1px solid #dbdbdb"
-        })
-        $("#Add_Error_Mess").css("visibility", "hidden");
-    })
-    //form Edit
-    FormEdit_InputBtn.click(function() {
-        FormEdit_InputBtn.css({
-            "border": "1px solid #dbdbdb"
-        })
-        $("#edit_Error_Mess").css("visibility", "hidden");
-    })
-
-
-    // nút 'Thêm bài hát' => hiện form
-    addBtn.click(function() {
-        Add_form.css("display", "flex");
-    });
-
-    // nút 'X' và 'hủy' => đóng form
-    XIcon.click(function() {
-        $(".modal").css("display", "none");
-
-    });
-    cancelSongForm.click(function() {
-        $(".modal").css("display", "none");
-    });
-
-
-    // hàm lấy dữ liệu db chèn vào table
-    function getData() {
-        $.get("http://localhost:" + location.port + "/admin/songs-api/get-song.php", function(data, status) {
-            let TableBody = ''
-            data['data'].forEach(e => {
-                TableBody += '<tr><td>' + e['id'] +
-                    '</td><td>' + e['name'] +
-                    '</td><td>' + e['singer'] +
-                    '</td><td>' + e['listens'] +
-                    '</td><td>' + e['comments'] +
-                    '</td><td> ' +
-                    '<i class="fa-solid fa-eye"></i>' +
-                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e['id'] + ', \'' + e['name'] + '\')"></i>' +
-                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e['id'] + ', \'' + e['name'] + '\'' + ', \'' + e['singer'] + '\'' + ', \'' + e['category'] + '\'' + ', \'' + e['lyric'] + '\')"></i>' +
-                    '</td><td style="display: none">' + e['category'] +
-                    '</td><td style="display: none">' + e['lyric'] +
-                    '</td></tr>'
-            });
-            $("#table-body").html(TableBody)
-        }, "json");
-    }
-
-    //hàm thêm bài hát
-    function add_song() {
-        let error = 0,
-            nameBox = $("#song_name_add_song").val(),
-            singer = $("#song_singer_add_song").val(),
-            current_time = new Date(),
-            category = $("#song_category_add_song").val(),
-            lyric = $("#song_Lyric_add_song").val(),
-            target_id,
-            target_name;
-        try {
-            song = $("#song_files_add_song").get(0).files[0].name;
-        } catch (error) {
-            song = '';
-        }
-        current_time = current_time.getFullYear() + "-" + current_time.getMonth() + "-" + current_time.getDate() + " " + current_time.getHours() + ":" + current_time.getMinutes() + ":" + current_time.getSeconds();
-
-        $("#myForm").ajaxForm({
-            complete: function(xhr) {
-                if (nameBox == "" || singer == "" || category == "") {
-                    error = 1
-                    if (nameBox == "") {
-                        $("#Add_Error_Mess").html("Vui lòng nhập tên bài hát");
-                        $("#song_name_add_song").css({
-                            "border": "1px solid red"
-                        })
-                        $("#song_name_add_song").focus();
-                    } else if (singer == "") {
-                        $("#Add_Error_Mess").html("Vui lòng nhập tên ca sỹ");
-                        $("#song_singer_add_song").css({
-                            "border": "1px solid red"
-                        })
-                        $("#song_singer_add_song").focus();
-                    } else if (category == "") {
-                        $("#Add_Error_Mess").html("Vui lòng nhập thể loại nhạc");
-                        $("#song_category_add_song").css({
-                            "border": "1px solid red"
-                        })
-                        $("#song_category_add_song").focus();
-                    }
-                    $("#Add_Error_Mess").css("visibility", "visible");
-                } else {
-                    if (xhr.responseText) {
-                        $i = xhr.responseText.split("\n");
-                        $("#Add_Error_Mess").html($i[$i.length - 1]);
-                        $("#Add_Error_Mess").css("visibility", "visible");
-                        error = 1;
-                    } else {
-                        $.post("http://localhost:" + location.port + "/admin/songs-api/add-song.php", {
-                            name: nameBox,
-                            singer: singer,
-                            date: current_time,
-                            category: category,
-                            lyric: lyric,
-                            listens: 0,
-                            comments: 0,
-                            file: song
-                        });
-                        getData()
-                        $('#myModal_AddSong').css("display", "none");
-                        // // getData();
-
-                        // // xóa thông tin các ô vừa nhập
-                        $("#song_name_add_song").val("");
-                        $("#song_singer_add_song").val("");
-                        $("#song_category_add_song").val("");
-                        $("#song_Lyric_add_song").val("");
-                        $("#song_files_add_song").val("");
-
-                        // // hiện thông báo thành công
-                        $("#Add_alert").html("Đã thêm thành công")
-                        $("#Add_alert").show();
-                        $("#Add_alert").delay(2000).slideUp(200, function() {
-                            $("#Add_alert").hide(); // ẩn sau 3s
-                        });
-
-                    }
-                    getData()
-                }
-                getData()
-            },
-        });
-    }
-
-    // Mở dialog conform xóa bài hát
-    function Open_Dialog_Delete(id, name) {
-        Delete_form.css("display", "flex");
-        target_id = id;
-        DeleteSong_name.html(name)
-    }
-
-    // Mở dialog edit bài hát
-    function Open_Dialog_Edit(id, name, singer, category, lyric) {
-        $("#song_id_edit_song").val(id);
-        $("#song_name_edit_song").val(name);
-        $("#song_singer_edit_song").val(singer);
-        $("#song_category_edit_song").val(category);
-        $("#song_lyric_edit_song").val(lyric);
-        Edit_form.css("display", "flex");
-
-    }
-    //Hàm xóa bài hát
-    function delete_song() {
-        $.post("http://localhost:" + location.port + "/admin/songs-api/delete-song.php", {
-            id: target_id
-        });
-        Delete_form.css("display", "none");
-        // $('#myModal_DeleteSong').css("display", "none");
-        $("#Add_alert").html("Đã xóa thành công")
-        $("#Add_alert").show();
-        $("#Add_alert").delay(2000).slideUp(200, function() {
-            $("#Add_alert").hide(); // ẩn sau 3s
-        });
-        getData();
-    }
-    // hàm sửa thông tin bài hát
-    function edit_song() {
-        target_id = $("#song_id_edit_song").val();
-        nameBox = $("#song_name_edit_song").val();
-        singer = $("#song_singer_edit_song").val();
-        category = $("#song_category_edit_song").val();
-        lyric = $("#song_lyric_edit_song").val();
-        console.log(target_id)
-        console.log(nameBox)
-        console.log(singer)
-        console.log(category)
-        console.log(lyric)
-
-        if (nameBox == "" || singer == "" || category == "") {
-            if (nameBox == "") {
-                $("#edit_Error_Mess").html("Vui lòng nhập tên bài hát");
-                $("#song_name_edit_song").css({
-                    "border": "1px solid red"
-                })
-                $("#song_name_edit_song").focus();
-            } else if (singer == "") {
-                $("#edit_Error_Mess").html("Vui lòng nhập tên ca sỹ");
-                $("#song_singer_edit_song").css({
-                    "border": "1px solid red"
-                })
-                $("#song_singer_edit_song").focus();
-            } else if (category == "") {
-                $("#edit_Error_Mess").html("Vui lòng nhập thể loại nhạc");
-                $("#song_category_edit_song").css({
-                    "border": "1px solid red"
-                })
-                $("#song_category_edit_song").focus();
-            }
-            $("#edit_Error_Mess").css("visibility", "visible");
-        } else {
-            $.post("http://localhost:" + location.port + "/admin/songs-api/update-song.php", {
-                id: target_id,
-                name: nameBox,
-                singer: singer,
-                category: category,
-                lyric: lyric
-            });
-            getData();
-            $('#myModal_EditSong').css("display", "none");
-            // // getData();
-
-            // // xóa thông tin các ô vừa nhập
-            $("#song_name_edit_song").val("");
-            $("#song_singer_edit_song").val("");
-            $("#song_category_edit_song").val("");
-            $("#song_lyric_edit_song").val("");
-
-            // // hiện thông báo thành công
-            $("#Add_alert").html("Thay đổi thành công")
-            $("#Add_alert").show();
-            $("#Add_alert").delay(2000).slideUp(200, function() {
-                $("#Add_alert").hide(); // ẩn sau 3s
-            });
-        }
-        getData();
-    }
-</script>
 
 
 </html>
