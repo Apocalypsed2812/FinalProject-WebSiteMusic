@@ -9,7 +9,7 @@
             <i class="fa-solid fa-magnifying-glass"></i>
             <div class="autocomplete">
                 <!-- <input type="text" placeholder="Tìm kiếm bài hát,..." class="container__header-with-search-input"> -->
-                <input id="myInput" type="text" name="myCountry" placeholder="Tìm kiếm bài hát,..." class="container__header-with-search-input">
+                <input id="myInput" type="text" name="myCountry" placeholder="Tìm kiếm" class="container__header-with-search-input">
             </div>
             <div class="container__header-with-search-result">
                 <h4>Đề xuất cho bạn</h4>

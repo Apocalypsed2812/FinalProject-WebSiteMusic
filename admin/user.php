@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
 </head>
 
-<body class="AdminPage">
+<body class="AdminPage UserPage">
     <div class="app">
         <?php
         require_once('../includes/Sidebar/SidebarAdmin.php')
@@ -43,6 +43,7 @@
                                     <td>Action</td>
                                     <td id="Email_value" style="display: none;">a</td>
                                     <td id="Username_value" style="display: none;">a</td>
+                                    <td id="UserSearch_value" style="display: none;">a</td>
                                 </tr>
                             </thead>
                             <tbody class="admin__song-table-body" id="table-User">
@@ -86,7 +87,7 @@
 
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
-                        <ul class="admin__song-pagination-list">
+                        <ul class="admin__song-pagination-list" id="UserTable_pagination">
                             <li class="admin__song-pagination-item">
                                 <a href="" class="admin__song-pagination-link admin__song-pagination-link--active">1</a>
                             </li>
@@ -99,6 +100,8 @@
                         </ul>
                     </div>
                 </div>
+                <p class="NullValue" style="display: none;">Không có dữ liệu</p>
+
             </div>
         </div>
     </div>

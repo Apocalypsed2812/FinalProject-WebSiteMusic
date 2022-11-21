@@ -42,6 +42,7 @@
                                     <td>Ca sĩ</td>
                                     <td>Lượt nghe</td>
                                     <td>Bình luận</td>
+                                    <td>Tải xuống</td>
                                     <td>Action</td>
                                     <td id="Search_value" style="display: none;">a</td>
                                 </tr>
@@ -78,7 +79,7 @@
                         </ul>
                     </div>
                 </div>
-
+                <p class="NullValue" style="display: none;">Không có dữ liệu</p>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
@@ -86,10 +87,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-
     <!-- Modal Delete-->
     <div class="modal modal-add-song" id="myModal_DeleteSong">
         <div class="modal__overlay modal__overlay-register"></div>
@@ -131,8 +132,12 @@
                                 <input type="text" class="add-form_input" placeholder="Vui lòng nhập tên ca sĩ" name="song_singer" id="song_singer_add_song">
                             </div>
                             <div class="auth-form__group">
-                                <label class="add-form_label" for="song_category_add_song">Thể loại nhạc</label>
-                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập thể loại" name="song_category" id="song_category_add_song">
+                                <label class="add-form_label" for="song_category_add">Thể loại nhạc</label>
+                                <!-- <input type="text" class="add-form_input" placeholder="Vui lòng nhập thể loại" name="song_category" id="song_category_add_song"> -->
+                                <select class="add-form_input song_category_list" name="song_category_add" id="song_category_add">
+                                    <option value=1>admin</option>
+                                    <option value=2>user</option>
+                                </select>
                             </div>
                             <div class="auth-form__group">
                                 <label class="add-form_label" for="song_Lyric_add_song">Lyric</label>
@@ -184,8 +189,12 @@
                                 <input type="text" class="add-form_input" placeholder="Vui lòng nhập tên ca sĩ" name="song_singer" id="song_singer_edit_song">
                             </div>
                             <div class="auth-form__group">
-                                <label class="add-form_label" for="song_category_edit_song">Thể loại nhạc</label>
-                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập thể loại" name="song_category" id="song_category_edit_song">
+                                <label class="add-form_label" for="song_category_edit">Thể loại nhạc</label>
+                                <!-- <input type="text" class="add-form_input" placeholder="Vui lòng nhập thể loại" name="song_category" id="song_category_edit_song"> -->
+                                <select class="add-form_input song_category_list" name="song_category_edit" id="song_category_edit">
+                                    <option value=1>admin</option>
+                                    <option value=2>user</option>
+                                </select>
                             </div>
                             <div class="auth-form__group">
                                 <label class="add-form_label" for="song_lyric_edit_song">Lyric</label>
@@ -245,6 +254,10 @@
                         <div class="add-form_input">
                             <b>Lượt bình luận</b>
                             <span id="viewSong_comments">685</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Lượt tải xuống</b>
+                            <span id="viewSong_downloads">685</span>
                         </div>
                         <div class="add-form_input">
                             <b>File nhạc</b>
