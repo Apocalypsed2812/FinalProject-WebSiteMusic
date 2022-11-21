@@ -1,3 +1,12 @@
+<?php
+    require_once("connectdb.php");
+    $id = "";
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +30,16 @@
                <div class="row mt-110">
                    <div class="col l-5 m-12">
                         <div class="music__list-item">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_webp/cover/5/8/6/4/58642d2e3da7d97ab37e52e497bdcf7f.jpg" alt="" class="music__list-item-img">
-                            <h3 class="music__list-item-title">Top 100 bài hát nhạc trẻ hay nhất 2022 -2023</h3>
+                            <?php 
+                                $sql = "SELECT *  FROM category WHERE id = '$id'";
+                                $result = $conn->query($sql);
+                                if($result->num_rows > 0){
+                                    while($row = $result->fetch_assoc()){
+                            ?>
+                            <img src="<?php echo $row['image']; ?>" alt="" class="music__list-item-img">
+                            <h3 class="music__list-item-title"><?php echo $row['name']; ?></h3>
                             <p>Cập Nhật: <span>29/09/2022</span></p>
-                            <p>Hương Ly, Châu Khải Phong, Keyo</p>
+                            <p><?php echo $row['singers']; ?></p>
                             <p>1.9 M người yêu thích</p>
                             <button>
                                 <i class="fa-solid fa-circle-play"></i>
@@ -35,15 +50,19 @@
                             </div>
                         </div>
                    </div>
-    
+                        
                    <div class="col l-7">
                     <div class="row">
                         <div class="col l-12">
                             <p class="music__list-des">
                                 Lời tựa
-                                <span>Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp dựa trên thông tin số liệu lượt nghe và lượt chia sẻ của từng bài hát trên phiên bản web và phiên bản Mobile. Dữ liệu sẽ được lấy trong 30 ngày gần nhất và được cập nhật liên tục.</span>
+                                <span><?php echo $row['description']; ?></span>
                             </p>
                         </div>
+                        <?php
+                                    }
+                                } 
+                        ?>
                         <div class="col l-12 m-12 c-12">
                             <div class="new__music-song">
                                 <div class="new__music-song-rank">
