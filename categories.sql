@@ -34,7 +34,7 @@ CREATE TABLE `categories` (
   `image` varchar(150) NOT NULL,
   `description` varchar(100) NOT NULL,
   `singers` varchar(50) NOT NULL,
-  `songs` varchar(250) NOT NULL
+  `songs` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -42,21 +42,21 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`,`topic`, `image`, `description`, `singers`,`songs`) VALUES
-('1', 'Nhạc cho thứ 3','Lựa chọn hôm nay','T3.jpg', 'Thứ ba đầy cảm xúc với những Ballad Việt', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','1,4,5'),
-('2', 'Indie Buồn','Lựa chọn hôm nay', 'IndieBuon.jpg', 'Thanh âm Indie buồn', 'Nhật Kim Anh, Trúc Nhân, Ngô Kiến Huy','1,4,6'),
-('3', 'Heart-break Pop','Lựa chọn hôm nay','heartbreakPop.jpg', 'Heart-break Pop buồn sâu lắng', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','2,4,6'),
-('4', 'V-Pop Hit ','Lựa chọn hôm nay', 'VPopHit.jpg', 'V-Pop Những Bản Hit Chậm Mà Chắc', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','2,4,5'),
-('5', 'Trending','Lựa chọn hôm nay', 'trending.jpg', 'Nhạc Trending thịnh hành với giới trẻ', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','1,3,5'),
-('6', 'TOP 100 Bài Nhạc...','Top100', 'top100_NhacTre.jpg', 'Top 100 nhạc trẻ', 'Khang Việt, Jack-97, Miu Lê','1,3,6'),
-('7', 'Top 100 Âu Mỹ...','Top100', 'top100_AuMy.jpg', 'Top 100 Pop Âu Mỹ', 'Khang Việt, Jack-97, Miu Lê','1,3,6'),
-('8', 'Top 100 nhạc...','Top100', 'top100_EDM.jpg', 'Top 100 EDM', 'Khang Việt, Jack-97, Miu Lê','3,5,6'),
-('9', 'Top 100 Nhạc Trữ Tình...','Top100', 'top100_TruTinh.jpg', 'Top 100 Nhạc Trữ Tình', 'Khang Việt, Jack-97, Miu Lê','1,2,5'),
-('10', 'Top 100 Nhạc Hàn...','Top100', 'top100_Han.jpg', 'Top 100 Hàn Quốc', 'Khang Việt, Jack-97, Miu Lê','4,5,6'),
-('11', 'V-Pop Tháng 8/2022','Nhạc mới mỗi ngày', 'vpop_T8.jpg', 'Nhạc hot V-Pop tháng 8 với nhiều ca sĩ khác nhau', 'OnlyC, Phương Ly, Hoàng Thùy Linh','1,5,6'),
-('12', 'US-UK Tháng 8/2022','Nhạc mới mỗi ngày', 'usuk_T8.jpg', 'Nhạc hot US-UK tháng 8 với nhiều ca sĩ khác nhau', 'Beyoncé, Calvin Harris, Billie Eilish','2,3,6'),
-('13', 'K-Pop Tháng 8/2022','Nhạc mới mỗi ngày', 'kpop_T8.jpg', 'Nhạc hot K-Pop tháng 8 với nhiều ca sĩ khác nhau', 'ATEEZ, SNSD, STAYC, ITZY','1,4,5'),
-('14', 'C-Pop Tháng 8/2022','Nhạc mới mỗi ngày', 'cpop_T8.jpg', 'Nhạc hot C-Pop tháng 8 với nhiều ca sĩ khác nhau', 'Thái Từ Khôn, INTO1, Phó Mộng Đồng','2,4,5'),
-('15', 'Indie Việt Tháng 8/2022','Nhạc mới mỗi ngày', 'indieViet_T8.jpg', 'Nhạc hot Indie tháng 8 với nhiều ca sĩ khác nhau', 'Trang, T.R.I, buitruonglinh','3,4,6');
+('1', 'Nhạc cho thứ 3','Lựa chọn hôm nay','T3.jpg', 'Thứ ba đầy cảm xúc với những Ballad Việt', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','Xin Má Rước Dâu (EDM Version),The Spectre,Nevada'),
+('2', 'Indie Buồn','Lựa chọn hôm nay', 'IndieBuon.jpg', 'Thanh âm Indie buồn', 'Nhật Kim Anh, Trúc Nhân, Ngô Kiến Huy','Xin Má Rước Dâu (EDM Version),The Spectre,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('3', 'Heart-break Pop','Lựa chọn hôm nay','heartbreakPop.jpg', 'Heart-break Pop buồn sâu lắng', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','Thuyền Quyên,Nevada,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('4', 'V-Pop Hit ','Lựa chọn hôm nay', 'VPopHit.jpg', 'V-Pop Những Bản Hit Chậm Mà Chắc', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','Thuyền Quyên,The Spectre,Nevada'),
+('5', 'Trending','Lựa chọn hôm nay', 'trending.jpg', 'Nhạc Trending thịnh hành với giới trẻ', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','Xin Má Rước Dâu (EDM Version),Tấm Lòng Son,Nevada'),
+('6', 'TOP 100 Bài Nhạc...','Top100', 'top100_NhacTre.jpg', 'Top 100 nhạc trẻ', 'Khang Việt, Jack-97, Miu Lê','Xin Má Rước Dâu (EDM Version),Tấm Lòng Son,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('7', 'Top 100 Âu Mỹ...','Top100', 'top100_AuMy.jpg', 'Top 100 Pop Âu Mỹ', 'Khang Việt, Jack-97, Miu Lê','Xin Má Rước Dâu (EDM Version),Tấm Lòng Son,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('8', 'Top 100 nhạc...','Top100', 'top100_EDM.jpg', 'Top 100 EDM', 'Khang Việt, Jack-97, Miu Lê','Tấm Lòng Son,Nevada,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('9', 'Top 100 Nhạc Trữ Tình...','Top100', 'top100_TruTinh.jpg', 'Top 100 Nhạc Trữ Tình', 'Khang Việt, Jack-97, Miu Lê','Xin Má Rước Dâu (EDM Version),Thuyền Quyên,Nevada'),
+('10', 'Top 100 Nhạc Hàn...','Top100', 'top100_Han.jpg', 'Top 100 Hàn Quốc', 'Khang Việt, Jack-97, Miu Lê','The Spectre,Nevada,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('11', 'V-Pop Tháng 8/2022','Nhạc mới mỗi ngày', 'vpop_T8.jpg', 'Nhạc hot V-Pop tháng 8 với nhiều ca sĩ khác nhau', 'OnlyC, Phương Ly, Hoàng Thùy Linh','Xin Má Rước Dâu (EDM Version),Nevada,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('12', 'US-UK Tháng 8/2022','Nhạc mới mỗi ngày', 'usuk_T8.jpg', 'Nhạc hot US-UK tháng 8 với nhiều ca sĩ khác nhau', 'Beyoncé, Calvin Harris, Billie Eilish','Thuyền Quyên,Tấm Lòng Son,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
+('13', 'K-Pop Tháng 8/2022','Nhạc mới mỗi ngày', 'kpop_T8.jpg', 'Nhạc hot K-Pop tháng 8 với nhiều ca sĩ khác nhau', 'ATEEZ, SNSD, STAYC, ITZY','Xin Má Rước Dâu (EDM Version),The Spectre,Nevada'),
+('14', 'C-Pop Tháng 8/2022','Nhạc mới mỗi ngày', 'cpop_T8.jpg', 'Nhạc hot C-Pop tháng 8 với nhiều ca sĩ khác nhau', 'Thái Từ Khôn, INTO1, Phó Mộng Đồng','Thuyền Quyên,The Spectre,Nevada'),
+('15', 'Indie Việt Tháng 8/2022','Nhạc mới mỗi ngày', 'indieViet_T8.jpg', 'Nhạc hot Indie tháng 8 với nhiều ca sĩ khác nhau', 'Trang, T.R.I, buitruonglinh','Tấm Lòng Son,The Spectre,Một Bước Yêu Vạn Dặm Đau (Piano Cover)');
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `categories`
