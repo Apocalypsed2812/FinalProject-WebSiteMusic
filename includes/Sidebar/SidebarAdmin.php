@@ -15,8 +15,14 @@
         <ul class="header__list">
             <li class="header__item">
                 <a href="./categories.php" class="header__item-link">
-                    <i class="fa-sharp fa-solid fa-bars"></i>
+                    <i class="fa-sharp fa-solid fa-list-ul"></i>
                     <span>Chuyên mục</span>
+                </a>
+            </li>
+            <li class="header__item">
+                <a href="./category.php" class="header__item-link">
+                    <i class="fa-sharp fa-solid fa-bars"></i>
+                    <span>Thể loại</span>
                 </a>
             </li>
             <li class="header__item">

@@ -7,7 +7,7 @@ if (!isset($_POST['id'])) {
 
 $id = $_POST['id'];
 
-$sql = 'DELETE FROM categorys where id = ?';
+$sql = 'DELETE FROM categories where id = ?';
 
 echo "id: " . $id;
 
@@ -18,9 +18,9 @@ try {
     $count = $stmt->rowCount();
 
     if ($count == 1) {
-        echo json_encode(array('status' => true, 'data' => 'Xóa thể loại thành công'));
+        echo json_encode(array('status' => true, 'data' => 'Xóa chuyên mục thành công'));
     } else {
-        die(json_encode(array('status' => false, 'data' => 'Mã thể loại không hợp lệ')));
+        die(json_encode(array('status' => false, 'data' => 'Mã chuyên mục không hợp lệ')));
     }
 } catch (PDOException $ex) {
     die(json_encode(array('status' => false, 'data' => $ex->getMessage())));

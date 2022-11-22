@@ -21,7 +21,7 @@ let addBtn = $(".admin__song-btn button"),
 // sau khi trang tải xong
 $(document).ready(function () {
     // Add active cho sidebar
-    $(".header__item:nth-child(2)").addClass("header__item--active");
+    $(".header__item:nth-child(3)").addClass("header__item--active");
     // Lấy dữ liệu bài hát
     getData();
     table_page1.addClass("admin__song-pagination-link--active");
@@ -82,9 +82,7 @@ FormEdit_InputBtn.click(function () {
 });
 
 // nút 'Thêm bài hát' => hiện form
-addBtn.click(function () {
-    Add_form.css("display", "flex");
-});
+addBtn.click(function () { Add_form.css("display", "flex") });
 
 // nút 'X' và 'hủy' => đóng form
 XIcon.click(function () {
@@ -226,10 +224,7 @@ function add_song() {
                     $("#Add_Error_Mess").css("visibility", "visible");
                     error = 1;
                 } else {
-                    $.post(
-                        "http://localhost:" +
-                        location.port +
-                        "/admin/songs-api/add-song.php",
+                    $.post("http://localhost:" + location.port + "/admin/songs-api/add-song.php",
                         {
                             name: nameBox,
                             singer: singer,
@@ -612,3 +607,6 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
+$("#song_lyric_view_song").click(function () {
+    $("#song_lyric_view_song").css("border", "none")
+})

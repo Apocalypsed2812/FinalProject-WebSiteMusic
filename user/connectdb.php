@@ -8,4 +8,3 @@
     if ($conn->connect_error){
         die('Không thể kết nối đến cơ sở dữ liệu');
     }
-?>

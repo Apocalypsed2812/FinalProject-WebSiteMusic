@@ -28,22 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(40) NOT NULL,
-  `topic` varchar(40) NOT NULL,
-  `like` int(11) NOT NULL,
-  `image` varchar(150) NOT NULL,
+  `id` int(11) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `topic` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `follow` int(11) NOT NULL,
+  `image` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `date`datetime NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `singers` varchar(50) NOT NULL,
-  `songs` varchar(5000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `singers` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `songs` varchar(5000) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`,`topic`, `like` ,`image`,`date`, `description`, `singers`,`songs`) VALUES
+INSERT INTO `categories` (`id`, `name`,`topic`, `follow` ,`image`,`date`, `description`, `singers`,`songs`) VALUES
 (1, 'Nhạc cho thứ 3','Lựa chọn hôm nay',0,'T3.jpg','2022-11-16 12:58:41', 'Thứ ba đầy cảm xúc với những Ballad Việt', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','Xin Má Rước Dâu (EDM Version),The Spectre,Nevada'),
 (2, 'Indie Buồn','Lựa chọn hôm nay',0, 'IndieBuon.jpg','2022-11-16 12:58:41', 'Thanh âm Indie buồn', 'Nhật Kim Anh, Trúc Nhân, Ngô Kiến Huy','Xin Má Rước Dâu (EDM Version),The Spectre,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
 (3, 'Heart-break Pop','Lựa chọn hôm nay',0,'heartbreakPop.jpg','2022-11-16 12:58:41', 'Heart-break Pop buồn sâu lắng', 'Tăng Duy Tân, Hoàng Thùy Linh, Trịnh Thăng Bình','Thuyền Quyên,Nevada,Một Bước Yêu Vạn Dặm Đau (Piano Cover)'),
@@ -63,7 +63,6 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

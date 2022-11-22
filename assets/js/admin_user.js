@@ -54,7 +54,7 @@ $("#myModal_EditUser input[type='text']").click(function () {
 
 $(document).ready(function () {
     // Add active cho sidebar
-    $(".header__item:nth-child(3)").addClass("header__item--active");
+    $(".header__item:nth-child(4)").addClass("header__item--active");
     // Lấy dữ liệu bài hát
     getData();
 });
@@ -280,11 +280,9 @@ function delete_user() {
     // $('#myModal_DeleteSong').css("display", "none");
     $("#User_alert").html("Đã xóa thành công");
     $("#User_alert").show();
-    $("#User_alert")
-        .delay(2000)
-        .slideUp(200, function () {
-            $("#User_alert").hide(); // ẩn sau 3s
-        });
+    $("#User_alert").delay(2000).slideUp(200, function () {
+        $("#User_alert").hide(); // ẩn sau 3s
+    });
     getData();
 }
 function edit_user() {

@@ -3,20 +3,27 @@
 }
 
 
-input[type="file"]#song_files_add_song{
+input[type="file"]{
     padding: 8px 12px;
 }
-#song_Lyric_add_song,
-#song_lyric_edit_song,
-#song_lyric_view_song{
+/* #song_Lyric_add_song,
+#song_lyric_edit_song, */ 
+
+.auth-form__group textarea{
     resize: none;
     height: 100px ;
-    padding: 10px 12px;
+    padding: 10px 12px ;
     width: 100%;
     font-size: 14px;
     border-radius: 2px;
     border: 1px solid #dbdbdb;
     outline: none;
+}
+#Categories_description,#Categories_singer,.TowRowtextarea{
+    height: 55px !important;
+}
+.CategoriesPage .add-form_label{
+    margin-top: 10px !important;
 }
 .add-form_input{
     width: 100%;
@@ -100,7 +107,23 @@ input[type="file"]#song_files_add_song{
 #song_lyric_view_song{
     width: 330px;
     padding-left: 0 !important;
-    border: 1px solid transparent;
+    padding-top: 10px !important;
+    border: none ;
+    outline: none;
+}
+#categories_singers,#categories_description,#categories_songs{
+    height: 50px;
+    resize: none;
+    border: none ;
+    outline: none;
+    padding: 10px 5px 0 0;
+    width: 310px;
+}
+
+.div_view_categories{
+    height: 55px;
+    display: flex;
+    padding-right: 0 !important;
 }
 .div_lyric_view_song{
     height: 100px;
@@ -194,4 +217,7 @@ input[type="file"]#song_files_add_song{
     text-align: center;
     font-size: 25px;
     color: white;
+}
+.modal p{
+    margin-top: 10px;
 }
