@@ -9,16 +9,17 @@ $name = $_POST['name'];
 $singer = $_POST['singer'];
 $date = $_POST['date'];
 $category = $_POST['category'];
+$nation = $_POST['nation'];
 $lyric = $_POST['lyric'];
 $listens = $_POST['listens'];
 $comments = $_POST['comments'];
 $downloads = $_POST['downloads'];
 $file = $_POST['file'];
-$sql = 'INSERT INTO songs(name,singer,date,category,lyric,listens,comments,$downloads,file) VALUES(?,?,?,?,?,?,?,?,?)';
+$sql = 'INSERT INTO songs(name,singer,date,category,nation,lyric,listens,comments,downloads,file) VALUES(?,?,?,?,?,?,?,?,?,?)';
 
 try {
     $stmt = $dbCon->prepare($sql);
-    $stmt->execute(array($name, $singer, $date, $category, $lyric, $listens, $comments, $downloads, $file));
+    $stmt->execute(array($name, $singer, $date, $category, $nation, $lyric, $listens, $comments, $downloads, $file));
     echo json_encode(array('status' => true, 'data' => 'Thêm songs thành công'));
 } catch (PDOException $ex) {
     die(json_encode(array('status' => false, 'data' => $ex->getMessage())));

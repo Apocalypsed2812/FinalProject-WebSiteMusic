@@ -71,10 +71,10 @@ function getData() {
                 categoryValue += e["name"] + ","
 
             });
-            let endNum = current_tablePage * 5,
-                beginNum = endNum - 5,
+            let endNum = current_tablePage * 8,
+                beginNum = endNum - 8,
                 tableDisplay = "",
-                pageAmount = Math.ceil(data["data"].length / 5),
+                pageAmount = Math.ceil(data["data"].length / 8),
                 Table_NumHtml = "",
                 active;
 
@@ -114,6 +114,8 @@ XIcon.click(function () {
     $("#Add_Error_Mess").css("visibility", "hidden");
     $("#category_name_edit").css({ border: "1px solid #dbdbdb" });
     $("#edit_Error_Mess").css("visibility", "hidden");
+    $("#category_add").val("");
+    $("#category_name_edit").val("");
 });
 cancelSongForm.click(function () {
     $(".modal").css("display", "none");
@@ -121,6 +123,8 @@ cancelSongForm.click(function () {
     $("#Add_Error_Mess").css("visibility", "hidden");
     $("#category_name_edit").css({ border: "1px solid #dbdbdb" });
     $("#edit_Error_Mess").css("visibility", "hidden");
+    $("#category_add").val("");
+    $("#category_name_edit").val("");
 });
 // input click 
 $("#category_add").click(function () {
@@ -137,11 +141,13 @@ function add_category() {
     let categoryValue = $("#Category_value").html().split(","),
         inputValue = $("#category_add").val(),
         current_time = new Date();
+
     categoryValue.pop();
 
     let lower = categoryValue.map(e => {
-        return e.toLowerCase();
+        return e.replaceAll("amp;", "").toLowerCase();
     });
+    console.log(lower)
 
     current_time = current_time.getFullYear() + "-" + current_time.getMonth() + "-" + current_time.getDate() + " " +
         current_time.getHours() + ":" + current_time.getMinutes() + ":" + current_time.getSeconds();
@@ -155,6 +161,7 @@ function add_category() {
         $("#Add_Error_Mess").css("visibility", "visible");
 
     } else {
+
         if (lower.indexOf(inputValue.toLowerCase()) == -1) {
             $.post("http://localhost:" + location.port + "/admin/category-api/add-category.php",
                 {
@@ -165,6 +172,7 @@ function add_category() {
                 }
             );
             $("#myModal_AddCategory").css("display", "none");
+            $("#category_add").val("");
 
             $("#category_alert").html("Thêm thành công");
             $("#category_alert").show();
@@ -278,8 +286,8 @@ function Pagination_click(e, table) {
     table_page.removeClass("admin__song-pagination-link--active");
     $("a", e).addClass("admin__song-pagination-link--active");
     current_tablePage = $(e).text();
-    let endNum = current_tablePage * 5,
-        beginNum = endNum - 5,
+    let endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
         tableDisplay = "";
     if (table == "Main") {
         for (let i = beginNum; i < endNum; i++) {
@@ -334,19 +342,19 @@ function searchClick() {
     current_tablePage = 1;
     let pageAmount,
         Table_NumHtml = "",
-        endNum = current_tablePage * 5,
-        beginNum = endNum - 5,
+        endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
         tableDisplay = "",
         currentTable = "",
         active;
     if (search.val() != "") {
-        pageAmount = Math.ceil(SearchTable.length / 5);
+        pageAmount = Math.ceil(SearchTable.length / 8);
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += SearchTable[i];
         }
         currentTable = `Search`;
     } else {
-        pageAmount = Math.ceil(TableBody.length / 5);
+        pageAmount = Math.ceil(TableBody.length / 8);
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += TableBody[i];
         }

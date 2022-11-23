@@ -31,17 +31,17 @@
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song">
+                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
                         <table border="1" class="admin__song-table">
                             <thead class="admin__song-table-head">
                                 <tr>
-                                    <td>ID</td>
-                                    <td>Tên chuyên mục</td>
-                                    <td>Topic</td>
-                                    <td>Lượt thích</td>
-                                    <td>Số lượng bài hát</td>
-                                    <td>Ngày tạo</td>
-                                    <td>Action</td>
+                                    <td style="width:5%">ID</td>
+                                    <td style="width:23%">Tên chuyên mục</td>
+                                    <td style="width:23%">Topic</td>
+                                    <td style="width:10%">Lượt thích</td>
+                                    <td style="width:10%">Bài hát</td>
+                                    <td style="width:17%">Ngày tạo</td>
+                                    <td style="width:12%">Action</td>
                                     <td id="Search_value" style="display: none;">a</td>
                                     <td id="Categories_value" style="display: none;">a</td>
                                 </tr>
@@ -60,7 +60,9 @@
                                     </td>
                                 </tr>
                             </tbody>
+
                         </table>
+                        <p class="NullValue" style="display: none;">Không có dữ liệu</p>
                     </div>
                 </div>
                 <div class="row mt-32">
@@ -78,8 +80,6 @@
                         </ul>
                     </div>
                 </div>
-                <p class="NullValue" style="display: none;">Không có dữ liệu</p>
-
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
@@ -105,7 +105,7 @@
                         <div class="auth-form__form">
                             <div class="auth-form__group">
                                 <label class="add-form_label" for="categories_add">Tên chuyên mục</label>
-                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập tên chuyên mục" name="categories_name" id="categories_add">
+                                <input type="text" class="add-form_input" placeholder="Vui lòng nhập tên chuyên mục" name="categories_add" id="categories_add">
                             </div>
 
                             <div class="auth-form__group">
@@ -235,39 +235,39 @@
                     <form id="myViewUserForm" class="ViewForm" action="#">
                         <div class="add-form_input">
                             <b>ID</b>
-                            <span id="categories_id">12</span>
+                            <span id="categories_id_view">12</span>
                         </div>
                         <div class="add-form_input">
                             <b>Tên chuyên mục</b>
-                            <span id="categories_name">USER A</span>
+                            <span id="categories_name_view">USER A</span>
                         </div>
                         <div class="add-form_input">
                             <b>Topic</b>
-                            <span id="categories_topic">Email@email.com</span>
+                            <span id="categories_topic_view">Email@email.com</span>
                         </div>
                         <div class="add-form_input">
                             <b>Lượt thích</b>
-                            <span id="categories_follow">Email@email.com</span>
+                            <span id="categories_follow_view">Email@email.com</span>
                         </div>
                         <div class="add-form_input">
                             <b>Ngày tạo</b>
-                            <span id="categories_date">Nam</span>
+                            <span id="categories_date_view">Nam</span>
                         </div>
                         <div class="add-form_input div_view_categories ">
                             <b>Mô tả</b>
-                            <textarea readonly id="categories_description" placeholder="Lyric" name="categories_description"></textarea>
+                            <textarea readonly id="categories_description_view" placeholder="Lyric" name="categories_description"></textarea>
                         </div>
                         <div class="add-form_input div_view_categories">
                             <b>Ca sĩ</b>
-                            <textarea readonly id="categories_singers" placeholder="Lyric" name="categories_singers"></textarea>
+                            <textarea readonly id="categories_singers_view" placeholder="Lyric" name="categories_singers_view"></textarea>
                         </div>
                         <div class="add-form_input div_view_categories">
                             <b>Bài hát</b>
-                            <textarea readonly id="categories_songs" placeholder="Lyric" name="categories_songs"></textarea>
+                            <textarea readonly id="categories_songs_view" placeholder="Lyric" name="categories_songs_view"></textarea>
                         </div>
                         <div class="add-form_input">
                             <b>File ảnh</b>
-                            <span id="categories_image">bài a, bài b</span>
+                            <span id="categories_image_view">bài a, bài b</span>
                         </div>
 
                         <div class="auth-form__controls auth-form__controls-edit">

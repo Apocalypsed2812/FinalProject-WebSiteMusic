@@ -1355,6 +1355,9 @@ a {
   padding: 8px 14px;
   border-radius: 50%;
 }
+.Firstpagination:hover,.Lastpagination:hover{
+  border-radius: 15% !important;
+}
 
 .admin__rank-description-title {
   color: #fff;

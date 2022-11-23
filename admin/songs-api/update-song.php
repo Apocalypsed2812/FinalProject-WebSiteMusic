@@ -9,13 +9,14 @@ $id = $_POST['id'];
 $name = $_POST['name'];
 $singer = $_POST['singer'];
 $category = $_POST['category'];
+$nation = $_POST['nation'];
 $lyric = $_POST['lyric'];
 
-$sql = 'UPDATE songs set name = ?, singer = ?, category = ? , lyric = ? where id = ?';
+$sql = 'UPDATE songs set name = ?, singer = ?, category = ?, nation = ? , lyric = ? where id = ?';
 
 try {
     $stmt = $dbCon->prepare($sql);
-    $stmt->execute(array($name, $singer, $category, $lyric, $id));
+    $stmt->execute(array($name, $singer, $category, $nation, $lyric, $id));
 
     $count = $stmt->rowCount();
 

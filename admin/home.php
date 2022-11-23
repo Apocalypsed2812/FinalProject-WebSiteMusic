@@ -33,18 +33,19 @@
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song">
+                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
                         <table border="1" class="admin__song-table">
                             <thead class="admin__song-table-head">
                                 <tr>
-                                    <td>ID</td>
+                                    <td style="width:5%">ID</td>
                                     <td>Tên</td>
-                                    <td>Ca sĩ</td>
-                                    <td>Lượt nghe</td>
-                                    <td>Bình luận</td>
-                                    <td>Tải xuống</td>
-                                    <td>Action</td>
+                                    <td style="width:20%">Ca sĩ</td>
+                                    <td style="width:10%">Lượt nghe</td>
+                                    <td style="width:10%">Bình luận</td>
+                                    <td style="width:10%">Tải xuống</td>
+                                    <td style="width:15%">Action</td>
                                     <td id="Search_value" style="display: none;">a</td>
+                                    <td id="Song_Singer_Category" style="display: none;">a</td>
                                 </tr>
                             </thead>
                             <tbody class="admin__song-table-body" id="table-body">
@@ -62,6 +63,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p class="NullValue" style="display: none;">Không có dữ liệu</p>
+
                     </div>
                 </div>
                 <div class="row mt-32">
@@ -79,7 +82,6 @@
                         </ul>
                     </div>
                 </div>
-                <p class="NullValue" style="display: none;">Không có dữ liệu</p>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
@@ -135,8 +137,20 @@
                                 <label class="add-form_label" for="song_category_add">Thể loại nhạc</label>
                                 <!-- <input type="text" class="add-form_input" placeholder="Vui lòng nhập thể loại" name="song_category" id="song_category_add_song"> -->
                                 <select class="add-form_input song_category_list" name="song_category_add" id="song_category_add">
-                                    <option value=1>admin</option>
-                                    <option value=2>user</option>
+                                    <option value=1>Nhạc trẻ</option>
+                                    <option value=2>EDM</option>
+                                </select>
+                            </div>
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_nation_add">Quốc gia</label>
+                                <select class="add-form_input song_nation_list" name="song_nation_add" id="song_nation_add">
+                                    <option value=0>-- Quốc gia --</option>
+                                    <option value=1>Việt Nam</option>
+                                    <option value=2>Hàn Quốc</option>
+                                    <option value=3>Mỹ</option>
+                                    <option value=4>Anh</option>
+                                    <option value=5>Trung Quốc</option>
+                                    <option value=6>Khác</option>
                                 </select>
                             </div>
                             <div class="auth-form__group">
@@ -197,6 +211,18 @@
                                 </select>
                             </div>
                             <div class="auth-form__group">
+                                <label class="add-form_label" for="song_nation_edit">Quốc gia</label>
+                                <select class="add-form_input song_nation_list" name="song_nation_edit" id="song_nation_edit">
+                                    <option value=0>-- Quốc gia --</option>
+                                    <option value=1>Việt Nam</option>
+                                    <option value=2>Hàn Quốc</option>
+                                    <option value=3>Mỹ</option>
+                                    <option value=4>Anh</option>
+                                    <option value=5>Trung Quốc</option>
+                                    <option value=6>Khác</option>
+                                </select>
+                            </div>
+                            <div class="auth-form__group">
                                 <label class="add-form_label" for="song_lyric_edit_song">Lyric</label>
                                 <textarea id="song_lyric_edit_song" placeholder="Lyric" name="song_Lyric" rows="10" cols="57"></textarea>
                                 <!-- <input type="text" class="edit-form__input" placeholder="Lyric" name="song_Lyric"
@@ -246,6 +272,10 @@
                         <div class="add-form_input">
                             <b>Thể Loại</b>
                             <span id="viewSong_category">Nhạc Pop</span>
+                        </div>
+                        <div class="add-form_input">
+                            <b>Quốc gia</b>
+                            <span id="viewSong_nation">Việt</span>
                         </div>
                         <div class="add-form_input">
                             <b>Lượt nghe</b>

@@ -31,16 +31,16 @@
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song">
+                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
                         <table border="1" class="admin__song-table">
                             <thead class="admin__song-table-head">
                                 <tr>
-                                    <td>ID</td>
-                                    <td>Tên chuyên mục</td>
-                                    <td>Số lượng bài hát</td>
-                                    <td>Lượt thích</td>
-                                    <td>Ngày tạo</td>
-                                    <td>Action</td>
+                                    <td style="width: 5%;">ID</td>
+                                    <td>Tên thể loại</td>
+                                    <td style="width: 15%">Số lượng bài hát</td>
+                                    <td style="width: 15%">Lượt thích</td>
+                                    <td style="width: 25%">Ngày tạo</td>
+                                    <td style="width: 15%">Action</td>
                                     <td id="Search_value" style="display: none;">a</td>
                                     <td id="Category_value" style="display: none;">a</td>
                                 </tr>
@@ -60,6 +60,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p class="NullValue" style="display: none;">Không có dữ liệu</p>
                     </div>
                 </div>
                 <div class="row mt-32">
@@ -77,7 +78,6 @@
                         </ul>
                     </div>
                 </div>
-                <p class="NullValue" style="display: none;">Không có dữ liệu</p>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">

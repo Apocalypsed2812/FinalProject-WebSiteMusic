@@ -54,10 +54,10 @@ function getData() {
                     searchValue += e["topic"] + ",";
                 }
             });
-            let endNum = current_tablePage * 5,
-                beginNum = endNum - 5,
+            let endNum = current_tablePage * 8,
+                beginNum = endNum - 8,
                 tableDisplay = "",
-                pageAmount = Math.ceil(data["data"].length / 5),
+                pageAmount = Math.ceil(data["data"].length / 8),
                 Table_NumHtml = "",
                 active;
 
@@ -133,7 +133,9 @@ function add_categories() {
         Categories_singer = $("#Categories_singer").val(),
         Categories_song = $("#Categories_song").val(),
         current_time = new Date(),
-        error = 0;
+        Categories_image,
+        error = 0,
+        Categories_name_topic;
     // nếu chưa chọn file thì trả về chuỗi rỗng
     try {
         Categories_image = $("#Categories_image").get(0).files[0].name;
@@ -154,18 +156,46 @@ function add_categories() {
     error = Categories_singer == "" ? 2 : error;
     error = Categories_topic == "-- topic --" ? 3 : error;
     error = Categories_name == "" ? 4 : error;
-    switch (error) {
-        case 0:
-            let Categories_name_topic = Categories_name + "_" + Categories_topic;
-            if (lower.indexOf(Categories_name_topic.toLowerCase()) == -1) {
-                $("#myAddCategoriesForm").ajaxForm({
-                    complete: function (xhr) {
-                        if (xhr.responseText) {
-                            $i = xhr.responseText.split("\n");
-                            $("#Add_Error_Mess").html($i[$i.length - 1]);
-                            $("#Add_Error_Mess").css("visibility", "visible");
-                            error = 1;
-                        } else {
+    console.log(Categories_name)
+    console.log(Categories_topic)
+    console.log(error)
+
+    $("#myAddCategoriesForm").ajaxForm({
+        complete: function (xhr) {
+            if (xhr.responseText) {
+                $i = xhr.responseText.split("\n");
+                $("#Add_Error_Mess").html($i[$i.length - 1]);
+                $("#Add_Error_Mess").css("visibility", "visible");
+                error = 1;
+            } else {
+                switch (error) {
+                    case 1:
+                        $("#Add_Error_Mess").html("Vui lòng nhập các bài hát");
+                        $("#Categories_song").css({ border: "1px solid red", });
+                        $("#Categories_song").focus();
+                        $("#Add_Error_Mess").css("visibility", "visible");
+                        break;
+                    case 2:
+                        $("#Add_Error_Mess").html("Vui lòng nhập tên ca sĩ");
+                        $("#Categories_singer").css({ border: "1px solid red", });
+                        $("#Categories_singer").focus();
+                        $("#Add_Error_Mess").css("visibility", "visible");
+                        break;
+                    case 3:
+                        $("#Add_Error_Mess").html("Vui lòng nhập chọn topic");
+                        $("#topic_name").css({ border: "1px solid red", });
+                        $("#topic_name").focus();
+                        $("#Add_Error_Mess").css("visibility", "visible");
+                        break;
+                    case 4:
+                        $("#Add_Error_Mess").html("Vui lòng nhập tên chuyên mục");
+                        $("#categories_add").css({ border: "1px solid red", });
+                        $("#categories_add").focus();
+                        $("#Add_Error_Mess").css("visibility", "visible");
+                        break;
+                    case 0:
+                        Categories_name_topic = Categories_name + "_" + Categories_topic;
+                        if (lower.indexOf(Categories_name_topic.toLowerCase()) == -1) {
                             $.post("http://localhost:" + location.port + "/admin/categories-api/add-categories.php",
                                 {
                                     name: Categories_name,
@@ -178,8 +208,6 @@ function add_categories() {
                                     songs: Categories_song,
                                 }
                             );
-
-                            getData();
 
                             // // // xóa thông tin các ô vừa nhập
                             $("#categories_add").val("");
@@ -196,44 +224,101 @@ function add_categories() {
                             $("#Add_alert").delay(2000).slideUp(200, function () {
                                 $("#Add_alert").hide(); // ẩn sau 3s
                             });
-                            getData();
-                        }
-                        getData();
-                    },
-                });
+                            setTimeout(function () { getData() }, 20);
 
-            } else {
-                $("#Add_Error_Mess").html("chuyên mục này đã tồn tại trong topic " + Categories_topic);
-                $("#categories_add").css({ border: "1px solid red", });
-                $("#categories_add").focus();
-                $("#Add_Error_Mess").css("visibility", "visible");
+
+                        } else {
+                            $("#Add_Error_Mess").html("chuyên mục này đã tồn tại trong topic " + Categories_topic);
+                            $("#categories_add").css({ border: "1px solid red", });
+                            $("#categories_add").focus();
+                            $("#Add_Error_Mess").css("visibility", "visible");
+                        }
+                        break;
+                }
             }
-            break
-        case 1:
-            $("#Add_Error_Mess").html("Vui lòng nhập các bài hát");
-            $("#Categories_song").css({ border: "1px solid red", });
-            $("#Categories_song").focus();
-            $("#Add_Error_Mess").css("visibility", "visible");
-            break;
-        case 2:
-            $("#Add_Error_Mess").html("Vui lòng nhập tên ca sĩ");
-            $("#Categories_singer").css({ border: "1px solid red", });
-            $("#Categories_singer").focus();
-            $("#Add_Error_Mess").css("visibility", "visible");
-            break;
-        case 3:
-            $("#Add_Error_Mess").html("Vui lòng nhập chọn topic");
-            $("#topic_name").css({ border: "1px solid red", });
-            $("#topic_name").focus();
-            $("#Add_Error_Mess").css("visibility", "visible");
-            break;
-        case 4:
-            $("#Add_Error_Mess").html("Vui lòng nhập tên chuyên mục");
-            $("#categories_add").css({ border: "1px solid red", });
-            $("#categories_add").focus();
-            $("#Add_Error_Mess").css("visibility", "visible");
-            break;
-    }
+        },
+    });
+
+    // switch (error) {
+    //     case 1:
+    //         $("#Add_Error_Mess").html("Vui lòng nhập các bài hát");
+    //         $("#Categories_song").css({ border: "1px solid red", });
+    //         $("#Categories_song").focus();
+    //         $("#Add_Error_Mess").css("visibility", "visible");
+    //         break;
+    //     // case 2:
+    //     //     $("#Add_Error_Mess").html("Vui lòng nhập tên ca sĩ");
+    //     //     $("#Categories_singer").css({ border: "1px solid red", });
+    //     //     $("#Categories_singer").focus();
+    //     //     $("#Add_Error_Mess").css("visibility", "visible");
+    //     //     break;
+    //     // case 3:
+    //     //     $("#Add_Error_Mess").html("Vui lòng nhập chọn topic");
+    //     //     $("#topic_name").css({ border: "1px solid red", });
+    //     //     $("#topic_name").focus();
+    //     //     $("#Add_Error_Mess").css("visibility", "visible");
+    //     //     break;
+    //     // case 4:
+    //     //     $("#Add_Error_Mess").html("Vui lòng nhập tên chuyên mục");
+    //     //     $("#categories_add").css({ border: "1px solid red", });
+    //     //     $("#categories_add").focus();
+    //     //     $("#Add_Error_Mess").css("visibility", "visible");
+    //     //     break;
+    //     case 0:
+    //         Categories_name_topic = Categories_name + "_" + Categories_topic;
+    //         if (lower.indexOf(Categories_name_topic.toLowerCase()) == -1) {
+    //             $("#myAddCategoriesForm").ajaxForm({
+    //                 complete: function (xhr) {
+    //                     if (xhr.responseText) {
+    //                         $i = xhr.responseText.split("\n");
+    //                         $("#Add_Error_Mess").html($i[$i.length - 1]);
+    //                         $("#Add_Error_Mess").css("visibility", "visible");
+    //                         error = 1;
+    //                     } else {
+    //                         console.log(Categories_name)
+    //                         console.log(Categories_topic)
+    //                         $.post("http://localhost:" + location.port + "/admin/categories-api/add-categories.php",
+    //                             {
+    //                                 name: Categories_name,
+    //                                 topic: Categories_topic,
+    //                                 follow: 0,
+    //                                 image: Categories_image,
+    //                                 date: current_time,
+    //                                 description: Categories_description,
+    //                                 singers: Categories_singer,
+    //                                 songs: Categories_song,
+    //                             }
+    //                         );
+
+    //                         // // // xóa thông tin các ô vừa nhập
+    //                         $("#categories_add").val("");
+    //                         $("#topic_name").val(0);
+    //                         $("#Categories_description").val("");
+    //                         $("#Categories_singer").val("");
+    //                         $("#Categories_song").val("");
+    //                         $("#Categories_image").val("");
+
+    //                         $("#myModal_AddCategories").css("display", "none");
+
+    //                         $("#Add_alert").html("Thêm thành công");
+    //                         $("#Add_alert").show();
+    //                         $("#Add_alert").delay(2000).slideUp(200, function () {
+    //                             $("#Add_alert").hide(); // ẩn sau 3s
+    //                         });
+    //                         setTimeout(function () { getData() }, 20);
+    //                     }
+    //                 },
+    //             });
+
+    //         } else {
+    //             $("#Add_Error_Mess").html("chuyên mục này đã tồn tại trong topic " + Categories_topic);
+    //             $("#categories_add").css({ border: "1px solid red", });
+    //             $("#categories_add").focus();
+    //             $("#Add_Error_Mess").css("visibility", "visible");
+    //         }
+    //         break;
+    // }
+
 
 
 }
@@ -251,7 +336,8 @@ function delete_categories() {
     $("#Add_alert").delay(2000).slideUp(200, function () {
         $("#Add_alert").hide(); // ẩn sau 3s
     });
-    getData();
+    setTimeout(function () { getData() }, 20);
+
 }
 // edit categories
 function edit_categories() {
@@ -292,7 +378,6 @@ function edit_categories() {
                     }
                 );
 
-                getData();
                 $("#myModal_EditCategories").css("display", "none")
 
                 // // // xóa thông tin các ô vừa nhập
@@ -308,7 +393,7 @@ function edit_categories() {
                 $("#Add_alert").delay(2000).slideUp(200, function () {
                     $("#Add_alert").hide(); // ẩn sau 3s
                 });
-                getData();
+                setTimeout(function () { getData() }, 20);
 
 
 
@@ -364,15 +449,15 @@ function Open_Dialog_Edit(id, name, topic, description, singers, songs) {
 function Open_Dialog_View(id, name, topic, follow, date, image, description, singers, songs) {
     let songValue, singerValue;
     songValue = songs.replaceAll(",", "\n")
-    $("#categories_id").html(id);
-    $("#categories_name").html(name);
-    $("#categories_topic").html(topic);
-    $("#categories_follow").html(follow);
-    $("#categories_date").html(date);
-    $("#categories_description").val(description);
-    $("#categories_singers").val(singers);
-    $("#categories_songs").val(songValue);
-    $("#categories_image").html(image);
+    $("#categories_id_view").html(id);
+    $("#categories_name_view").html(name);
+    $("#categories_topic_view").html(topic);
+    $("#categories_follow_view").html(follow);
+    $("#categories_date_view").html(date);
+    $("#categories_description_view").val(description);
+    $("#categories_singers_view").val(singers);
+    $("#categories_songs_view").val(songValue);
+    $("#categories_image_view").html(image);
     $("#myModal_ViewCategories").css("display", "flex")
 
 }
@@ -402,8 +487,8 @@ function Pagination_click(e, table) {
     table_page.removeClass("admin__song-pagination-link--active");
     $("a", e).addClass("admin__song-pagination-link--active");
     current_tablePage = $(e).text();
-    let endNum = current_tablePage * 5,
-        beginNum = endNum - 5,
+    let endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
         tableDisplay = "";
     if (table == "Main") {
         for (let i = beginNum; i < endNum; i++) {
@@ -458,19 +543,19 @@ function searchClick() {
     current_tablePage = 1;
     let pageAmount,
         Table_NumHtml = "",
-        endNum = current_tablePage * 5,
-        beginNum = endNum - 5,
+        endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
         tableDisplay = "",
         currentTable = "",
         active;
     if (search.val() != "") {
-        pageAmount = Math.ceil(SearchTable.length / 5);
+        pageAmount = Math.ceil(SearchTable.length / 8);
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += SearchTable[i];
         }
         currentTable = `Search`;
     } else {
-        pageAmount = Math.ceil(TableBody.length / 5);
+        pageAmount = Math.ceil(TableBody.length / 8);
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += TableBody[i];
         }

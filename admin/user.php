@@ -32,15 +32,15 @@
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song">
+                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
                         <table border="1" class="admin__song-table">
                             <thead class="admin__song-table-head">
                                 <tr>
-                                    <td>ID</td>
+                                    <td style="width:10%">ID</td>
                                     <td>Tên</td>
-                                    <td>Tuổi</td>
-                                    <td>Giới tính</td>
-                                    <td>Action</td>
+                                    <td style="width:15%">Tuổi</td>
+                                    <td style="width:15%">Giới tính</td>
+                                    <td style="width:20%">Action</td>
                                     <td id="Email_value" style="display: none;">a</td>
                                     <td id="Username_value" style="display: none;">a</td>
                                     <td id="UserSearch_value" style="display: none;">a</td>
@@ -82,6 +82,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p class="NullValue" style="display: none;">Không có dữ liệu</p>
                     </div>
                 </div>
 
@@ -100,7 +101,6 @@
                         </ul>
                     </div>
                 </div>
-                <p class="NullValue" style="display: none;">Không có dữ liệu</p>
 
             </div>
         </div>

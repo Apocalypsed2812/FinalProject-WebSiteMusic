@@ -65,8 +65,8 @@ function Pagination_click(e, table) {
     table_page.removeClass("admin__song-pagination-link--active");
     $("a", e).addClass("admin__song-pagination-link--active");
     current_tablePage = $(e).text();
-    let endNum = current_tablePage * 5,
-        beginNum = endNum - 5,
+    let endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
         tableDisplay = "";
     if (table == "Main") {
         for (let i = beginNum; i < endNum; i++) {
@@ -121,19 +121,19 @@ function searchClick() {
     current_tablePage = 1;
     let pageAmount,
         Table_NumHtml = "",
-        endNum = current_tablePage * 5,
-        beginNum = endNum - 5,
+        endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
         tableDisplay = "",
         currentTable = "",
         active;
     if (search.val() != "") {
-        pageAmount = Math.ceil(SearchTable.length / 5);
+        pageAmount = Math.ceil(SearchTable.length / 8);
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += SearchTable[i];
         }
         currentTable = `Search`;
     } else {
-        pageAmount = Math.ceil(TableBody.length / 5);
+        pageAmount = Math.ceil(TableBody.length / 8);
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += TableBody[i];
         }
@@ -204,10 +204,10 @@ function getData() {
                 EmailValue += e["email"] + ",";
                 UsernameValue += e["username"] + ",";
             });
-            let endNum = current_tablePage * 5,
-                beginNum = endNum - 5,
+            let endNum = current_tablePage * 8,
+                beginNum = endNum - 8,
                 tableDisplay = "",
-                pageAmount = Math.ceil(data["data"].length / 5),
+                pageAmount = Math.ceil(data["data"].length / 8),
                 Table_NumHtml = "",
                 active;
             console.log(endNum)
