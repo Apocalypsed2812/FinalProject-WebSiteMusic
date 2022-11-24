@@ -43,12 +43,12 @@
                     <span>Bảng xếp hạng</span>
                 </a>
             </li>
-            <li class="header__item">
+            <!-- <li class="header__item">
                 <a href="./setting.php" class="header__item-link">
                     <i class="fa-solid fa-gear"></i>
                     <span>Cài đặt</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </header>
