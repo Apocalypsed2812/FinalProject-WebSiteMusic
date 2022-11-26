@@ -1,7 +1,11 @@
-<?php 
-    
+<?php
+    $display = "none";
+    require_once('connectdb.php');
+    $info = "NULLLLLLLL";
+    if(isset($_POST['btnSubmit'])){
+        $info = $_POST['search'];
+    }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,64 +29,52 @@
             <div class="grid wide">
                 <div class="row mt-110 search__header">
                     <div class="search__header-text">Kết quả tìm kiếm</div>
-                    <ul class="search__header-list">
-                        <li class="search__header-item">
-                            <a href="">Tất cả</a>
+                    <ul id="tag" class="search__header-list">
+                        <li onclick="openAll(this)" class="search__header-item">
+                            <a href="#">Tất cả</a>
                         </li>
-                        <li class="search__header-item">
-                            <a href="">Bài hát</a>
+                        <li onclick="openPage('songs',this)" class="search__header-item">
+                            <a href="#">Bài hát</a>
+                        </li>
+                        <li onclick="openPage('playlist',this)" class="search__header-item hide-on-tablet hide-on-mobile">
+                            <a href="#">Playlist/album</a>
+                        </li>
+                        <li onclick="openPage('artist',this)" class="search__header-item hide-on-tablet hide-on-mobile">
+                            <a href="#" >Nghệ sĩ/oa</a>
                         </li>
                         <li class="search__header-item hide-on-tablet hide-on-mobile">
-                            <a href="">Playlist/album</a>
-                        </li>
-                        <li class="search__header-item hide-on-tablet hide-on-mobile">
-                            <a href="">Nghệ sĩ/oa</a>
-                        </li>
-                        <li class="search__header-item hide-on-tablet hide-on-mobile">
-                            <a href="">MV</a>
+                            <a href="#">MV</a>
                         </li>
                     </ul>
                 </div>
                 
                 <!-- Nổi bật -->
-                <div class="row mt-32">
+                <div id="highlight" class="row mt-32 tag">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Nổi bật</h1>
                     </div>
-                    <div class="col l-4 m-6 c-12">
-                        <a href="" class="search__impress">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/avatars/b/f/c/f/bfcf5a819c1bdf76a5a7cb9a780ca721.jpg" alt="" class="search__impress-img">
-                            <div class="search__impress-text">
-                                <p>Nghệ sĩ</p>
-                                <p>Vương Anh Tú</p>
-                                <p>84K quan tâm</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col l-4 m-6 c-12">
-                        <a href="" class="search__impress">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/avatars/b/f/c/f/bfcf5a819c1bdf76a5a7cb9a780ca721.jpg" alt="" class="search__impress-img">
-                            <div class="search__impress-text">
-                                <p>Nghệ sĩ</p>
-                                <p>Vương Anh Tú</p>
-                                <p>84K quan tâm</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col l-4 m-6 c-12">
-                        <a href="" class="search__impress">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/avatars/b/f/c/f/bfcf5a819c1bdf76a5a7cb9a780ca721.jpg" alt="" class="search__impress-img">
-                            <div class="search__impress-text">
-                                <p>Nghệ sĩ</p>
-                                <p>Vương Anh Tú</p>
-                                <p>84K quan tâm</p>
-                            </div>
-                        </a>
-                    </div>
+                    <?php
+                        $sql ="SELECT singer FROM songs WHERE singer LIKE '%$info%'";
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0){
+                            while($row = $result->fetch_assoc()){
+                                echo '<div class="col l-4 m-6 c-12">';
+                                echo '<a href="" class="search__impress">';
+                                echo ' <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/avatars/b/f/c/f/bfcf5a819c1bdf76a5a7cb9a780ca721.jpg" alt="" class="search__impress-img">';
+                                echo '<div class="search__impress-text">';
+                                echo '<p>Nghệ sĩ</p>';
+                                echo '<p>'.$row['singer'].'</p>
+                                    <p>84K quan tâm</p>';
+                                echo '</div>';
+                                echo '</a>';
+                                echo '</div>';
+                            }
+                        }
+                    ?>
                 </div>
 
                 <!-- Playlist nổi bật -->
-                <div class="row mt-32">
+                <div id="playlist" class="row mt-32 tag">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Playlist nổi bật</h1>
                     </div>
@@ -125,115 +117,74 @@
                 </div>
 
                 <!-- Bài hát -->
-                <div class="row mt-32">
+                <div id="songs" class="row mt-32 tag">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Mới phát hành</h1>
                     </div>
                     <div class="col l-12">
                         <div class="row search-playlist">
-                            <div class="col l-6 m-6 c-12">
-                                <div class="container__song-new">
-                                    <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" alt="" class="container__song-new-img">
-                                    <div class="container__song-info container__song-info-search">
-                                        <p class="container__song-new-title">Cứu vãn kịp không</p>
-                                        <p class="container__song-new-description">Vương Anh Tú</p>
-                                    </div>
-                                    <div class="container__song-new-click">
-                                        <i class="fa-solid fa-circle-play"></i>
-                                    </div>
-                                    <div class="container__song-new-dot">
-                                        <i class="fa-solid fa-ellipsis"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col l-6 m-6 c-12">
-                                <div class="container__song-new">
-                                    <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" alt="" class="container__song-new-img">
-                                    <div class="container__song-info container__song-info-search">
-                                        <p class="container__song-new-title">Cứu vãn kịp không</p>
-                                        <p class="container__song-new-description">Vương Anh Tú</p>
-                                    </div>
-                                    <div class="container__song-new-click">
-                                        <i class="fa-solid fa-circle-play"></i>
-                                    </div>
-                                    <div class="container__song-new-dot">
-                                        <i class="fa-solid fa-ellipsis"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                                $sql="SELECT * FROM songs WHERE name LIKE '$info %' or name LIKE '% $info'";
+                                $result = $conn->query($sql);
+                                if($result->num_rows > 0){
+                                    while($row = $result->fetch_assoc()){
+                                        echo "<div class='col l-6 m-6 c-12'>";
+                                        echo '<div class="container__song-new">';
+                                        echo '<img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" alt="" class="container__song-new-img">';
+                                        echo '<div class="container__song-info container__song-info-search">';
+                                        echo '<p class="container__song-new-title">'. $row["name"] .'</p>';
+                                        echo '<p class="container__song-new-description">'. $row["singer"] .'</p>';
+                                        echo '</div>';
+                                        echo '<div class="container__song-new-click">
+                                                <i class="fa-solid fa-circle-play"></i>
+                                            </div>
+                                            <div class="container__song-new-dot">
+                                                <i class="fa-solid fa-ellipsis"></i>
+                                            </div>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                    }
+                                }else{
+                                    echo "<div class='col l-6 m-6 c-12'>";
+                                    echo '<div class="container__song-info container__song-info-search">';
+                                    echo '<p class="container__song-new-title">Không tìm được bài hát tương ứng</p>';
+                                    echo '</div>';
+                                    echo '</div>';
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
 
                 <!-- Lựa chọn hôm nay -->
-                <div class="row mt-32">
+                <div id="selection" class="row mt-32 tag">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Lựa chọn hôm nay</h1>
                     </div>
-                    <div class="col l-2-4 c-12">
-                        <a href="" class="container__song-today">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/8/2/9/b/829b64c4431f9d593b36ba23b29c089c.jpg" alt="" class="container__song-today-img">
-                            <p class="container__song-today-title">Nhạc Cho Thứ Ba</p>
-                            <p class="container__song-today-description">Thứ ba đầy cảm xúc với những Ballad Việt</p>
-                            <div class="container__song-click">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-solid fa-circle-play"></i>
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col l-2-4 c-12">
-                        <a href="" class="container__song-today">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/0/f/6/0/0f60af04482cb3dfd68fa956a4ac501c.jpg" alt="" class="container__song-today-img">
-                            <p class="container__song-today-title">Nhạc Cho Thứ Ba</p>
-                            <p class="container__song-today-description">Thứ ba đầy cảm xúc với những Ballad Việt nhẹ nhàng sâu lắng</p>
-                            <div class="container__song-click">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-solid fa-circle-play"></i>
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col l-2-4 c-12">
-                        <a href="" class="container__song-today">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/e/1/1/5/e11509d65f347c71e37740daf8476eda.jpg" alt="" class="container__song-today-img">
-                            <p class="container__song-today-title">Nhạc Cho Thứ Ba</p>
-                            <p class="container__song-today-description">Thứ ba đầy cảm xúc với những Ballad Việt</p>
-                            <div class="container__song-click">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-solid fa-circle-play"></i>
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col l-2-4 c-12">
-                        <a href="" class="container__song-today">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/e/8/a/e/e8aec5fb40fd74fec7af79b2b7e39023.jpg" alt="" class="container__song-today-img">
-                            <p class="container__song-today-title">Nhạc Cho Thứ Ba</p>
-                            <p class="container__song-today-description">Thứ ba đầy cảm xúc với những Ballad Việt</p>
-                            <div class="container__song-click">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-solid fa-circle-play"></i>
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col l-2-4 c-12">
-                        <a href="" class="container__song-today">
-                            <img src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/9/3/7/8/9378ca382617836d0fb68179de17abfd.jpg" alt="" class="container__song-today-img">
-                            <p class="container__song-today-title">Nhạc Cho Thứ Ba</p>
-                            <p class="container__song-today-description">Thứ ba đầy cảm xúc với những Ballad Việt</p>
-                            <div class="container__song-click">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-solid fa-circle-play"></i>
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                        </a>
-                    </div>
+                    <?php 
+                        $sql = "SELECT * FROM categories WHERE topic = 'Lựa chọn hôm nay'";
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0){
+                            while($row = $result->fetch_assoc()){
+                                echo "<div class=\"col l-2-4 c-12\">";
+                                echo "<a href=\"music_list.php?id=".$row["id"]."\" class=\"container__song-today\">";
+                                echo "<img src=\"../assets/images/categories/".$row["image"]."\" alt=\"\" class=\"container__song-today-img\">";
+                                echo "<p class=\"container__song-today-title\">".$row["name"]."</p>";
+                                echo "<p class=\"container__song-today-description\">".$row["description"]."</p>";
+                                echo "<div class=\"container__song-click\">";
+                                echo "<i class=\"fa-solid fa-heart\"></i>";
+                                echo "<i class=\"fa-solid fa-circle-play\"></i>";
+                                echo "<i class=\"fa-solid fa-ellipsis\"></i>";
+                                echo "</div>";
+                                echo "</a>";
+                                echo "</div>";
+                            }
+                        }
+                    ?>
                 </div>
 
                 <!-- Nghệ sĩ yêu thích -->
-                <div class="row mt-32">
+                <div id="artist" class="row mt-32 tag">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Nghệ sĩ yêu thích</h1>
                     </div>
@@ -276,5 +227,6 @@
     </div>
 
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/searchPaging.js"></script>
 </body>
 </html>

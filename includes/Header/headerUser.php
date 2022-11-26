@@ -6,14 +6,16 @@
         <i class="fa-solid fa-arrow-right container__header-search-icon"></i>
         <label for="navbar__mobile-header"><i class="fa-solid fa-bars container__header-search-menu-mobile"></i></label>
         <div class="container__header-with-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." class="container__header-with-search-input">
-            <div class="container__header-with-search-result">
-                <h4>Đề xuất cho bạn</h4>
-                <p>chưa quên</p>
-                <p>mono</p>
-                <p>thuyền quyên</p>
-            </div>
+            <form method="post" action="search.php">
+            <button type = "submit" id = "btnSubmit" name="btnSubmit" style="border:none;background-color:#2f2739"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." class="container__header-with-search-input">
+                <div class="container__header-with-search-result">
+                    <h4>Đề xuất cho bạn</h4>
+                    <p>chưa quên</p>
+                    <p>mono</p>
+                    <p>thuyền quyên</p>
+                </div>
+            </form>
         </div>
     </div>
     <div class="container__header-control">

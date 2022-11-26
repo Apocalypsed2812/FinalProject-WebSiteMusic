@@ -1,6 +1,8 @@
 <?php
     require_once("connectdb.php");
     $id = "";
+    $getsong = "";
+    $songs = "";
     if(isset($_GET['id'])){
         $id = $_GET['id'];
     }
@@ -31,12 +33,12 @@
                    <div class="col l-5 m-12">
                         <div class="music__list-item">
                             <?php 
-                                $sql = "SELECT *  FROM category WHERE id = '$id'";
+                                $sql = "SELECT *  FROM categories WHERE id = '$id'";
                                 $result = $conn->query($sql);
                                 if($result->num_rows > 0){
                                     while($row = $result->fetch_assoc()){
                             ?>
-                            <img src="<?php echo $row['image']; ?>" alt="" class="music__list-item-img">
+                            <img src="../assets/images/categories/<?php echo $row['image']; ?>" alt="" class="music__list-item-img">
                             <h3 class="music__list-item-title"><?php echo $row['name']; ?></h3>
                             <p>Cập Nhật: <span>29/09/2022</span></p>
                             <p><?php echo $row['singers']; ?></p>
@@ -50,7 +52,6 @@
                             </div>
                         </div>
                    </div>
-                        
                    <div class="col l-7">
                     <div class="row">
                         <div class="col l-12">
@@ -60,78 +61,42 @@
                             </p>
                         </div>
                         <?php
+                                        $getsong = $row['songs'];
                                     }
-                                } 
-                        ?>
-                        <div class="col l-12 m-12 c-12">
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="hide-on-mobile new__music-song-info-o">Ân Tình Sang Trang (Single)</p>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col l-12 m-12 c-12">
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="hide-on-mobile new__music-song-info-o">Ân Tình Sang Trang (Single)</p>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col l-12 m-12 c-12">
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="hide-on-mobile new__music-song-info-o">Ân Tình Sang Trang (Single)</p>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                        </div>
-                        
+                                }
+                                $songs = explode(",", $getsong);
+                                for($i = 0; $i < count($songs); $i++){
+                                    $name = $songs[$i];
+                                    $sql2 = "SELECT * FROM songs where name = '$name'";
+                                    $result = $conn->query($sql2);
+                                    if($result->num_rows > 0){
+                                        while($row = $result->fetch_assoc()){
+                                            echo '<div class="col l-12 m-12 c-12">';
+                                            echo '<div class="new__music-song">';
+                                            echo '<div class="new__music-song-rank">';
+                                            echo '<div class="new__music-song-info">';
+                                            echo '<img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">';
+                                            echo '<div>';
+                                            echo '<p>'.$row['name'].'</p>';
+                                            echo '<p class="new__music-song-info-o mt-8">'.$row['singer'].'</p>';
+                                            echo '</div>';
+                                            echo '<div class="new__music-song-click">';
+                                            echo '<i class="fa-solid fa-circle-play"></i>';
+                                            echo '</div>';
+                                            echo '</div>';
+                                            echo '</div>';
+                                            echo '<p class="hide-on-mobile new__music-song-info-o">Ân Tình Sang Trang (Single)</p>
+                                                    <p class="new__music-song-time new__music-song-info-o">05:20</p>
+                                                    <div class="new__music-song-action">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                        <i class="fa-solid fa-ellipsis"></i>
+                                                    </div>';
+                                            echo '</div>';
+                                            echo '</div>';
+                                        }
+                                    }
+                                }
+                        ?>                       
                    </div>
                    </div>
                </div>
