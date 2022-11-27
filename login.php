@@ -80,6 +80,7 @@
             echo "<script>showErrorToast('Mật khẩu phải có từ 6 ký tự')</script>";
         } else {
             $result = login($username, $password);
+            $_SESSION['isLogin'] = false;
             if ($result['code']==0){
                 $data = $result['data'];
 				
@@ -90,6 +91,7 @@
 				}
 				
 				$_SESSION['username'] = $username;
+                $_SESSION['isLogin'] = true;
                 $role = $data['role'];
                 if($role == 'admin'){
                     $_SESSION['role'] = 'user';
