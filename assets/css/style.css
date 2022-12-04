@@ -640,7 +640,7 @@ a {
 }
 .header__logo .header__logo-img {
   width: 120px;
-  height: 40px;
+  height: 50px;
 }
 .header__logo .header__logo-tablet {
   display: none;
@@ -663,6 +663,7 @@ a {
   color: #fff;
   font-size: 18px;
   padding: 7px 25px;
+  width: 100%;
 }
 .header__item .header__item-link i {
   font-size: 18px;
@@ -1113,7 +1114,7 @@ a {
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-size: 20px;
+  font-size: 30px;
 }
 .music__play-control .control div {
   margin: 0 20px;
@@ -1121,6 +1122,14 @@ a {
 }
 .music__play-control .control .btn-toggle-play {
   font-size: 40px;
+  color: #fff;
+}
+.music__play-control .control .btn-repeat,
+.music__play-control .control .btn-prev,
+.music__play-control .control .btn-next,
+.music__play-control .control .btn-random {
+  font-size: 20px;
+  color: #fff;
 }
 .music__play-control .control .btn.active {
   color: #ec1f55;
@@ -1969,6 +1978,7 @@ button:hover {
   }
   .header__logo .header__logo-tablet {
     display: block;
+    height: 50px;
   }
   .header__list {
     display: flex;

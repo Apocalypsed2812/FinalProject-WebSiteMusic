@@ -1,3 +1,11 @@
+<?php 
+    // require_once('connectdb.php');
+    session_start();
+    if(!$_SESSION['isLogin']){
+        header('Location: ../login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

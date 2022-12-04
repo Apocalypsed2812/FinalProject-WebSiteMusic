@@ -42,7 +42,61 @@ function showErrorToast(message){
     });
 }
 
+// Hàm load bài hát
+function loadCurrentSongNew(image, name, singer, path){
+    let currentSongNew = `<div class="music__play-song">
+                            <img src="${image}" alt="" class="music__play-song-img">
+                            <div class="music__play-song-des">
+                                <p class="music__play-song-title">${name}</p>
+                                <p class="music__play-song-singer">${singer}</p>
+                            </div>
+                        </div>
+                        <div class="music__play-control">
+                            <div class="control">
+                                <div class="btn btn-repeat">
+                                <i class="fas fa-redo"></i>
+                                </div>
+                                <div class="btn btn-prev">
+                                <i class="fas fa-step-backward"></i>
+                                </div>
+                                <div class="btn btn-toggle-play">
+                                <i class="fas fa-pause icon-pause"></i>
+                                <i class="fa-solid fa-circle-play icon-play"></i>
+                                </div>
+                                <div class="btn btn-next">
+                                <i class="fas fa-step-forward"></i>
+                                </div>
+                                <div class="btn btn-random">
+                                <i class="fas fa-random"></i>
+                                </div>
+                            </div>
+
+                            <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100" />
+
+                            <audio id="audio" src="${path}"></audio>
+                        </div>
+                        <div class="music__play-add">
+                            <i class="fa-regular fa-circle-dot hide-on-tablet"></i>
+                            <i class="fa-solid fa-microscope hide-on-tablet"></i>
+                            <i class="fa-brands fa-microsoft"></i>
+                            <div>
+                                <i class="fa-solid fa-volume-high"></i>
+                                <input id="volume" class="volume" type="range" value="0" step="1" min="0" max="100" />
+                            </div>
+                            <div class="music__play-add--separate hide-on-tablet"></div>
+                            <i class="fa-solid fa-music hide-on-tablet"></i>
+                        </div>`
+    return currentSongNew 
+} 
+
+function renderPlaylist(playlist, content){
+    if(playlist){
+        playlist.innerHTML = content.join('')
+    }
+}
+
 const playlist = $('.playlist')
+let musicPlay = $('.music__play')
 
 const app = {
     currentIndex: 0,
@@ -122,7 +176,7 @@ const app = {
     render: function(){
         const htmls = this.songs.map((song, index) => {
             return `<div class="col l-4 m-6 c-12">
-                        <div class="container__song-new" data-image="${song.image}" data-name="${song.name}" data-singer="${song.singer}" data-path="${song.path}">
+                        <div class="container__song-new" data-image="${song.image}" data-name="${song.name}" data-singer="${song.singer}" data-path="${song.path}" data-index="${index}">
                             <img src="${song.image}" alt="" class="container__song-new-img">
                             <div class="container__song-info">
                                 <p class="container__song-new-title">${song.name}</p>
@@ -138,8 +192,7 @@ const app = {
                         </div>
                     </div>`
         })
-        
-        playlist.innerHTML = htmls.join('')
+        renderPlaylist(playlist, htmls)
     },
 
     defineProperties: function(){
@@ -161,60 +214,21 @@ const app = {
                 let name = item.getAttribute("data-name")
                 let singer = item.getAttribute("data-singer")
                 let path = item.getAttribute("data-path")
+                let index = item.getAttribute("data-index")
 
-                let musicPlay = $('.music__play')
                 if(!musicPlay.classList.contains('playing')){
                     musicPlay.classList.add('playing')
                 }
 
-                let currentSongNew = `<div class="music__play-song">
-                        <img src="${image}" alt="" class="music__play-song-img">
-                        <div class="music__play-song-des">
-                            <p class="music__play-song-title">${name}</p>
-                            <p class="music__play-song-singer">${singer}</p>
-                        </div>
-                    </div>
-                    <div class="music__play-control">
-                        <div class="control">
-                            <div class="btn btn-repeat">
-                            <i class="fas fa-redo"></i>
-                            </div>
-                            <div class="btn btn-prev">
-                            <i class="fas fa-step-backward"></i>
-                            </div>
-                            <div class="btn btn-toggle-play">
-                            <i class="fas fa-pause icon-pause"></i>
-                            <i class="fa-solid fa-circle-play icon-play"></i>
-                            </div>
-                            <div class="btn btn-next">
-                            <i class="fas fa-step-forward"></i>
-                            </div>
-                            <div class="btn btn-random">
-                            <i class="fas fa-random"></i>
-                            </div>
-                        </div>
-                    
-                        <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100" />
-                    
-                        <audio id="audio" src="${path}"></audio>
-                    </div>
-                    <div class="music__play-add">
-                        <i class="fa-regular fa-circle-dot hide-on-tablet"></i>
-                        <i class="fa-solid fa-microscope hide-on-tablet"></i>
-                        <i class="fa-brands fa-microsoft"></i>
-                        <div>
-                            <i class="fa-solid fa-volume-high"></i>
-                            <input id="volume" class="volume" type="range" value="0" step="1" min="0" max="100" />
-                        </div>
-                        <div class="music__play-add--separate hide-on-tablet"></div>
-                        <i class="fa-solid fa-music hide-on-tablet"></i>
-                    </div>`
+                let currentSongNew = loadCurrentSongNew(image, name, singer, path)
         
                 musicPlay.innerHTML = currentSongNew
                 musicPlay.style.display = 'flex'
                 $('.header').style.minHeight = 'calc(100% - 90px)'
                 const audio = $('#audio')
-                audio.play()
+                // console.log("Index song là: ",index)
+                // _this.currentIndex = Number(index)
+                // audio.play()
 
                 //Xử lý khi click play
                 const playBtn = $('.btn-toggle-play')
@@ -262,7 +276,7 @@ const app = {
                     //Khi next song
                     const nextBtn = $('.btn-next')
                     nextBtn.onclick = function(){
-                        console.log("Da click vao next")
+                        // console.log("Da click vao next")
                         if(_this.isRandom){
                             _this.playRandomSong()
                         }
@@ -278,7 +292,7 @@ const app = {
                     //Khi prev song
                     const prevBtn = $('.btn-prev')
                     prevBtn.onclick = function(){
-                        console.log("Da click vao prev")
+                        // console.log("Da click vao prev")
                         if(_this.isRandom){
                             _this.playRandomSong()
                         }
@@ -313,9 +327,30 @@ const app = {
                         _this.isRepeat= !_this.isRepeat
                         repeatBtn.classList.toggle('active', _this.isRepeat)
                     }
+
+                    //Lắng nghe hành vi click vào playlist 
+                    playlist.onclick = function(e){
+                        // console.log("Click vào playlist")
+                        const songNode = e.target.closest('.container__song-new')
+                        if(songNode || e.target.closest('.option')){
+                            // console.log("Click vào playlist 1")
+                            //Xử lý khi click vào song
+                            if(songNode){
+                                // console.log("Click vào playlist 2")
+                                _this.currentIndex = Number(songNode.dataset.index)
+                                _this.loadCurrentSong(songNode.dataset.path)
+                                _this.render()
+                                audio.play()    
+                            }
+
+                            //Xử lý khi click vào song option
+                            if(e.target.closest('.option')){
+                                
+                            }
+                        }
+                    }
                 }
             }
-
         });
     },
 
@@ -350,10 +385,11 @@ const app = {
     //Hàm load ra bài hát hiện tại (khi next hoặc prev)
     loadCurrentSong: function(){
         $('.music__play-song-img').src = `${this.currentSong.image}`
-        $('.music__play-song-title').textContent = this.currentSong.name
-        $('.music__play-song-singer').textContent = this.currentSong.singer
-        $('#audio').src = this.currentSong.path
+        $('.music__play-song-title').textContent = `${this.currentSong.name}`
+        $('.music__play-song-singer').textContent = `${this.currentSong.singer}`
+        $('#audio').src = `${this.currentSong.path}`
     },
+
 
     start: function(){
         // //Định nghĩa thuộc tính cho object
@@ -361,10 +397,11 @@ const app = {
 
         //Lắng nghe / xử lý sự kiên (DOM events)
         
+        //Load ra bài hát
+        // this.loadCurrentSong()
         //Render playlist
         this.render()
         this.handleEvents()
-
     }
 }
 

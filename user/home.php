@@ -1,5 +1,9 @@
 <?php 
     require_once('connectdb.php');
+    session_start();
+    if(!$_SESSION['isLogin']){
+        header('Location: ../login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +15,7 @@
     <title>Zing MP3</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="app">

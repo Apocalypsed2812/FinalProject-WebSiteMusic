@@ -31,12 +31,12 @@
         <a class="container__header-control-item">
             <i class="fa-solid fa-gear"></i>
         </a>
-        <a class="container__header-control-item">
+        <a href="../logout.php" class="container__header-control-item">
             <i class="fa-solid fa-user"></i>
         </a>
     </div>
     <div class="container__header-control-mobile">
-        <a class="container__header-control-item">
+        <a href="../logout.php" class="container__header-control-item">
             <i class="fa-solid fa-user"></i>
         </a>
     </div>

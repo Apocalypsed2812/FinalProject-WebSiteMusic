@@ -6,7 +6,10 @@
     if(isset($_GET['id'])){
         $id = $_GET['id'];
     }
-    
+    session_start();
+    if(!$_SESSION['isLogin']){
+        header('Location: ../login.php');
+    }   
 ?>
 
 <!DOCTYPE html>

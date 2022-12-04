@@ -8,15 +8,15 @@
         <span class="hide-on-tablet">Tạo playlist mới</span>
     </div>
     <div class="header__logo">
-        <a href="">
-            <img src="../assets/images/logo.png" alt="" class="header__logo-img">
-            <img src="../assets/images/logo_tablet.png" alt="" class="header__logo-tablet">
+        <a href="../user/home.php">
+            <img src="../assets/images/music_logo.png" alt="" class="header__logo-img">
+            <img src="../assets/images/music_logo_tablet.png" alt="" class="header__logo-tablet">
         </a>
     </div>
     <div class="header__content">
         <ul class="header__list">
             <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../user/personal.php" class="header__item-link">
                     <i class="fa-regular fa-circle-dot"></i>
                     <span>Cá Nhân</span>
                 </a>
