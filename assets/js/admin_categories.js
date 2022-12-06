@@ -29,6 +29,7 @@ function getData() {
                 let num1 = e["songs"].split(",").length;
                 let num2 = e["songs"].split("\n").length;
                 let num = num1 > num2 ? num1 : num2
+                num = e["songs"] == [] ? 0 : num
                 TableBody.push(
                     "<tr><td>" + e["id"] +
                     "</td><td>" + e["name"] +
@@ -152,7 +153,7 @@ function add_categories() {
         return e.toLowerCase();
     });
 
-    error = Categories_song == "" ? 1 : error;
+    // error = Categories_song == "" ? 1 : error;
     error = Categories_singer == "" ? 2 : error;
     error = Categories_topic == "-- topic --" ? 3 : error;
     error = Categories_name == "" ? 4 : error;
@@ -169,12 +170,12 @@ function add_categories() {
                 error = 1;
             } else {
                 switch (error) {
-                    case 1:
-                        $("#Add_Error_Mess").html("Vui lòng nhập các bài hát");
-                        $("#Categories_song").css({ border: "1px solid red", });
-                        $("#Categories_song").focus();
-                        $("#Add_Error_Mess").css("visibility", "visible");
-                        break;
+                    // case 1:
+                    //     $("#Add_Error_Mess").html("Vui lòng nhập các bài hát");
+                    //     $("#Categories_song").css({ border: "1px solid red", });
+                    //     $("#Categories_song").focus();
+                    //     $("#Add_Error_Mess").css("visibility", "visible");
+                    //     break;
                     case 2:
                         $("#Add_Error_Mess").html("Vui lòng nhập tên ca sĩ");
                         $("#Categories_singer").css({ border: "1px solid red", });
@@ -356,7 +357,7 @@ function edit_categories() {
         return e.toLowerCase();
     });
 
-    error = Categories_song == "" ? 1 : error;
+    // error = Categories_song == "" ? 1 : error;
     error = Categories_singer == "" ? 2 : error;
     error = Categories_topic == "-- topic --" ? 3 : error;
     error = Categories_name == "" ? 4 : error;
@@ -405,12 +406,12 @@ function edit_categories() {
                 $("#edit_Error_Mess").css("visibility", "visible");
             }
             break
-        case 1:
-            $("#edit_Error_Mess").html("Vui lòng nhập các bài hát");
-            $("#Categories_song_edit").css({ border: "1px solid red", });
-            $("#Categories_song_edit").focus();
-            $("#edit_Error_Mess").css("visibility", "visible");
-            break;
+        // case 1:
+        //     $("#edit_Error_Mess").html("Vui lòng nhập các bài hát");
+        //     $("#Categories_song_edit").css({ border: "1px solid red", });
+        //     $("#Categories_song_edit").focus();
+        //     $("#edit_Error_Mess").css("visibility", "visible");
+        //     break;
         case 2:
             $("#edit_Error_Mess").html("Vui lòng nhập tên ca sĩ");
             $("#Categories_singer_edit").css({ border: "1px solid red", });
