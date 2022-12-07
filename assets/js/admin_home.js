@@ -4,8 +4,13 @@ let addBtn = $(".admin__song-btn button"),
     table_page1 = $(".admin__song-pagination-list li:first-child a"),
     search = $(".HomePage .container__header-with-search-input"),
     table_page, target_id, target_name, current_tablePage = 1,
-    TableBody, SearchTable, Suggestions, pageAmount;
-
+    TableBody, SearchTable, Suggestions, pageAmount,
+    endNum,
+    beginNum,
+    tableDisplay = "",
+    isFirst, First, tablePageDisplay, Last,
+    Table_NumHtml,
+    active;
 // sau khi trang tải xong
 $(document).ready(function () {
     // Add active cho sidebar
@@ -18,7 +23,7 @@ $(document).ready(function () {
 // Lấy các thể loại cho vào select khi thêm bài hát
 function get_song_category() {
     let category = `<option value=0>-- Thể loại --</option>`, n = 1;
-    $.get( "http://localhost:" + location.port + "/admin/songs-api/get-category.php",
+    $.get("http://localhost:" + location.port + "/admin/songs-api/get-category.php",
         function (data, status) {
             data["data"].forEach((e) => {
                 category += `<option value=` + n + `>` + e['name'] + `</option>`
@@ -29,90 +34,32 @@ function get_song_category() {
 }
 // sự kiện click vào btn "Đầu" của table pagination
 function FirstPagination_click(e, table) {
-    let tableDisplay = "",
-        current_tablePage = 1,
-        First = 1,
-        Last = 3, 
-        Table_NumHtml = "",
-        active;
-    
-    if (table == "Main") {
-        for (let i = 0; i < 8; i++) {
-            tableDisplay += TableBody[i];
-        }
-    } else {
-        for (let i = 0; i < 8; i++) {
-            tableDisplay += SearchTable[i];
-        }
-    }
-
-    Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
-        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
-    for (let j = First; j <= Last; j++) {
-        active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
-        Table_NumHtml +=
-            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + table + '`)">' +
-            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
-    }
-    Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + table + '`)">' +
-        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
-    $("#Table_pagination").html(Table_NumHtml);
-    $("#table-body").html(tableDisplay);
+    tableDisplay = "";
+    Table_NumHtml = "";
+    current_tablePage = 1
+    beginNum = 0;
+    endNum = 8;
+    Pagination(table);
 }
 // sự kiện click vào btn "Cuối" của table pagination
 function LastPagination_click(e, table) {
-
-    let endNum,
-        beginNum,
-        tableDisplay = "",
-        current_tablePage;
-
-    if (table == "Main") {
-        current_tablePage = Math.ceil(TableBody.length / 8);
-        endNum = current_tablePage * 8;
-        beginNum = endNum - 8;
-        for (let i = beginNum; i < endNum; i++) {
-            tableDisplay += TableBody[i];
-        }
-    } else {
-        current_tablePage = Math.ceil(SearchTable.length / 8);
-        endNum = current_tablePage * 8;
-        beginNum = endNum - 8;
-        for (let i = beginNum; i < endNum; i++) {
-            tableDisplay += SearchTable[i];
-        }
-    }
-    current_tablePage = parseInt(current_tablePage)
-
-    let First = current_tablePage - 2;
-    let Last = current_tablePage;
-    let Table_NumHtml = "",
-        active;
-
-    Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
-        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
-    for (let j = First; j <= Last; j++) {
-        active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
-        Table_NumHtml +=
-            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + table + '`)">' +
-            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
-    }
-    Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + table + '`)">' +
-        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
-    
-    $("#Table_pagination").html(Table_NumHtml);
-    $("#table-body").html(tableDisplay);
+    tableDisplay = "";
+    Table_NumHtml = "";
+    current_tablePage = Math.ceil((table == "Main" ? TableBody.length : SearchTable.length) / 8);
+    endNum = pageAmount * 8;
+    beginNum = endNum - 8;
+    Pagination(table);
 }
 // sự kiện table pagination click 
 function Pagination_click(e, table) {
     current_tablePage = $(e).text();
-    let endNum = current_tablePage * 8,
-        beginNum = endNum - 8,
-        tableDisplay = "";
+    endNum = current_tablePage * 8;
+    beginNum = endNum - 8;
+    tableDisplay = "";
+    Table_NumHtml = "";
+    Pagination(table);
+}
+function Pagination(table) {
     if (table == "Main") {
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += TableBody[i];
@@ -125,12 +72,23 @@ function Pagination_click(e, table) {
         pageAmount = Math.ceil(SearchTable.length / 8)
     }
     current_tablePage = parseInt(current_tablePage)
-    let isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
-    let First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
-    let tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
-    let Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
-    let Table_NumHtml = "",
-        active;
+
+    switch (pageAmount) {
+        case 1:
+            First = 1
+            Last = 1
+            break;
+        case 2:
+            First = 1
+            Last = 2
+            break;
+        default:
+            isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
+            First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
+            tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
+            Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
+    }
+
 
     Table_NumHtml +=
         '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
@@ -147,6 +105,7 @@ function Pagination_click(e, table) {
     $("#Table_pagination").html(Table_NumHtml);
     $("#table-body").html(tableDisplay);
 }
+
 // đổi màu border và ẩn thông báo lỗi
 //form Add
 $(".add-form_input").click(function () {
@@ -171,9 +130,11 @@ function deleteInput() {
     $("#edit_Error_Mess").css("visibility", "hidden");
     $(".add-form_input").css({ border: "1px solid #dbdbdb", });
 }
+
 XIcon.click(function () {
     deleteInput();
 });
+
 cancelSongForm.click(function () {
     deleteInput();
 });
@@ -188,16 +149,20 @@ function getData() {
 
             data["data"].forEach((e) => {
                 Song_Singer_Category += e["name"] + "_" + e["singer"] + "_" + e["category"] + ","
-                if (Suggestions.indexOf(e["name"]) == -1) {
-                    Suggestions += e["name"] + ",";
+                if (Suggestions.indexOf($.trim(e["name"])) == -1) {
+                    Suggestions += $.trim(e["name"]) + ",";
                 }
-                if (Suggestions.indexOf(e["singer"]) == -1) {
-                    Suggestions += e["singer"] + ",";
+                for (let i = 0; i < e["singer"].split(',').length; i++) {
+                    let singer = e["singer"].split(',')[i];
+                    if (Suggestions.indexOf($.trim(singer)) == -1) {
+                        Suggestions += $.trim(singer) + ",";
+                    }
                 }
+
                 TableBody.push(
                     "<tr><td>" + e["id"] + "</td><td>" + e["name"] + "</td><td>" + e["singer"] + "</td><td>"
                     + e["listens"] + "</td><td>" + e["comments"] + "</td><td> " + e["downloads"] + "</td><td> "
-                    +'<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "', '"
+                    + '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "', '"
                     + e["singer"] + "', '" + e["date"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`, '"
                     + e["listens"] + "', '" + e["comments"] + "', '" + e["downloads"] + "', '" + e["file"] + "')\"></i>" +
                     '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ", '" + e["name"] + "')\"></i>" +
@@ -207,42 +172,18 @@ function getData() {
                     '</td><td style="display: none">' + e["file"] + "</td></tr>"
                 );
             });
-
-            let endNum = current_tablePage * 8,
-                beginNum = endNum - 8,
-                tableDisplay = "",
-                Table_NumHtml = "",
-                active;
+            console.log(Suggestions)
+            endNum = current_tablePage * 8;
+            beginNum = endNum - 8;
+            tableDisplay = "";
+            Table_NumHtml = "";
             pageAmount = Math.ceil(data["data"].length / 8)
-
             current_tablePage = parseInt(current_tablePage)
-            let isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
-            let First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
-            let tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
-            let Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
-            
-            Table_NumHtml +=
-                '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`Main`)">' +
-                '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
-            for (let j = First; j <= Last; j++) {
-                active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
-                Table_NumHtml +=
-                    '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`Main`)">' +
-                    '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
-            }
-            Table_NumHtml +=
-                '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`Main`)">' +
-                '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+            Pagination("Main");
 
-            $("#Table_pagination").html(Table_NumHtml);
-
-            for (let i = beginNum; i < endNum; i++) {
-                tableDisplay += TableBody[i];
-            }
-            $("#table-body").html(tableDisplay);
             $("#Search_value").html(Suggestions);
             $("#Song_Singer_Category").html(Song_Singer_Category.replaceAll("amp;", ""))
-        },"json"
+        }, "json"
     );
 }
 
@@ -256,18 +197,18 @@ function add_song() {
         current_time = new Date(),
         Song_Singer_Category = $("#Song_Singer_Category").html().toLowerCase().replaceAll("amp;", "").split(","),
         NSC = nameBox + "_" + singer + "_" + category;
-    
+
     Song_Singer_Category.pop();
     NSC = NSC.toLocaleLowerCase()
-    current_time = current_time.getFullYear() + "-" + current_time.getMonth() + "-" + current_time.getDate() +" " +
+    current_time = current_time.getFullYear() + "-" + current_time.getMonth() + "-" + current_time.getDate() + " " +
         current_time.getHours() + ":" + current_time.getMinutes() + ":" + current_time.getSeconds();
-    
+
     try {
         song = $("#song_files_add_song").get(0).files[0].name;
     } catch (error) {
         song = "";
     }
-    
+
     $("#myForm").ajaxForm({
         complete: function (xhr) {
             if (nameBox == "" || singer == "" || category == "-- Thể loại --" || nation == "-- Quốc gia --") {
@@ -289,7 +230,7 @@ function add_song() {
                         border: "1px solid red",
                     });
                     $("#song_category_add").focus();
-                }else if (nation == "-- Quốc gia --") {
+                } else if (nation == "-- Quốc gia --") {
                     $("#Add_Error_Mess").html("Vui lòng nhập Quốc gia");
                     $("#song_nation_add").css({
                         border: "1px solid red",
@@ -499,74 +440,19 @@ $(".HomePage .fa-magnifying-glass").click(function () {
 // function search
 function searchClick() {
     current_tablePage = 1;
-    let pageAmount,
-        Table_NumHtml = "",
-        endNum = current_tablePage * 8,
-        beginNum = endNum - 8,
-        tableDisplay = "",
-        currentTable = "",
-        active;
+    Table_NumHtml = "";
+    endNum = current_tablePage * 8;
+    beginNum = endNum - 8;
+    tableDisplay = "";
+    currentTable = "";
+
     if (search.val() != "") {
-        pageAmount = Math.ceil(SearchTable.length / 8);
-        for (let i = beginNum; i < endNum; i++) {
-            tableDisplay += SearchTable[i];
-        }
-        currentTable = `Search`;
+        Pagination("Search");
     } else {
-        pageAmount = Math.ceil(TableBody.length / 8);
-        for (let i = beginNum; i < endNum; i++) {
-            tableDisplay += TableBody[i];
-        }
-        currentTable = `Main`;
+        Pagination("Main");
     }
 
-    // for (let j = 1; j <= pageAmount; j++) {
-    //     active =
-    //         j == current_tablePage ? "admin__song-pagination-link--active" : "";
-
-    //     Table_NumHtml +=
-    //         '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' +
-    //         currentTable +
-    //         '`)">' +
-    //         '<a class="admin__song-pagination-link ' +
-    //         active +
-    //         '">' +
-    //         j +
-    //         "</a></li>";
-    // }
-    current_tablePage = parseInt(current_tablePage)
-    let isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
-    let First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
-    let tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
-    let Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
-
-    console.log(First)
-    console.log(current_tablePage)
-    console.log(Last)
-    Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + currentTable + '`)">' +
-        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
-    for (let j = First; j <= Last; j++) {
-        active =
-            j == current_tablePage
-                ? "admin__song-pagination-link--active"
-                : "";
-        Table_NumHtml +=
-            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + currentTable + '`)">' +
-            '<a class="admin__song-pagination-link ' +
-            active +
-            '">' +
-            j +
-            "</a></li>";
-    }
-    Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + currentTable + '`)">' +
-        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
-    $("#Table_pagination").html(Table_NumHtml);
-
-    if (tableDisplay.indexOf("undefined") != 0) {
-        $("#table-body").html(tableDisplay);
-    } else {
+    if (tableDisplay.indexOf("undefined") == 0) {
         $("#table-body").html("");
         $(".NullValue").css("display", "block")
     }
@@ -599,7 +485,7 @@ function autocomplete(inp, arr) {
                     "<input type='hidden' value='" +
                     arr[i] +
                     "'>";
-                
+
                 // click các gợi ý trong  - 'Đề xuất cho bạn'
                 b.addEventListener("click", function (e) {
                     inp.value = this.getElementsByTagName("input")[0].value;
@@ -658,4 +544,3 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
-

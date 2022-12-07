@@ -59,28 +59,168 @@ $(document).ready(function () {
     getData();
 });
 
-//Pagination_click
-function Pagination_click(e, table) {
-    table_page = $(".admin__song-pagination-list li a");
-    table_page.removeClass("admin__song-pagination-link--active");
-    $("a", e).addClass("admin__song-pagination-link--active");
-    current_tablePage = $(e).text();
-    let endNum = current_tablePage * 8,
-        beginNum = endNum - 8,
-        tableDisplay = "";
+// //Pagination_click
+// function Pagination_click(e, table) {
+//     table_page = $(".admin__song-pagination-list li a");
+//     table_page.removeClass("admin__song-pagination-link--active");
+//     $("a", e).addClass("admin__song-pagination-link--active");
+//     current_tablePage = $(e).text();
+//     let endNum = current_tablePage * 8,
+//         beginNum = endNum - 8,
+//         tableDisplay = "";
+//     if (table == "Main") {
+//         for (let i = beginNum; i < endNum; i++) {
+//             tableDisplay += TableBody[i];
+//         }
+//     } else {
+//         for (let i = beginNum; i < endNum; i++) {
+//             tableDisplay += SearchTable[i];
+//         }
+//     }
+
+//     $("#table-body").html(tableDisplay);
+// }
+// sự kiện click vào btn "Đầu" của table pagination
+function FirstPagination_click(e, table) {
+    let tableDisplay = "",
+        First = 1,
+        Last,
+        Table_NumHtml = "",
+        active,
+        pageAmount;
+    current_tablePage = 1
     if (table == "Main") {
+        pageAmount = Math.ceil(TableBody.length / 8);
+        for (let i = 0; i < 8; i++) {
+            tableDisplay += TableBody[i];
+        }
+    } else {
+        pageAmount = Math.ceil(SearchTable.length / 8);
+        for (let i = 0; i < 8; i++) {
+            tableDisplay += SearchTable[i];
+        }
+    }
+    Last = pageAmount < 3 ? pageAmount : 3;
+
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
+        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
+    for (let j = First; j <= Last; j++) {
+        active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
+        Table_NumHtml +=
+            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + table + '`)">' +
+            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
+    }
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + table + '`)">' +
+        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+    $("#Table_pagination").html(Table_NumHtml);
+    $("#table-body").html(tableDisplay);
+}
+// sự kiện click vào btn "Cuối" của table pagination
+function LastPagination_click(e, table) {
+
+    let endNum,
+        beginNum,
+        tableDisplay = "", First, Last;
+
+    if (table == "Main") {
+        current_tablePage = Math.ceil(TableBody.length / 8);
+        endNum = current_tablePage * 8;
+        beginNum = endNum - 8;
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += TableBody[i];
         }
     } else {
+        current_tablePage = Math.ceil(SearchTable.length / 8);
+        endNum = current_tablePage * 8;
+        beginNum = endNum - 8;
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += SearchTable[i];
         }
     }
+    current_tablePage = parseInt(current_tablePage)
 
-    $("#table-User").html(tableDisplay);
+    First = current_tablePage < 3 ? 1 : current_tablePage - 2
+    Last = current_tablePage;
+
+    let Table_NumHtml = "",
+        active;
+
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
+        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
+    for (let j = First; j <= Last; j++) {
+        active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
+        Table_NumHtml +=
+            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + table + '`)">' +
+            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
+    }
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + table + '`)">' +
+        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+
+    $("#Table_pagination").html(Table_NumHtml);
+    $("#table-body").html(tableDisplay);
 }
+// sự kiện table pagination click 
+function Pagination_click(e, table) {
+    current_tablePage = $(e).text();
+    let endNum = current_tablePage * 8,
+        beginNum = endNum - 8,
+        tableDisplay = "",
+        isFirst, First, tablePageDisplay, Last;
+    if (table == "Main") {
+        for (let i = beginNum; i < endNum; i++) {
+            tableDisplay += TableBody[i];
+        }
+        pageAmount = Math.ceil(TableBody.length / 8)
+    } else {
+        for (let i = beginNum; i < endNum; i++) {
+            tableDisplay += SearchTable[i];
+        }
+        pageAmount = Math.ceil(SearchTable.length / 8)
+    }
+    current_tablePage = parseInt(current_tablePage)
 
+    switch (pageAmount) {
+        case 1:
+            First = 1
+            Last = 1
+            break;
+        case 2:
+            First = 1
+            Last = 2
+            break;
+        default:
+            isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
+            First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
+            tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
+            Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
+    }
+
+    // isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
+    // First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
+    // tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
+    // Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
+    let Table_NumHtml = "",
+        active;
+
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
+        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
+    for (let j = First; j <= Last; j++) {
+        active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
+        Table_NumHtml +=
+            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + table + '`)">' +
+            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
+    }
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + table + '`)">' +
+        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+    $("#Table_pagination").html(Table_NumHtml);
+    $("#table-body").html(tableDisplay);
+}
 //search input click
 $(".UserPage .container__header-with-search-input").click(function () {
     Suggestions = $("#UserSearch_value").html().split(",");
@@ -117,6 +257,7 @@ $("#myInputautocomplete-list").click(function () {
     });
     searchClick();
 });
+
 function searchClick() {
     current_tablePage = 1;
     let pageAmount,
@@ -125,7 +266,7 @@ function searchClick() {
         beginNum = endNum - 8,
         tableDisplay = "",
         currentTable = "",
-        active;
+        active, isFirst, First, tablePageDisplay, Last;
     if (search.val() != "") {
         pageAmount = Math.ceil(SearchTable.length / 8);
         for (let i = beginNum; i < endNum; i++) {
@@ -139,26 +280,42 @@ function searchClick() {
         }
         currentTable = `Main`;
     }
+    current_tablePage = parseInt(current_tablePage)
 
-    for (let j = 1; j <= pageAmount; j++) {
-        active =
-            j == current_tablePage ? "admin__song-pagination-link--active" : "";
-
-        Table_NumHtml +=
-            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' +
-            currentTable +
-            '`)">' +
-            '<a class="admin__song-pagination-link ' +
-            active +
-            '">' +
-            j +
-            "</a></li>";
+    switch (pageAmount) {
+        case 1:
+            First = 1
+            Last = 1
+            break;
+        case 2:
+            First = 1
+            Last = 2
+            break;
+        default:
+            isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
+            First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
+            tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
+            Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
     }
-    $("#UserTable_pagination").html(Table_NumHtml);
+
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + currentTable + '`)">' +
+        '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
+    for (let j = First; j <= Last; j++) {
+        active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
+        Table_NumHtml +=
+            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + currentTable + '`)">' +
+            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
+    }
+    Table_NumHtml +=
+        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + currentTable + '`)">' +
+        '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+    $("#Table_pagination").html(Table_NumHtml);
+
     if (tableDisplay.indexOf("undefined") != 0) {
-        $("#table-User").html(tableDisplay);
+        $("#table-body").html(tableDisplay);
     } else {
-        $("#table-User").html("");
+        $("#table-body").html("");
         $(".NullValue").css("display", "block")
 
     }
@@ -207,30 +364,46 @@ function getData() {
             let endNum = current_tablePage * 8,
                 beginNum = endNum - 8,
                 tableDisplay = "",
-                pageAmount = Math.ceil(data["data"].length / 8),
                 Table_NumHtml = "",
                 active;
-            console.log(endNum)
-            console.log(beginNum)
-            console.log(pageAmount)
+            pageAmount = Math.ceil(data["data"].length / 8);
+            current_tablePage = parseInt(current_tablePage)
 
-            for (let j = 1; j <= pageAmount; j++) {
-                active = j == current_tablePage ?
-                    "admin__song-pagination-link--active" : "";
+            switch (pageAmount) {
+                case 1:
+                    First = 1
+                    Last = 1
+                    break;
+                case 2:
+                    First = 1
+                    Last = 2
+                    break;
+                default:
+                    isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
+                    First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
+                    tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
+                    Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
+            }
+            Table_NumHtml +=
+                '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`Main`)">' +
+                '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
+            for (let j = First; j <= Last; j++) {
+                active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
                 Table_NumHtml +=
                     '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`Main`)">' +
-                    '<a class="admin__song-pagination-link ' +
-                    active +
-                    '">' +
-                    j +
-                    "</a></li>";
-                // onclick="Pagination_click($(this),`Main`)"
+                    '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
             }
-            $("#UserTable_pagination").html(Table_NumHtml);
+            Table_NumHtml +=
+                '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`Main`)">' +
+                '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+
+            $("#Table_pagination").html(Table_NumHtml);
+
+
             for (let i = beginNum; i < endNum; i++) {
                 tableDisplay += TableBody[i];
             }
-            $("#table-User").html(tableDisplay);
+            $("#table-body").html(tableDisplay);
             $("#Email_value").html(EmailValue);
             $("#Username_value").html(UsernameValue);
             $("#UserSearch_value").html(Suggestions);
@@ -269,7 +442,7 @@ function Open_Dialog_View(id, username, email, role, gender, favoriteSong, recen
     $("#myModal_ViewUser").css("display", "flex");
 }
 function delete_user() {
-    if ($("#table-User tr").length == 1) {
+    if ($("#table-body tr").length == 1) {
         current_tablePage -= 1;
     }
     $.post("http://localhost:" + location.port + "/admin/users-api/delete-user.php", { id: target_id, });
@@ -359,12 +532,8 @@ function autocomplete(inp, arr) {
     var currentFocus;
 
     inp.addEventListener("input", function (e) {
-        var a,
-            b,
-            i,
-            n = 0,
+        var a, b, i, n = 0,
             val = this.value;
-        /*close any already open lists of autocompleted values*/
         closeAllLists();
         if (!val) {
             return false;
@@ -373,20 +542,14 @@ function autocomplete(inp, arr) {
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
-        /*append the DIV element as a child of the autocomplete container:*/
-        // this.parentNode.appendChild(a);
         $(".container__header-with-search-result").append(a);
-        /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
-            /*check if the item starts with the same letters as the text field value:*/
             if (
                 arr[i].substr(0, val.length).toUpperCase() ==
                 val.toUpperCase() &&
                 n < 5
             ) {
-                /*create a DIV element for each matching element:*/
                 b = document.createElement("DIV");
-                /*make the matching letters bold:*/
                 b.innerHTML =
                     "<strong>" +
                     arr[i].substr(0, val.length) +
@@ -397,10 +560,14 @@ function autocomplete(inp, arr) {
                     "'>";
 
                 b.addEventListener("click", function (e) {
-                    /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
-                    /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
+                    SearchTable = [];
+                    TableBody.forEach((i) => {
+                        if (i.toLowerCase().indexOf(inp.value.toLowerCase()) > -1) {
+                            SearchTable.push(i);
+                        }
+                    });
+                    searchClick();
                     closeAllLists();
                 });
                 a.appendChild(b);
@@ -408,51 +575,37 @@ function autocomplete(inp, arr) {
             }
         }
     });
-    /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
-            /*If the arrow DOWN key is pressed,
-          increase the currentFocus variable:*/
             currentFocus++;
-            /*and and make the current item more visible:*/
             addActive(x);
         } else if (e.keyCode == 38) {
-            //up
-            /*If the arrow UP key is pressed,
-          decrease the currentFocus variable:*/
+
             currentFocus--;
-            /*and and make the current item more visible:*/
             addActive(x);
         } else if (e.keyCode == 13) {
-            /*If the ENTER key is pressed, prevent the form from being submitted,*/
             e.preventDefault();
             if (currentFocus > -1) {
-                /*and simulate a click on the "active" item:*/
                 if (x) x[currentFocus].click();
             }
         }
     });
     function addActive(x) {
-        /*a function to classify an item as "active":*/
         if (!x) return false;
-        /*start by removing the "active" class on all items:*/
         removeActive(x);
         if (currentFocus >= x.length) currentFocus = 0;
         if (currentFocus < 0) currentFocus = x.length - 1;
-        /*add class "autocomplete-active":*/
         x[currentFocus].classList.add("autocomplete-active");
     }
     function removeActive(x) {
-        /*a function to remove the "active" class from all autocomplete items:*/
         for (var i = 0; i < x.length; i++) {
             x[i].classList.remove("autocomplete-active");
         }
     }
     function closeAllLists(elmnt) {
-        /*close all autocomplete lists in the document,
-      except the one passed as an argument:*/
+
         var x = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
@@ -460,8 +613,7 @@ function autocomplete(inp, arr) {
             }
         }
     }
-    /*execute a function when someone clicks in the document:*/
-    // document.addEventListener("click", function (e) {
-    //     closeAllLists(e.target);
-    // });
+    document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
 }

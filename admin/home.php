@@ -1,9 +1,9 @@
 <?php
-    require('../db.php');
-    session_start();
-    if(!$_SESSION['isLogin']){
-        header('Location: ../login.php');
-    }
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,14 +88,19 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
                             <button>thêm bài hát</button>
                         </div>
                     </div>
                 </div>
+                <!-- <div class="row mt-32">
+                    <div class="col l-12 m-12 c-12">
+                        <div class="admin__song-btn">
+                            <button>thêm bài hát</button>
+                        </div>
+                    </div>
+                </div> -->
 
             </div>
         </div>

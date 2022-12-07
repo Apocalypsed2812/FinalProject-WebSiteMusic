@@ -1,9 +1,9 @@
 <?php
-    require('../db.php');
-    session_start();
-    if(!$_SESSION['isLogin']){
-        header('Location: ../login.php');
-    }
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
-                        <ul class="admin__song-pagination-list" id="Table_categories">
+                        <ul class="admin__song-pagination-list" id="Table_pagination">
                             <li class="admin__song-pagination-item" onclick="Pagination_click($(this))">
                                 <a class="admin__song-pagination-link">1</a>
                             </li>
@@ -86,14 +86,19 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
                             <button id="categories_add_btn">thêm chuyên mục</button>
                         </div>
                     </div>
                 </div>
+                <!-- <div class="row mt-32">
+                    <div class="col l-12 m-12 c-12">
+                        <div class="admin__song-btn">
+                            <button id="categories_add_btn">thêm chuyên mục</button>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>

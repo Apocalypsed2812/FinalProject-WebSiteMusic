@@ -2,6 +2,7 @@
     background-color: #170f23 !important;
     font-family: Inter,sans-serif;
 }
+
 .new__music-title{
     font-family:Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -55,7 +56,6 @@ input[type="text"].add-form_input{
 .admin__song-pagination-list li a:hover{
     background-color: #393243;
     padding: 8px 14px;
-    border-radius: 50%;
 }
 .AdminPage .modal{
     align-items: center ;
@@ -154,11 +154,17 @@ input[type="text"].add-form_input{
 .admin__song-pagination-item a {
     background-color: inherit;
     padding: 8px 14px;
-    border-radius: 50%;
-    margin: 0 8px !important;
+    border-radius: 0 !important;
+    margin: 0 0px !important;
+    background-color: #2f2739;
+    font-size: 15px !important;
+}
+.Firstpagination,.Lastpagination{
+    border-radius: 10px !important;
+    margin: 0;
 }
 .Firstpagination:hover,.Lastpagination:hover{
-    border-radius: 10px !important;
+    border-radius: 0 !important;
 }
 .container__header-with-search-result{
     display: block;
@@ -244,4 +250,11 @@ input[type="text"].add-form_input{
 }
 .modal p{
     margin-top: 10px;
+}
+
+.RankPage .RankTitle p{
+    display: inline-block;
+}
+.RankPage .RankTitle p:nth-child(2){
+    margin-left: 20px;
 }

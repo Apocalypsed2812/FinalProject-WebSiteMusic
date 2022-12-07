@@ -1,9 +1,9 @@
 <?php
-    require('../db.php');
-    session_start();
-    if(!$_SESSION['isLogin']){
-        header('Location: ../login.php');
-    }
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@
                                     <td id="UserSearch_value" style="display: none;">a</td>
                                 </tr>
                             </thead>
-                            <tbody class="admin__song-table-body" id="table-User">
+                            <tbody class="admin__song-table-body" id="table-body">
                                 <tr>
                                     <td>1</td>
                                     <td>Phạm Anh Thư</td>
@@ -95,7 +95,7 @@
 
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
-                        <ul class="admin__song-pagination-list" id="UserTable_pagination">
+                        <ul class="admin__song-pagination-list" id="Table_pagination">
                             <li class="admin__song-pagination-item">
                                 <a href="" class="admin__song-pagination-link admin__song-pagination-link--active">1</a>
                             </li>

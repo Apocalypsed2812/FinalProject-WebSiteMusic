@@ -1,9 +1,9 @@
 <?php
-    require('../db.php');
-    session_start();
-    if(!$_SESSION['isLogin']){
-        header('Location: ../login.php');
-    }
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,17 +30,20 @@
             ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
-                    <div class="col l-12">
+                    <div class="col l-12 RankTitle">
                         <p class="new__music-title">
                             Bảng xếp hạng
                         </p>
-                        <span class="alert_admin" id="Add_alert">ADD Successful</span>
-                    </div>
-                    <div class="col l-12 mt-32">
                         <p class="admin__rank-description-title">
                             Top 100 bài nhạc hát nghe nhiều nhất
                         </p>
+                        <span class="alert_admin" id="Add_alert">ADD Successful</span>
                     </div>
+                    <!-- <div class="col l-12 mt-32">
+                        <p class="admin__rank-description-title">
+                            Top 100 bài nhạc hát nghe nhiều nhất
+                        </p>
+                    </div> -->
                 </div>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
@@ -101,7 +104,7 @@
 
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
-                        <ul class="admin__song-pagination-list" id="Table_rank">
+                        <ul class="admin__song-pagination-list" id="Table_pagination">
                             <li class="admin__song-pagination-item">
                                 <a href="" class="admin__song-pagination-link admin__song-pagination-link--active">1</a>
                             </li>
