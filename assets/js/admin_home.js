@@ -148,7 +148,7 @@ function getData() {
             let Song_Singer_Category = '';
 
             data["data"].forEach((e) => {
-                Song_Singer_Category += e["name"] + "_" + e["singer"] + "_" + e["category"] + ","
+                Song_Singer_Category += e["name"] + "_" + e["singer"] + "_" + e["category"] + ";"
                 if (Suggestions.indexOf($.trim(e["name"])) == -1) {
                     Suggestions += $.trim(e["name"]) + ",";
                 }
@@ -172,7 +172,6 @@ function getData() {
                     '</td><td style="display: none">' + e["file"] + "</td></tr>"
                 );
             });
-            console.log(Suggestions)
             endNum = current_tablePage * 8;
             beginNum = endNum - 8;
             tableDisplay = "";
@@ -195,7 +194,7 @@ function add_song() {
         nation = $("#song_nation_add :selected").text(),
         lyric = $("#song_Lyric_add_song").val(),
         current_time = new Date(),
-        Song_Singer_Category = $("#Song_Singer_Category").html().toLowerCase().replaceAll("amp;", "").split(","),
+        Song_Singer_Category = $("#Song_Singer_Category").html().toLowerCase().replaceAll("amp;", "").split(";"),
         NSC = nameBox + "_" + singer + "_" + category;
 
     Song_Singer_Category.pop();
@@ -244,6 +243,8 @@ function add_song() {
                     $("#Add_Error_Mess").html($i[$i.length - 1]);
                     $("#Add_Error_Mess").css("visibility", "visible");
                 } else {
+                    console.log(Song_Singer_Category)
+                    console.log(NSC)
                     if (Song_Singer_Category.indexOf(NSC) == -1) {
                         $.post("http://localhost:" + location.port + "/admin/songs-api/add-song.php",
                             {
