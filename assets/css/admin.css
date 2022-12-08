@@ -74,6 +74,9 @@ input[type="text"].add-form_input{
 }
 #title_home{
     flex-direction: row;
+    width: 100% !important;
+}
+.PageTitle{
     width: 100%;
 }
 #title_home span:first-child{
@@ -216,7 +219,7 @@ input[type="text"].add-form_input{
     overflow: hidden;
     overflow-x: auto;
     white-space: nowrap;
-    width: 285px !important;
+    width: 285px ;
     position: relative;
     top: 5px
 }
@@ -284,4 +287,152 @@ input[type="text"].add-form_input{
     border:  none;
     color: white;
     cursor: pointer;
+}
+
+@media screen and (max-width: 415px){
+    /* Header */
+    .admin__song-btn{
+        margin-top: 30px;
+    }
+    .admin__song-btn button{
+        border: 1px solid #fff;
+    }
+    .sortDiv{
+        display: block;   
+        margin-top: 20px; 
+    }
+    .container__header-control-item{
+        width: 40px;
+        height: 40px;
+    }
+    .container__header{
+        padding: 16px;
+    }
+
+    /* Table */
+    .admin__song-table-head tr td{
+        display: none;
+    }
+    .admin__song-table-body tr td{
+        display: none;
+    }
+    .admin__song-table-head tr td:nth-child(1){
+        display: table-cell;
+    }
+    .admin__song-table-body tr td:nth-child(1){
+        display: table-cell;
+    }
+    .admin__song-table-head tr td:nth-child(2){
+        display: table-cell;
+    }
+    .admin__song-table-body tr td:nth-child(2){
+        display: table-cell;
+        white-space:break-spaces;
+    }
+    /* home page */
+    .HomePage .admin__song-table-head tr td:nth-child(7){
+        display: table-cell;
+    }
+    .HomePage .admin__song-table-body tr td:nth-child(7){
+        display: table-cell;
+    }
+    .HomePage .admin__song-table-body tr td:nth-child(7) i{
+        padding: 0 4px;
+    }
+    /* user page */
+    .UserPage .admin__song-table-head tr td:nth-child(5){
+        display: table-cell;
+    }
+    .UserPage .admin__song-table-body tr td:nth-child(5){
+        display: table-cell;
+    }
+    .UserPage .admin__song-table-body tr td:nth-child(5) i{
+        padding: 0 4px;
+    }
+    /* categorys page */
+    .CategoryPage .admin__song-table-head tr td:nth-child(6){
+        display: table-cell;
+    }
+    .CategoryPage .admin__song-table-body tr td:nth-child(6){
+        display: table-cell;
+    }
+    .CategoryPage .admin__song-table-body tr td:nth-child(6) i{
+        padding: 0 4px;
+    }
+    /* categories page */
+    .CategoriesPage .admin__song-table-head tr td:nth-child(7){
+        display: table-cell;
+    }
+    .CategoriesPage .admin__song-table-body tr td:nth-child(7){
+        display: table-cell;
+    }
+    .CategoriesPage .admin__song-table-body tr td:nth-child(7) i{
+        padding: 0 4px;
+    }
+
+    /* modal */
+    .modal__body {
+        width: 90%;
+    }
+    .auth-form{
+        width: 100%;
+        margin: auto;
+    }
+    .auth-form__container{
+        padding: 16px;
+    }
+
+    /* Home modal */
+    .HomePage #viewSong_file{
+        width: 50%!important;
+        top: 3px;
+    }
+    .HomePage #viewSong_file::-webkit-scrollbar,
+    .HomePage #viewSong_name::-webkit-scrollbar,
+    .HomePage #viewSong_singer::-webkit-scrollbar {
+        display: none;
+    }
+
+    .HomePage #viewSong_name, .HomePage #viewSong_singer{
+        display: inline-block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        position: relative;
+        top: 3px;
+        width: 50%!important;
+    }
+
+    /* Categories modal */
+    .UserPage .add-form_input{
+        overflow: hidden;
+    }
+    .CategoriesPage .add-form_input b{
+        width: 35%;
+    }
+    #categories_singers_view,
+    #categories_description_view,
+    #categories_songs_view{
+        width: 60%;
+        margin-top: 1px;
+    }
+    #categories_singers_view::-webkit-scrollbar,
+    #categories_description_view::-webkit-scrollbar,
+    #categories_songs_view::-webkit-scrollbar {
+        display: none;
+    }
+    /* User modal */
+    .UserPage .add-form_input b{
+        width: 35%;
+    }
+    #viewUser_email::-webkit-scrollbar {
+        display: none;
+    }
+    #viewUser_email{
+        display: inline-block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        position: relative;
+        top: 3px;
+        width: 60%!important;
+    }
 }

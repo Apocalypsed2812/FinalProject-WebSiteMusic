@@ -29,25 +29,23 @@ if (!$_SESSION['isLogin']) {
             ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
-                    <div class="col l-12">
-                        <div class="col l-12" id="title_home">
-                            <span class="new__music-title">
-                                Thông tin người dùng
-                            </span>
-                            <div class="sortDiv">
+                    <div class="col l-12 PageTitle" id="title_home">
+                        <span class="new__music-title">
+                            Thông tin người dùng
+                        </span>
+                        <div class="sortDiv">
 
-                                <span id="sortTitle">Sắp xếp theo:</span>
-                                <select name="SortList" id="SortList">
-                                    <option value="id">Id</option>
-                                    <option value="username">Tên</option>
-                                    <option value="age">Tuổi</option>
-                                    <option value="gender">Giới tính</option>
-                                </select>
-                                <div id="Icon_arrow_up"><i class="fa-solid fa-arrow-up"></i></div>
-                                <div id="Icon_arrow_down"><i class="fa-solid fa-arrow-down"></i></div>
-                            </div>
-                            <span class="alert_admin" id="User_alert">ADD Successful</span>
+                            <span id="sortTitle">Sắp xếp theo:</span>
+                            <select name="SortList" id="SortList">
+                                <option value="id">Id</option>
+                                <option value="username">Tên</option>
+                                <option value="age">Tuổi</option>
+                                <option value="gender">Giới tính</option>
+                            </select>
+                            <div id="Icon_arrow_up"><i class="fa-solid fa-arrow-up"></i></div>
+                            <div id="Icon_arrow_down"><i class="fa-solid fa-arrow-down"></i></div>
                         </div>
+                        <span class="alert_admin" id="User_alert">ADD Successful</span>
                     </div>
                 </div>
                 <div class="row mt-32">
@@ -238,7 +236,7 @@ if (!$_SESSION['isLogin']) {
                             <span id="viewUser_role">User</span>
                         </div>
                         <div class="add-form_input">
-                            <b>Thể loại yêu thích</b>
+                            <b>Yêu thích</b>
                             <span id="viewUser_favoriteSong">Pop, rock</span>
                         </div>
                         <div class="add-form_input">

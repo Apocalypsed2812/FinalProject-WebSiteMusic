@@ -1,9 +1,9 @@
 <?php
-    require('../db.php');
-    session_start();
-    if(!$_SESSION['isLogin']){
-        header('Location: ../login.php');
-    }
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +22,11 @@
 <body class="AdminPage">
     <div class="app">
         <?php
-            require_once('../includes/Sidebar/SidebarAdmin.php')
+        require_once('../includes/Sidebar/SidebarAdmin.php')
         ?>
         <div class="container">
             <?php
-                require_once('../includes/Header/HeaderAdmin.php')
+            require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">

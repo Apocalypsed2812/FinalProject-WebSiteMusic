@@ -30,7 +30,7 @@ if (!$_SESSION['isLogin']) {
             ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
-                    <div class="col l-12" id="title_categories">
+                    <div class="col l-12 PageTitle" id="title_categories">
                         <span class="new__music-title">
                             Thông tin chuyên mục
                         </span>
@@ -263,7 +263,7 @@ if (!$_SESSION['isLogin']) {
                             <span id="categories_id_view">12</span>
                         </div>
                         <div class="add-form_input">
-                            <b>Tên chuyên mục</b>
+                            <b>Chuyên mục</b>
                             <span id="categories_name_view">USER A</span>
                         </div>
                         <div class="add-form_input">
@@ -280,15 +280,15 @@ if (!$_SESSION['isLogin']) {
                         </div>
                         <div class="add-form_input div_view_categories ">
                             <b>Mô tả</b>
-                            <textarea readonly id="categories_description_view" placeholder="Lyric" name="categories_description"></textarea>
+                            <textarea readonly id="categories_description_view" placeholder="Mô tả" name="categories_description"></textarea>
                         </div>
                         <div class="add-form_input div_view_categories">
                             <b>Ca sĩ</b>
-                            <textarea readonly id="categories_singers_view" placeholder="Lyric" name="categories_singers_view"></textarea>
+                            <textarea readonly id="categories_singers_view" placeholder="Ca sĩ" name="categories_singers_view"></textarea>
                         </div>
                         <div class="add-form_input div_view_categories">
                             <b>Bài hát</b>
-                            <textarea readonly id="categories_songs_view" placeholder="Lyric" name="categories_songs_view"></textarea>
+                            <textarea readonly id="categories_songs_view" placeholder="Bài hát" name="categories_songs_view"></textarea>
                         </div>
                         <div class="add-form_input">
                             <b>File ảnh</b>

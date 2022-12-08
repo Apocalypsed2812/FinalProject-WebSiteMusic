@@ -114,7 +114,9 @@ $(".add-form_input").click(function () {
 });
 
 // sự kiện click nút "thêm bài hát"
-addBtn.click(function () { $("#myModal_AddSong").css("display", "flex") });
+addBtn.click(function () {
+    $("#myModal_AddSong").css("display", "flex");
+});
 
 // nút 'X' và 'hủy' => đóng form và xóa các dữ liệu trong form
 function deleteInput() {

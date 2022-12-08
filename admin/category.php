@@ -30,7 +30,7 @@ if (!$_SESSION['isLogin']) {
             ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
-                    <div class="col l-12" id="title_category">
+                    <div class="col l-12 PageTitle" id="title_category">
                         <span class="new__music-title">
                             Thông tin thể loại
                         </span>

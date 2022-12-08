@@ -33,7 +33,7 @@ if (!$_SESSION['isLogin']) {
             ?>
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
-                    <div class="col l-12" id="title_home">
+                    <div class="col l-12 PageTitle" id="title_home">
 
                         <span class="new__music-title">
                             Thông tin bài hát
