@@ -32,12 +32,12 @@
             <i class="fa-solid fa-gear"></i>
         </a>
         <a href="../logout.php" class="container__header-control-item">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-right-from-bracket"></i>
         </a>
     </div>
     <div class="container__header-control-mobile">
         <a href="../logout.php" class="container__header-control-item">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-right-from-bracket"></i>
         </a>
     </div>
 </div>
