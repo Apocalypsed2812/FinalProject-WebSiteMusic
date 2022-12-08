@@ -5,6 +5,7 @@
 
 .new__music-title{
     font-family:Tahoma, Geneva, Verdana, sans-serif;
+    display: inline-block;
 }
 table{
     background-color: #231b2e;
@@ -257,4 +258,30 @@ input[type="text"].add-form_input{
 }
 .RankPage .RankTitle p:nth-child(2){
     margin-left: 20px;
+}
+
+
+/* sort */
+#Icon_arrow_up,#Icon_arrow_down{
+    display: inline-block;
+    margin: 0 10px ;
+    cursor: pointer;
+
+}
+#Icon_arrow_down{
+    display: none;
+}
+.sortDiv{
+    float: right;
+    background-color: #2f2739;
+    padding: 10px;
+    border: 1px solid #fff;
+    color: #fff
+}
+#SortList{
+    outline: none;
+    background-color: #2f2739;
+    border:  none;
+    color: white;
+    cursor: pointer;
 }

@@ -34,6 +34,19 @@ if (!$_SESSION['isLogin']) {
                         <span class="new__music-title">
                             Thông tin chuyên mục
                         </span>
+                        <div class="sortDiv">
+
+                            <span id="sortTitle">Sắp xếp theo:</span>
+                            <select name="SortList" id="SortList">
+                                <option value="id">Id</option>
+                                <option value="name">Tên chuyên mục</option>
+                                <option value="topic">Topic</option>
+                                <option value="follow">Lượt thích</option>
+                                <option value="date">Ngày tạo</option>
+                            </select>
+                            <div id="Icon_arrow_up"><i class="fa-solid fa-arrow-up"></i></div>
+                            <div id="Icon_arrow_down"><i class="fa-solid fa-arrow-down"></i></div>
+                        </div>
                         <span class="alert_admin" id="Add_alert">ADD Successful</span>
                     </div>
                 </div>

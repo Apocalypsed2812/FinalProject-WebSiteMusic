@@ -545,3 +545,67 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
+
+
+
+$("#Icon_arrow_down").click(function () {
+    $("#Icon_arrow_down").css("display", "none")
+    $("#Icon_arrow_up").css("display", "inline-block")
+    Sort();
+})
+$("#Icon_arrow_up").click(function () {
+    $("#Icon_arrow_up").css("display", "none")
+    $("#Icon_arrow_down").css("display", "inline-block")
+    Sort();
+})
+$("#SortList").change(function () {
+    Sort();
+})
+function Sort() {
+    let sortOption = $("#SortList").find(":selected").val(),
+        ASC = $("#Icon_arrow_up").css("display") == 'inline-block' ? "ASC" : "DESC";
+    let sql = "SELECT * FROM `songs` ORDER BY `" + sortOption + "` " + ASC
+
+
+    $.get(
+        "http://localhost:" + location.port + "/admin/songs-api/sort-song.php",
+        {
+            sql: sql
+        },
+        function (data, status) {
+            TableBody = [];
+
+            data["data"].forEach((e) => {
+                TableBody.push(
+                    "<tr><td>" + e["id"] + "</td><td>" + e["name"] + "</td><td>" + e["singer"] + "</td><td>"
+                    + e["listens"] + "</td><td>" + e["comments"] + "</td><td> " + e["downloads"] + "</td><td> "
+                    + '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "', '"
+                    + e["singer"] + "', '" + e["date"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`, '"
+                    + e["listens"] + "', '" + e["comments"] + "', '" + e["downloads"] + "', '" + e["file"] + "')\"></i>" +
+                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ", '" + e["name"] + "')\"></i>" +
+                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e["id"] + ", '" + e["name"] + "', '" +
+                    e["singer"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`)\"></i>" +
+                    '</td><td style="display: none">' + e["category"] + '</td><td style="display: none">' + e["lyric"] +
+                    '</td><td style="display: none">' + e["file"] + "</td></tr>"
+                );
+            });
+            endNum = current_tablePage * 8;
+            beginNum = endNum - 8;
+            tableDisplay = "";
+            Table_NumHtml = "";
+            pageAmount = Math.ceil(data["data"].length / 8)
+            current_tablePage = parseInt(current_tablePage)
+            Pagination("Main");
+
+            if (search.val() != "") {
+                SearchTable = [];
+                TableBody.forEach((i) => {
+                    if (i.toLowerCase().indexOf(search.val().toLowerCase()) > -1) {
+                        SearchTable.push(i);
+                    }
+                });
+                searchClick();
+            }
+        }, "json"
+    );
+}

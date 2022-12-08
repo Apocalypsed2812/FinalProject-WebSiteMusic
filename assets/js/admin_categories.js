@@ -833,4 +833,116 @@ function autocomplete(inp, arr) {
     document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
-}    
+}
+
+
+
+$("#Icon_arrow_down").click(function () {
+    $("#Icon_arrow_down").css("display", "none")
+    $("#Icon_arrow_up").css("display", "inline-block")
+    Sort();
+})
+$("#Icon_arrow_up").click(function () {
+    $("#Icon_arrow_up").css("display", "none")
+    $("#Icon_arrow_down").css("display", "inline-block")
+    Sort();
+})
+$("#SortList").change(function () {
+    Sort();
+})
+function Sort() {
+    let sortOption = $("#SortList").find(":selected").val(),
+        ASC = $("#Icon_arrow_up").css("display") == 'inline-block' ? "ASC" : "DESC";
+    let sql = "SELECT * FROM `categories` ORDER BY `" + sortOption + "` " + ASC
+
+
+    $.get(
+        "http://localhost:" + location.port + "/admin/songs-api/sort-song.php",
+        {
+            sql: sql
+        },
+        function (data, status) {
+            TableBody = [];
+
+            data["data"].forEach((e) => {
+                let num1 = e["songs"].split(",").length;
+                let num2 = e["songs"].split("\n").length;
+                let num = num1 > num2 ? num1 : num2
+                num = e["songs"] == [] ? 0 : num
+                TableBody.push(
+                    "<tr><td>" + e["id"] +
+                    "</td><td>" + e["name"] +
+                    "</td><td>" + e["topic"] +
+                    "</td><td>" + e["follow"] +
+                    "</td><td>" + num +
+                    "</td><td>" + e["date"] +
+                    "</td><td>" +
+                    '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ',`' + e["name"] + '`,`' +
+                    e["topic"] + '`,`' + e["follow"] + '`,`' + e["date"] + '`,`' + e["image"] + '`,`' + e["description"] + '`,`' + e["singers"] + '`,`' + e["songs"] + '`)"></i>' +
+                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ',`' + e["name"] + '`)"></i>' +
+                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e["id"] + ',`' + e["name"] + '`,`' +
+                    e["topic"] + '`,`' + e["description"] + '`,`' + e["singers"] + '`,`' + e["songs"] + '`)"></i>' +
+                    "</td><td style='display: none;'>" + e["image"] +
+                    "</td><td style='display: none;'>" + e["description"] +
+                    "</td><td style='display: none;'>" + e["singers"] +
+                    "</td><td style='display: none;'>" + e["songs"] +
+                    +"</td></tr>"
+                );
+            });
+            let endNum = current_tablePage * 8,
+                beginNum = endNum - 8,
+                tableDisplay = "",
+                Table_NumHtml = "",
+                active;
+            pageAmount = Math.ceil(data["data"].length / 8);
+            current_tablePage = parseInt(current_tablePage)
+            switch (pageAmount) {
+                case 1:
+                    First = 1
+                    Last = 1
+                    break;
+                case 2:
+                    First = 1
+                    Last = 2
+                    break;
+                default:
+                    isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
+                    First = current_tablePage == pageAmount ? current_tablePage - 2 : isFirst;
+                    tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
+                    Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
+            }
+
+
+            Table_NumHtml +=
+                '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`Main`)">' +
+                '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
+            for (let j = First; j <= Last; j++) {
+                active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
+                Table_NumHtml +=
+                    '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`Main`)">' +
+                    '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
+            }
+            Table_NumHtml +=
+                '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`Main`)">' +
+                '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
+
+
+            $("#Table_pagination").html(Table_NumHtml);
+            for (let i = beginNum; i < endNum; i++) {
+                tableDisplay += TableBody[i];
+            }
+            $("#table-body").html(tableDisplay);
+
+            if (search.val() != "") {
+                SearchTable = [];
+                TableBody.forEach((i) => {
+                    if (i.toLowerCase().indexOf(search.val().toLowerCase()) > -1) {
+                        SearchTable.push(i);
+                    }
+                });
+                searchClick();
+            }
+        }, "json"
+    );
+}
+

@@ -13,9 +13,10 @@ if (!$_SESSION['isLogin']) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zing MP3</title>
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
 
     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script> -->
 
@@ -33,9 +34,25 @@ if (!$_SESSION['isLogin']) {
             <div class="grid wide container-tablet container-mobile">
                 <div class="row mt-110">
                     <div class="col l-12" id="title_home">
+
                         <span class="new__music-title">
                             Thông tin bài hát
                         </span>
+                        <div class="sortDiv">
+
+                            <span id="sortTitle">Sắp xếp theo:</span>
+                            <select name="SortList" id="SortList">
+                                <option value="id">Id</option>
+                                <option value="name">Tên bài hát</option>
+                                <option value="singer">Tên ca sĩ</option>
+                                <option value="listens">Lượt nghe</option>
+                                <option value="downloads">Lượt tải</option>
+                                <option value="comments">Bình luận</option>
+                            </select>
+                            <div id="Icon_arrow_up"><i class="fa-solid fa-arrow-up"></i></div>
+                            <div id="Icon_arrow_down"><i class="fa-solid fa-arrow-down"></i></div>
+                        </div>
+
                         <span class="alert_admin" id="Add_alert">ADD Successful</span>
                     </div>
                 </div>
