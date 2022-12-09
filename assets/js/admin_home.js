@@ -184,67 +184,21 @@ function getData() {
                 }
 
                 TableBody.push(
-                    "<tr><td>" +
-                        e["id"] +
-                        "</td><td>" +
-                        e["name"] +
-                        "</td><td>" +
-                        e["singer"] +
-                        "</td><td>" +
-                        e["listens"] +
-                        "</td><td>" +
-                        e["comments"] +
-                        "</td><td> " +
-                        e["downloads"] +
-                        "</td><td> " +
-                        '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "', '" +
-                        e["singer"] +
-                        "', '" +
-                        e["date"] +
-                        "', '" +
-                        e["category"] +
-                        "', '" +
-                        e["nation"] +
-                        "', `" +
-                        e["lyric"] +
-                        "`, '" +
-                        e["listens"] +
-                        "', '" +
-                        e["comments"] +
-                        "', '" +
-                        e["downloads"] +
-                        "', '" +
-                        e["file"] +
-                        "')\"></i>" +
-                        '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "')\"></i>" +
-                        '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "', '" +
-                        e["singer"] +
-                        "', '" +
-                        e["category"] +
-                        "', '" +
-                        e["nation"] +
-                        "', `" +
-                        e["lyric"] +
-                        '`)"></i>' +
-                        '</td><td style="display: none">' +
-                        e["category"] +
-                        '</td><td style="display: none">' +
-                        e["lyric"] +
-                        '</td><td style="display: none">' +
-                        e["file"] +
-                        "</td></tr>"
+                    "<tr><td>" + e["id"] + "</td><td>" + e["name"] + "</td><td>" + e["singer"] + "</td><td>" +
+                    e["listens"] + "</td><td>" + e["comments"] + "</td><td> " +
+                    '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "', '" +
+                    e["singer"] + "', '" + e["date"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" +
+                    e["lyric"] + "`, '" + e["listens"] + "', '" + e["comments"] + "', '" + e["downloads"] + "', '" + e["file"] + "')\"></i>" +
+                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ", '" + e["name"] + "')\"></i>" +
+                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e["id"] + ", '" + e["name"] + "', '" +
+                    e["singer"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + '`)"></i>' +
+                    '</td><td style="display: none">' +
+                    e["category"] +
+                    '</td><td style="display: none">' +
+                    e["lyric"] +
+                    '</td><td style="display: none">' +
+                    e["file"] +
+                    "</td></tr>"
                 );
             });
             endNum = current_tablePage * 8;
@@ -676,66 +630,66 @@ function Sort() {
             data["data"].forEach((e) => {
                 TableBody.push(
                     "<tr><td>" +
-                        e["id"] +
-                        "</td><td>" +
-                        e["name"] +
-                        "</td><td>" +
-                        e["singer"] +
-                        "</td><td>" +
-                        e["listens"] +
-                        "</td><td>" +
-                        e["comments"] +
-                        "</td><td> " +
-                        e["downloads"] +
-                        "</td><td> " +
-                        '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "', '" +
-                        e["singer"] +
-                        "', '" +
-                        e["date"] +
-                        "', '" +
-                        e["category"] +
-                        "', '" +
-                        e["nation"] +
-                        "', `" +
-                        e["lyric"] +
-                        "`, '" +
-                        e["listens"] +
-                        "', '" +
-                        e["comments"] +
-                        "', '" +
-                        e["downloads"] +
-                        "', '" +
-                        e["file"] +
-                        "')\"></i>" +
-                        '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "')\"></i>" +
-                        '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
-                        e["id"] +
-                        ", '" +
-                        e["name"] +
-                        "', '" +
-                        e["singer"] +
-                        "', '" +
-                        e["category"] +
-                        "', '" +
-                        e["nation"] +
-                        "', `" +
-                        e["lyric"] +
-                        '`)"></i>' +
-                        '</td><td style="display: none">' +
-                        e["category"] +
-                        '</td><td style="display: none">' +
-                        e["lyric"] +
-                        '</td><td style="display: none">' +
-                        e["file"] +
-                        "</td></tr>"
+                    e["id"] +
+                    "</td><td>" +
+                    e["name"] +
+                    "</td><td>" +
+                    e["singer"] +
+                    "</td><td>" +
+                    e["listens"] +
+                    "</td><td>" +
+                    e["comments"] +
+                    "</td><td> " +
+                    e["downloads"] +
+                    "</td><td> " +
+                    '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
+                    e["id"] +
+                    ", '" +
+                    e["name"] +
+                    "', '" +
+                    e["singer"] +
+                    "', '" +
+                    e["date"] +
+                    "', '" +
+                    e["category"] +
+                    "', '" +
+                    e["nation"] +
+                    "', `" +
+                    e["lyric"] +
+                    "`, '" +
+                    e["listens"] +
+                    "', '" +
+                    e["comments"] +
+                    "', '" +
+                    e["downloads"] +
+                    "', '" +
+                    e["file"] +
+                    "')\"></i>" +
+                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' +
+                    e["id"] +
+                    ", '" +
+                    e["name"] +
+                    "')\"></i>" +
+                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
+                    e["id"] +
+                    ", '" +
+                    e["name"] +
+                    "', '" +
+                    e["singer"] +
+                    "', '" +
+                    e["category"] +
+                    "', '" +
+                    e["nation"] +
+                    "', `" +
+                    e["lyric"] +
+                    '`)"></i>' +
+                    '</td><td style="display: none">' +
+                    e["category"] +
+                    '</td><td style="display: none">' +
+                    e["lyric"] +
+                    '</td><td style="display: none">' +
+                    e["file"] +
+                    "</td></tr>"
                 );
             });
             endNum = current_tablePage * 8;

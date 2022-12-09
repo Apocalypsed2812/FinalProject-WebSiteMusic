@@ -66,7 +66,7 @@ if (!$_SESSION['isLogin']) {
                                     <td style="width:20%">Ca sĩ</td>
                                     <td style="width:10%">Lượt nghe</td>
                                     <td style="width:10%">Bình luận</td>
-                                    <td style="width:10%">Tải xuống</td>
+                                    <!-- <td style="width:10%">Tải xuống</td> -->
                                     <td style="width:15%">Action</td>
                                     <td id="Search_value" style="display: none;">a</td>
                                     <td id="Song_Singer_Category" style="display: none;">a</td>
@@ -261,9 +261,9 @@ if (!$_SESSION['isLogin']) {
                                 <!-- <input type="text" class="edit-form__input" placeholder="Lyric" name="song_Lyric"
                                     id="song_Lyric_edit_song"> -->
                             </div>
-                        
+
                             <span id="edit_Error_Mess">Error messageas</span>
-                            
+
                         </div>
                         <div class="auth-form__controls auth-form__controls-edit">
 
