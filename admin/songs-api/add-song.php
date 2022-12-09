@@ -15,11 +15,12 @@ $listens = $_POST['listens'];
 $comments = $_POST['comments'];
 $downloads = $_POST['downloads'];
 $file = $_POST['file'];
-$sql = 'INSERT INTO songs(name,singer,date,category,nation,lyric,listens,comments,downloads,file) VALUES(?,?,?,?,?,?,?,?,?,?)';
+$image = $_POST['image'];
+$sql = 'INSERT INTO songs(name,singer,date,category,nation,lyric,listens,comments,downloads,file,image) VALUES(?,?,?,?,?,?,?,?,?,?,?)';
 
 try {
     $stmt = $dbCon->prepare($sql);
-    $stmt->execute(array($name, $singer, $date, $category, $nation, $lyric, $listens, $comments, $downloads, $file));
+    $stmt->execute(array($name, $singer, $date, $category, $nation, $lyric, $listens, $comments, $downloads, $file, $image));
     echo json_encode(array('status' => true, 'data' => 'Thêm songs thành công'));
 } catch (PDOException $ex) {
     die(json_encode(array('status' => false, 'data' => $ex->getMessage())));

@@ -31,6 +31,12 @@ input[type="file"]{
 .CategoriesPage .add-form_label{
     margin-top: 10px !important;
 }
+.HomePage .add-form_label{
+    margin-top: 8px !important;
+}
+.HomePage .auth-form__controls{
+    margin-top: 0px;
+}
 input[type="text"].add-form_input{
     vertical-align: middle;
 }
@@ -43,6 +49,7 @@ input[type="text"].add-form_input{
     border: 1px solid #dbdbdb;
     outline: none;
 }
+
 .add-form_label{
     margin-top: 16px;
     display: inline-block;
@@ -125,7 +132,7 @@ input[type="text"].add-form_input{
     margin-top: 5px;
 }
 #song_lyric_view_song,#viewRank_lyric{
-    width: 330px;
+    width: 300px;
     padding-left: 0 !important;
     padding-top: 10px !important;
     border: none ;
@@ -221,7 +228,7 @@ input[type="text"].add-form_input{
     white-space: nowrap;
     width: 285px ;
     position: relative;
-    top: 5px
+    top: 3px
 }
 /* scrollba */
 /* width */
@@ -262,7 +269,9 @@ input[type="text"].add-form_input{
 .RankPage .RankTitle p:nth-child(2){
     margin-left: 20px;
 }
-
+.admin__song-btn button{
+    border: 1px solid #fff;
+}
 
 /* sort */
 #Icon_arrow_up,#Icon_arrow_down{
@@ -289,14 +298,13 @@ input[type="text"].add-form_input{
     cursor: pointer;
 }
 
+
 @media screen and (max-width: 415px){
     /* Header */
     .admin__song-btn{
         margin-top: 30px;
     }
-    .admin__song-btn button{
-        border: 1px solid #fff;
-    }
+
     .sortDiv{
         display: block;   
         margin-top: 20px; 

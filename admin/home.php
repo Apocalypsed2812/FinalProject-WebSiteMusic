@@ -192,6 +192,10 @@ if (!$_SESSION['isLogin']) {
                                 <label class="add-form_label" for="song_files_add_song">File nhạc</label>
                                 <input type="file" class="add-form_input" name="song_files" id="song_files_add_song">
                             </div>
+                            <div class="auth-form__group">
+                                <label class="add-form_label" for="song_image_add">File ảnh</label>
+                                <input type="file" class="add-form_input" name="song_images" id="song_image_add">
+                            </div>
                             <span id="Add_Error_Mess">Error messageas</span>
 
                         </div>
@@ -257,8 +261,9 @@ if (!$_SESSION['isLogin']) {
                                 <!-- <input type="text" class="edit-form__input" placeholder="Lyric" name="song_Lyric"
                                     id="song_Lyric_edit_song"> -->
                             </div>
+                        
                             <span id="edit_Error_Mess">Error messageas</span>
-
+                            
                         </div>
                         <div class="auth-form__controls auth-form__controls-edit">
 
@@ -322,6 +327,7 @@ if (!$_SESSION['isLogin']) {
                             <b>File nhạc</b>
                             <span id="viewSong_file">AnTinhTrongEm1.mp3</span>
                         </div>
+
                         <div class="add-form_input div_lyric_view_song">
                             <b class="label_lyric_view_song">Lời nhạc</b>
                             <textarea readonly id="song_lyric_view_song" placeholder="Lyric" name="song_Lyric"></textarea>

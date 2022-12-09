@@ -3,12 +3,21 @@ let addBtn = $(".admin__song-btn button"),
     cancelSongForm = $(".auth-form__controls-back"),
     table_page1 = $(".admin__song-pagination-list li:first-child a"),
     search = $(".HomePage .container__header-with-search-input"),
-    table_page, target_id, target_name, current_tablePage = 1,
-    TableBody, SearchTable, Suggestions, pageAmount,
+    table_page,
+    target_id,
+    target_name,
+    current_tablePage = 1,
+    TableBody,
+    SearchTable,
+    Suggestions,
+    pageAmount,
     endNum,
     beginNum,
     tableDisplay = "",
-    isFirst, First, tablePageDisplay, Last,
+    isFirst,
+    First,
+    tablePageDisplay,
+    Last,
     Table_NumHtml,
     active;
 // sau khi trang tải xong
@@ -22,21 +31,24 @@ $(document).ready(function () {
 });
 // Lấy các thể loại cho vào select khi thêm bài hát
 function get_song_category() {
-    let category = `<option value=0>-- Thể loại --</option>`, n = 1;
-    $.get("http://localhost:" + location.port + "/admin/songs-api/get-category.php",
+    let category = `<option value=0>-- Thể loại --</option>`,
+        n = 1;
+    $.get(
+        "http://localhost:" + location.port + "/admin/songs-api/get-category.php",
         function (data, status) {
             data["data"].forEach((e) => {
-                category += `<option value=` + n + `>` + e['name'] + `</option>`
-            })
-            $('.song_category_list').html(category)
-        }, "json"
+                category += `<option value=` + n + `>` + e["name"] + `</option>`;
+            });
+            $(".song_category_list").html(category);
+        },
+        "json"
     );
 }
 // sự kiện click vào btn "Đầu" của table pagination
 function FirstPagination_click(e, table) {
     tableDisplay = "";
     Table_NumHtml = "";
-    current_tablePage = 1
+    current_tablePage = 1;
     beginNum = 0;
     endNum = 8;
     Pagination(table);
@@ -50,7 +62,7 @@ function LastPagination_click(e, table) {
     beginNum = endNum - 8;
     Pagination(table);
 }
-// sự kiện table pagination click 
+// sự kiện table pagination click
 function Pagination_click(e, table) {
     current_tablePage = $(e).text();
     endNum = current_tablePage * 8;
@@ -64,23 +76,23 @@ function Pagination(table) {
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += TableBody[i];
         }
-        pageAmount = Math.ceil(TableBody.length / 8)
+        pageAmount = Math.ceil(TableBody.length / 8);
     } else {
         for (let i = beginNum; i < endNum; i++) {
             tableDisplay += SearchTable[i];
         }
-        pageAmount = Math.ceil(SearchTable.length / 8)
+        pageAmount = Math.ceil(SearchTable.length / 8);
     }
-    current_tablePage = parseInt(current_tablePage)
+    current_tablePage = parseInt(current_tablePage);
 
     switch (pageAmount) {
         case 1:
-            First = 1
-            Last = 1
+            First = 1;
+            Last = 1;
             break;
         case 2:
-            First = 1
-            Last = 2
+            First = 1;
+            Last = 2;
             break;
         default:
             isFirst = current_tablePage == 1 ? 1 : current_tablePage - 1;
@@ -89,18 +101,27 @@ function Pagination(table) {
             Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
     }
 
-
     Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' + table + '`)">' +
+        '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`' +
+        table +
+        '`)">' +
         '<a class="admin__song-pagination-link Firstpagination"> Đầu </a></li>';
     for (let j = First; j <= Last; j++) {
         active = j == current_tablePage ? "admin__song-pagination-link--active" : "";
         Table_NumHtml +=
-            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' + table + '`)">' +
-            '<a class="admin__song-pagination-link ' + active + '">' + j + "</a></li>";
+            '<li class="admin__song-pagination-item" onclick="Pagination_click($(this),`' +
+            table +
+            '`)">' +
+            '<a class="admin__song-pagination-link ' +
+            active +
+            '">' +
+            j +
+            "</a></li>";
     }
     Table_NumHtml +=
-        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' + table + '`)">' +
+        '<li class="admin__song-pagination-item" onclick="LastPagination_click($(this),`' +
+        table +
+        '`)">' +
         '<a class="admin__song-pagination-link Lastpagination"> Cuối </a></li>';
     $("#Table_pagination").html(Table_NumHtml);
     $("#table-body").html(tableDisplay);
@@ -109,7 +130,7 @@ function Pagination(table) {
 // đổi màu border và ẩn thông báo lỗi
 //form Add
 $(".add-form_input").click(function () {
-    $(".add-form_input").css({ border: "1px solid #dbdbdb", });
+    $(".add-form_input").css({ border: "1px solid #dbdbdb" });
     $("#Add_Error_Mess").css("visibility", "hidden");
 });
 
@@ -121,16 +142,17 @@ addBtn.click(function () {
 // nút 'X' và 'hủy' => đóng form và xóa các dữ liệu trong form
 function deleteInput() {
     $(".modal").css("display", "none");
-    $('.song_category_list').val(0).change();
+    $(".song_category_list").val(0).change();
     $("#song_name_add_song").val("");
     $("#song_singer_add_song").val("");
-    $("#song_category_add").val(0).change();;
-    $("#song_nation_add").val(0).change();;
+    $("#song_category_add").val(0).change();
+    $("#song_nation_add").val(0).change();
     $("#song_Lyric_add_song").val("");
     $("#song_files_add_song").val("");
+    $("#song_image_add").val("");
     $("#Add_Error_Mess").css("visibility", "hidden");
     $("#edit_Error_Mess").css("visibility", "hidden");
-    $(".add-form_input").css({ border: "1px solid #dbdbdb", });
+    $(".add-form_input").css({ border: "1px solid #dbdbdb" });
 }
 
 XIcon.click(function () {
@@ -147,44 +169,96 @@ function getData() {
         "http://localhost:" + location.port + "/admin/songs-api/get-song.php",
         function (data, status) {
             TableBody = [];
-            let Song_Singer_Category = '';
+            let Song_Singer_Category = "";
 
             data["data"].forEach((e) => {
-                Song_Singer_Category += e["name"] + "_" + e["singer"] + "_" + e["category"] + ";"
+                Song_Singer_Category += e["name"] + "_" + e["singer"] + "_" + e["category"] + ";";
                 if (Suggestions.indexOf($.trim(e["name"])) == -1) {
                     Suggestions += $.trim(e["name"]) + ",";
                 }
-                for (let i = 0; i < e["singer"].split(',').length; i++) {
-                    let singer = e["singer"].split(',')[i];
+                for (let i = 0; i < e["singer"].split(",").length; i++) {
+                    let singer = e["singer"].split(",")[i];
                     if (Suggestions.indexOf($.trim(singer)) == -1) {
                         Suggestions += $.trim(singer) + ",";
                     }
                 }
 
                 TableBody.push(
-                    "<tr><td>" + e["id"] + "</td><td>" + e["name"] + "</td><td>" + e["singer"] + "</td><td>"
-                    + e["listens"] + "</td><td>" + e["comments"] + "</td><td> " + e["downloads"] + "</td><td> "
-                    + '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "', '"
-                    + e["singer"] + "', '" + e["date"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`, '"
-                    + e["listens"] + "', '" + e["comments"] + "', '" + e["downloads"] + "', '" + e["file"] + "')\"></i>" +
-                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ", '" + e["name"] + "')\"></i>" +
-                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e["id"] + ", '" + e["name"] + "', '" +
-                    e["singer"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`)\"></i>" +
-                    '</td><td style="display: none">' + e["category"] + '</td><td style="display: none">' + e["lyric"] +
-                    '</td><td style="display: none">' + e["file"] + "</td></tr>"
+                    "<tr><td>" +
+                        e["id"] +
+                        "</td><td>" +
+                        e["name"] +
+                        "</td><td>" +
+                        e["singer"] +
+                        "</td><td>" +
+                        e["listens"] +
+                        "</td><td>" +
+                        e["comments"] +
+                        "</td><td> " +
+                        e["downloads"] +
+                        "</td><td> " +
+                        '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
+                        e["id"] +
+                        ", '" +
+                        e["name"] +
+                        "', '" +
+                        e["singer"] +
+                        "', '" +
+                        e["date"] +
+                        "', '" +
+                        e["category"] +
+                        "', '" +
+                        e["nation"] +
+                        "', `" +
+                        e["lyric"] +
+                        "`, '" +
+                        e["listens"] +
+                        "', '" +
+                        e["comments"] +
+                        "', '" +
+                        e["downloads"] +
+                        "', '" +
+                        e["file"] +
+                        "')\"></i>" +
+                        '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' +
+                        e["id"] +
+                        ", '" +
+                        e["name"] +
+                        "')\"></i>" +
+                        '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
+                        e["id"] +
+                        ", '" +
+                        e["name"] +
+                        "', '" +
+                        e["singer"] +
+                        "', '" +
+                        e["category"] +
+                        "', '" +
+                        e["nation"] +
+                        "', `" +
+                        e["lyric"] +
+                        '`)"></i>' +
+                        '</td><td style="display: none">' +
+                        e["category"] +
+                        '</td><td style="display: none">' +
+                        e["lyric"] +
+                        '</td><td style="display: none">' +
+                        e["file"] +
+                        "</td></tr>"
                 );
             });
             endNum = current_tablePage * 8;
             beginNum = endNum - 8;
             tableDisplay = "";
             Table_NumHtml = "";
-            pageAmount = Math.ceil(data["data"].length / 8)
-            current_tablePage = parseInt(current_tablePage)
+            pageAmount = Math.ceil(data["data"].length / 8);
+            current_tablePage = parseInt(current_tablePage);
             Pagination("Main");
 
             $("#Search_value").html(Suggestions);
-            $("#Song_Singer_Category").html(Song_Singer_Category.replaceAll("amp;", ""))
-        }, "json"
+            $("#Song_Singer_Category").html(Song_Singer_Category.replaceAll("amp;", ""));
+        },
+        "json"
     );
 }
 
@@ -200,14 +274,29 @@ function add_song() {
         NSC = nameBox + "_" + singer + "_" + category;
 
     Song_Singer_Category.pop();
-    NSC = NSC.toLocaleLowerCase()
-    current_time = current_time.getFullYear() + "-" + current_time.getMonth() + "-" + current_time.getDate() + " " +
-        current_time.getHours() + ":" + current_time.getMinutes() + ":" + current_time.getSeconds();
+    NSC = NSC.toLocaleLowerCase();
+    current_time =
+        current_time.getFullYear() +
+        "-" +
+        current_time.getMonth() +
+        "-" +
+        current_time.getDate() +
+        " " +
+        current_time.getHours() +
+        ":" +
+        current_time.getMinutes() +
+        ":" +
+        current_time.getSeconds();
 
     try {
         song = $("#song_files_add_song").get(0).files[0].name;
     } catch (error) {
         song = "";
+    }
+    try {
+        image = $("#song_image_add").get(0).files[0].name;
+    } catch (error) {
+        image = "";
     }
 
     $("#myForm").ajaxForm({
@@ -245,40 +334,42 @@ function add_song() {
                     $("#Add_Error_Mess").html($i[$i.length - 1]);
                     $("#Add_Error_Mess").css("visibility", "visible");
                 } else {
-                    console.log(Song_Singer_Category)
-                    console.log(NSC)
                     if (Song_Singer_Category.indexOf(NSC) == -1) {
-                        $.post("http://localhost:" + location.port + "/admin/songs-api/add-song.php",
-                            {
-                                name: nameBox,
-                                singer: singer,
-                                date: current_time,
-                                category: category,
-                                nation: nation,
-                                lyric: lyric,
-                                listens: 0,
-                                comments: 0,
-                                downloads: 0,
-                                file: song,
-                            }
-                        );
+                        $.post("http://localhost:" + location.port + "/admin/songs-api/add-song.php", {
+                            name: nameBox,
+                            singer: singer,
+                            date: current_time,
+                            category: category,
+                            nation: nation,
+                            lyric: lyric,
+                            listens: 0,
+                            comments: 0,
+                            downloads: 0,
+                            file: song,
+                            image: image,
+                        });
                         $("#myModal_AddSong").css("display", "none");
 
                         // // xóa thông tin các ô vừa nhập
                         $("#song_name_add_song").val("");
                         $("#song_singer_add_song").val("");
-                        $("#song_category_add").val(0).change();;
-                        $("#song_nation_add").val(0).change();;
+                        $("#song_category_add").val(0).change();
+                        $("#song_nation_add").val(0).change();
                         $("#song_Lyric_add_song").val("");
                         $("#song_files_add_song").val("");
+                        $("#song_image_add").val("");
 
                         // // hiện thông báo thành công
                         $("#Add_alert").html("Đã thêm thành công");
                         $("#Add_alert").show();
-                        $("#Add_alert").delay(2000).slideUp(200, function () {
-                            $("#Add_alert").hide(); // ẩn sau 3s
-                        });
-                        setTimeout(function () { getData() }, 20);
+                        $("#Add_alert")
+                            .delay(2000)
+                            .slideUp(200, function () {
+                                $("#Add_alert").hide(); // ẩn sau 3s
+                            });
+                        setTimeout(function () {
+                            getData();
+                        }, 20);
                     } else {
                         $("#Add_Error_Mess").html("Bài hát: " + nameBox + " của ca sĩ: " + singer + " đã tồn tại");
                         $("#song_name_add_song").css({
@@ -287,7 +378,6 @@ function add_song() {
                         $("#song_name_add_song").focus();
                         $("#Add_Error_Mess").css("visibility", "visible");
                     }
-
                 }
             }
         },
@@ -331,15 +421,19 @@ function delete_song() {
     if ($("#table-body tr").length == 1) {
         current_tablePage -= 1;
     }
-    $.post("http://localhost:" + location.port + "/admin/songs-api/delete-song.php", { id: target_id, });
+    $.post("http://localhost:" + location.port + "/admin/songs-api/delete-song.php", { id: target_id });
 
     $("#myModal_DeleteSong").css("display", "none");
     $("#Add_alert").html("Đã xóa thành công");
     $("#Add_alert").show();
-    $("#Add_alert").delay(2000).slideUp(200, function () {
-        $("#Add_alert").hide(); // ẩn sau 3s
-    });
-    setTimeout(function () { getData() }, 20);
+    $("#Add_alert")
+        .delay(2000)
+        .slideUp(200, function () {
+            $("#Add_alert").hide(); // ẩn sau 3s
+        });
+    setTimeout(function () {
+        getData();
+    }, 50);
 }
 // hàm sửa thông tin bài hát
 function edit_song() {
@@ -423,15 +517,17 @@ $(".HomePage .container__header-with-search-input").click(function () {
 });
 
 $("body").click(function (e) {
-    if (e.target.className != "container__header-with-search-result" &&
-        e.target.className != "container__header-with-search-input") {
+    if (
+        e.target.className != "container__header-with-search-result" &&
+        e.target.className != "container__header-with-search-input"
+    ) {
         $(".container__header-with-search-result").css("visibility", "hidden");
     }
 });
 
 // nút search icon click
 $(".HomePage .fa-magnifying-glass").click(function () {
-    $(".NullValue").css("display", "none")
+    $(".NullValue").css("display", "none");
     SearchTable = [];
     TableBody.forEach((i) => {
         if (i.toLowerCase().indexOf(search.val().toLowerCase()) > -1) {
@@ -457,14 +553,17 @@ function searchClick() {
 
     if (tableDisplay.indexOf("undefined") == 0) {
         $("#table-body").html("");
-        $(".NullValue").css("display", "block")
+        $(".NullValue").css("display", "block");
     }
 }
 // function tạo gợi ý
 function autocomplete(inp, arr) {
     var currentFocus;
     inp.addEventListener("input", function (e) {
-        var a, b, i, n = 0,
+        var a,
+            b,
+            i,
+            n = 0,
             val = this.value;
         closeAllLists();
         if (!val) {
@@ -548,55 +647,103 @@ function autocomplete(inp, arr) {
     });
 }
 
-
-
 $("#Icon_arrow_down").click(function () {
-    $("#Icon_arrow_down").css("display", "none")
-    $("#Icon_arrow_up").css("display", "inline-block")
+    $("#Icon_arrow_down").css("display", "none");
+    $("#Icon_arrow_up").css("display", "inline-block");
     Sort();
-})
+});
 $("#Icon_arrow_up").click(function () {
-    $("#Icon_arrow_up").css("display", "none")
-    $("#Icon_arrow_down").css("display", "inline-block")
+    $("#Icon_arrow_up").css("display", "none");
+    $("#Icon_arrow_down").css("display", "inline-block");
     Sort();
-})
+});
 $("#SortList").change(function () {
     Sort();
-})
+});
 function Sort() {
     let sortOption = $("#SortList").find(":selected").val(),
-        ASC = $("#Icon_arrow_up").css("display") == 'inline-block' ? "ASC" : "DESC";
-    let sql = "SELECT * FROM `songs` ORDER BY `" + sortOption + "` " + ASC
-
+        ASC = $("#Icon_arrow_up").css("display") == "inline-block" ? "ASC" : "DESC";
+    let sql = "SELECT * FROM `songs` ORDER BY `" + sortOption + "` " + ASC;
 
     $.get(
         "http://localhost:" + location.port + "/admin/songs-api/sort-song.php",
         {
-            sql: sql
+            sql: sql,
         },
         function (data, status) {
             TableBody = [];
 
             data["data"].forEach((e) => {
                 TableBody.push(
-                    "<tr><td>" + e["id"] + "</td><td>" + e["name"] + "</td><td>" + e["singer"] + "</td><td>"
-                    + e["listens"] + "</td><td>" + e["comments"] + "</td><td> " + e["downloads"] + "</td><td> "
-                    + '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' + e["id"] + ", '" + e["name"] + "', '"
-                    + e["singer"] + "', '" + e["date"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`, '"
-                    + e["listens"] + "', '" + e["comments"] + "', '" + e["downloads"] + "', '" + e["file"] + "')\"></i>" +
-                    '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' + e["id"] + ", '" + e["name"] + "')\"></i>" +
-                    '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' + e["id"] + ", '" + e["name"] + "', '" +
-                    e["singer"] + "', '" + e["category"] + "', '" + e["nation"] + "', `" + e["lyric"] + "`)\"></i>" +
-                    '</td><td style="display: none">' + e["category"] + '</td><td style="display: none">' + e["lyric"] +
-                    '</td><td style="display: none">' + e["file"] + "</td></tr>"
+                    "<tr><td>" +
+                        e["id"] +
+                        "</td><td>" +
+                        e["name"] +
+                        "</td><td>" +
+                        e["singer"] +
+                        "</td><td>" +
+                        e["listens"] +
+                        "</td><td>" +
+                        e["comments"] +
+                        "</td><td> " +
+                        e["downloads"] +
+                        "</td><td> " +
+                        '<i class="fa-solid fa-eye" onclick="Open_Dialog_View(' +
+                        e["id"] +
+                        ", '" +
+                        e["name"] +
+                        "', '" +
+                        e["singer"] +
+                        "', '" +
+                        e["date"] +
+                        "', '" +
+                        e["category"] +
+                        "', '" +
+                        e["nation"] +
+                        "', `" +
+                        e["lyric"] +
+                        "`, '" +
+                        e["listens"] +
+                        "', '" +
+                        e["comments"] +
+                        "', '" +
+                        e["downloads"] +
+                        "', '" +
+                        e["file"] +
+                        "')\"></i>" +
+                        '<i class="fa-solid fa-trash-can" onclick="Open_Dialog_Delete(' +
+                        e["id"] +
+                        ", '" +
+                        e["name"] +
+                        "')\"></i>" +
+                        '<i class="fa-solid fa-pen-to-square" onclick="Open_Dialog_Edit(' +
+                        e["id"] +
+                        ", '" +
+                        e["name"] +
+                        "', '" +
+                        e["singer"] +
+                        "', '" +
+                        e["category"] +
+                        "', '" +
+                        e["nation"] +
+                        "', `" +
+                        e["lyric"] +
+                        '`)"></i>' +
+                        '</td><td style="display: none">' +
+                        e["category"] +
+                        '</td><td style="display: none">' +
+                        e["lyric"] +
+                        '</td><td style="display: none">' +
+                        e["file"] +
+                        "</td></tr>"
                 );
             });
             endNum = current_tablePage * 8;
             beginNum = endNum - 8;
             tableDisplay = "";
             Table_NumHtml = "";
-            pageAmount = Math.ceil(data["data"].length / 8)
-            current_tablePage = parseInt(current_tablePage)
+            pageAmount = Math.ceil(data["data"].length / 8);
+            current_tablePage = parseInt(current_tablePage);
             Pagination("Main");
 
             if (search.val() != "") {
@@ -608,6 +755,7 @@ function Sort() {
                 });
                 searchClick();
             }
-        }, "json"
+        },
+        "json"
     );
 }
