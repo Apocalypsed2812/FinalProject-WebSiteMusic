@@ -67,15 +67,15 @@
                                         $getsong = $row['songs'];
                                     }
                                 }
-                                $songs = explode(",", $getsong);
+                                $songs = explode("\n", $getsong);
                                 for($i = 0; $i < count($songs); $i++){
-                                    $name = $songs[$i];
+                                    $name = trim($songs[$i]);
                                     $sql2 = "SELECT * FROM songs where name = '$name'";
                                     $result = $conn->query($sql2);
                                     if($result->num_rows > 0){
                                         while($row = $result->fetch_assoc()){
                                             echo '<div class="col l-12 m-12 c-12">';
-                                            echo '<div class="new__music-song">';
+                                            echo '<div class="new__music-song container__song-new" data-image="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" data-name="'.$row['name'].'" data-singer="'.$row['singer'].'" data-path="../assets/audio/'.$row['file'].'" data-index="${index}">';
                                             echo '<div class="new__music-song-rank">';
                                             echo '<div class="new__music-song-info">';
                                             echo '<img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">';
@@ -102,7 +102,11 @@
                         ?>                       
                    </div>
                    </div>
-               </div>
+                </div>
+
+                <div class="music__play">
+                    
+                </div>
             </div>
         </div>
 

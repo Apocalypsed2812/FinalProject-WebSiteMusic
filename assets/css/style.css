@@ -2108,5 +2108,36 @@ button:hover {
   }
 }
 
+.resultNull{
+  color: #fff;
+  font-size: 24px;
+}
+
+.auto-box{
+  background-color: #432275;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 8px 0 16px 24px;
+  display: none;
+}
+.auto-box #items li{
+  list-style-type: none;
+  color: #fff;
+  font-size: 17px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.auto-box h4{
+  color: #fff;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
 /*# sourceMappingURL=style.css.map */
 

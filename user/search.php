@@ -2,7 +2,7 @@
     $display = "none";
     require_once('connectdb.php');
     $info = "NULLLLLLLL";
-    if(isset($_POST['btnSubmit'])){
+    if(isset($_POST['btnSubmit']) ){
         $info = $_POST['search'];
     }
 ?>
@@ -16,6 +16,7 @@
     <title>Zing MP3</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="app">
@@ -54,20 +55,49 @@
                         <h1 class="container__today">Nổi bật</h1>
                     </div>
                     <?php
-                        $sql ="SELECT singer FROM songs WHERE singer LIKE '%$info%'";
+                        $sql ="SELECT singer FROM songs WHERE name LIKE '$info %' or name LIKE '% $info' or name like '%$info%' Limit 3";
                         $result = $conn->query($sql);
                         if($result->num_rows > 0){
                             while($row = $result->fetch_assoc()){
+                                $name = explode(",",$row['singer']);
                                 echo '<div class="col l-4 m-6 c-12">';
                                 echo '<a href="" class="search__impress">';
                                 echo ' <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/avatars/b/f/c/f/bfcf5a819c1bdf76a5a7cb9a780ca721.jpg" alt="" class="search__impress-img">';
                                 echo '<div class="search__impress-text">';
                                 echo '<p>Nghệ sĩ</p>';
-                                echo '<p>'.$row['singer'].'</p>
+                                echo '<p>'.$name[0].'</p>
                                     <p>84K quan tâm</p>';
                                 echo '</div>';
                                 echo '</a>';
                                 echo '</div>';
+                            }
+                        }else{
+                            $sql2 ="SELECT singer FROM songs";
+                            $result = $conn->query($sql2);
+                            if($result->num_rows > 0){
+                                $name = "";
+                                $count = 0;
+                                while($row = $result->fetch_assoc()){
+                                    if($row['singer'] != $name){
+                                        echo '<div class="col l-4 m-6 c-12">';
+                                        echo '<a href="" class="search__impress">';
+                                        echo ' <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/avatars/b/f/c/f/bfcf5a819c1bdf76a5a7cb9a780ca721.jpg" alt="" class="search__impress-img">';
+                                        echo '<div class="search__impress-text">';
+                                        echo '<p>Nghệ sĩ</p>';
+                                        echo '<p>'.$row['singer'].'</p>
+                                            <p>84K quan tâm</p>';
+                                        echo '</div>';
+                                        echo '</a>';
+                                        echo '</div>';
+                                        $name = $row['singer'];
+                                        $count++;
+                                    }else{
+                                        $name = $row['singer'];
+                                    }
+                                    if($count == 3){
+                                        break;
+                                    }
+                                }
                             }
                         }
                     ?>
@@ -129,7 +159,7 @@
                                 if($result->num_rows > 0){
                                     while($row = $result->fetch_assoc()){
                                         echo "<div class='col l-6 m-6 c-12'>";
-                                        echo '<div class="container__song-new">';
+                                        echo '<div class="container__song-new" data-image="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" data-name="'.$row["name"].'" data-singer="'.$row["singer"].'" data-path="../assets/audio/'.$row["file"].'" data-index="${index}">';
                                         echo '<img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" alt="" class="container__song-new-img">';
                                         echo '<div class="container__song-info container__song-info-search">';
                                         echo '<p class="container__song-new-title">'. $row["name"] .'</p>';
@@ -147,7 +177,7 @@
                                 }else{
                                     echo "<div class='col l-6 m-6 c-12'>";
                                     echo '<div class="container__song-info container__song-info-search">';
-                                    echo '<p class="container__song-new-title">Không tìm được bài hát tương ứng</p>';
+                                    echo '<p class="resultNull">Không tìm được bài hát tương ứng</p>';
                                     echo '</div>';
                                     echo '</div>';
                                 }
@@ -219,7 +249,9 @@
                         </a>
                     </div>
                 </div>
-                
+                <div class="music__play">
+                    
+                </div>
             </div>
         </div>
 
@@ -228,5 +260,6 @@
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/searchPaging.js"></script>
+    
 </body>
 </html>

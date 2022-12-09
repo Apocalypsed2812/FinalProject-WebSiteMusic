@@ -7,14 +7,20 @@
         <label for="navbar__mobile-header"><i class="fa-solid fa-bars container__header-search-menu-mobile"></i></label>
         <div class="container__header-with-search">
             <form method="post" action="search.php">
-            <button type = "submit" id = "btnSubmit" name="btnSubmit" style="border:none;background-color:#2f2739"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." class="container__header-with-search-input">
-                <div class="container__header-with-search-result">
+                <button type = "submit" id = "btnSubmit" name="btnSubmit" style="border:none;background-color:#2f2739"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" id = "search" name="search" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." class="container__header-with-search-input" style="width:470px;">
+                <div class = "auto-box" id="autoBox">
+                    <h4>Từ khóa liên quan</h4>
+                    <div id = "items">
+                        
+                    </div>
+                </div>
+                <!-- <div class="container__header-with-search-result">
                     <h4>Đề xuất cho bạn</h4>
                     <p>chưa quên</p>
                     <p>mono</p>
                     <p>thuyền quyên</p>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>
@@ -32,12 +38,15 @@
             <i class="fa-solid fa-gear"></i>
         </a>
         <a href="../logout.php" class="container__header-control-item">
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <i class="fa-solid fa-user"></i>
         </a>
     </div>
     <div class="container__header-control-mobile">
         <a href="../logout.php" class="container__header-control-item">
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <i class="fa-solid fa-user"></i>
         </a>
     </div>
 </div>
+
+<script src="../assets/js/recomend.js"></script>
+
