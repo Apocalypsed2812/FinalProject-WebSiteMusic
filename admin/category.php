@@ -29,7 +29,7 @@ if (!$_SESSION['isLogin']) {
             require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
-                <div class="row mt-110">
+                <div class="row mt-90">
                     <div class="col l-12 PageTitle" id="title_category">
                         <span class="new__music-title">
                             Thông tin thể loại
@@ -51,33 +51,22 @@ if (!$_SESSION['isLogin']) {
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
-                        <table border="1" class="admin__song-table">
-                            <thead class="admin__song-table-head">
+                    <div class="col l-12 m-12 c-12 admin__song">
+                        <table border="1" class="tableSong">
+                            <thead class="tableHead">
                                 <tr>
-                                    <td style="width: 5%;">ID</td>
-                                    <td>Tên thể loại</td>
-                                    <td style="width: 15%">Bài hát</td>
-                                    <td style="width: 15%">Lượt thích</td>
-                                    <td style="width: 25%">Ngày tạo</td>
-                                    <td style="width: 15%">Action</td>
-                                    <td id="Search_value" style="display: none;">a</td>
-                                    <td id="Category_value" style="display: none;">a</td>
+                                    <th style="width: 5%;">ID</th>
+                                    <th>Tên thể loại</th>
+                                    <th style="width: 15%">Bài hát</th>
+                                    <th style="width: 15%">Lượt thích</th>
+                                    <th style="width: 25%">Ngày tạo</th>
+                                    <th style="width: 15%">Action</th>
+                                    <th id="Search_value" style="display: none;">a</th>
+                                    <th id="Category_value" style="display: none;">a</th>
                                 </tr>
                             </thead>
-                            <tbody class="admin__song-table-body" id="table-body">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Ân tình trong em</td>
-                                    <td>Châu khải phong</td>
-                                    <td>1235</td>
-                                    <td>233</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
+                            <tbody class="" id="table-body">
+
                             </tbody>
                         </table>
                         <p class="NullValue" style="display: none;">Không có dữ liệu</p>
@@ -97,19 +86,19 @@ if (!$_SESSION['isLogin']) {
                             </li>
                         </ul>
                     </div>
+                    <!-- <div class="col l-12 m-12 c-12">
+                        <div class="admin__song-btn">
+                            <button id="category_add_btn">thêm thể loại</button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
                             <button id="category_add_btn">thêm thể loại</button>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12">
-                        <div class="admin__song-btn">
-                            <button id="category_add_btn">thêm thể loại</button>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@ if (!$_SESSION['isLogin']) {
             require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
-                <div class="row mt-110">
+                <div class="row mt-90">
                     <div class="col l-12 RankTitle">
                         <p class="new__music-title">
                             Bảng xếp hạng
@@ -46,56 +46,21 @@ if (!$_SESSION['isLogin']) {
                     </div> -->
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
-                        <table border="1" class="admin__song-table">
-                            <thead class="admin__song-table-head">
+                    <div class="col l-12 m-12 c-12 admin__song">
+                        <table border="1" class="tableSong">
+                            <thead class="tableHead">
                                 <tr>
-                                    <td style="width:5%">Top</td>
-                                    <td style="width:40%">Bài hát</td>
-                                    <td>Ca sĩ</td>
-                                    <td style="width:10%">Lượt nghe</td>
-                                    <td style="width:10%">Lượt Tải</td>
-                                    <td style="width:10%">Action</td>
-                                    <td id="Search_value" style="display: none;">a</td>
+                                    <th style="width:5%">Top</th>
+                                    <th style="width:40%">Bài hát</th>
+                                    <th>Ca sĩ</th>
+                                    <th style="width:10%">Lượt nghe</th>
+                                    <th style="width:10%">Lượt Tải</th>
+                                    <th style="width:10%">Action</th>
+                                    <th id="Search_value" style="display: none;">a</th>
                                 </tr>
                             </thead>
-                            <tbody class="admin__song-table-body" id="table-body">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bước qua nhau</td>
-                                    <td>Vũ</td>
-                                    <td>11000</td>
-                                    <td>10000</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Bước qua nhau</td>
-                                    <td>Vũ</td>
-                                    <td>11000</td>
-                                    <td>10000</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Bước qua nhau</td>
-                                    <td>Vũ</td>
-                                    <td>11000</td>
-                                    <td>10000</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
+                            <tbody class="" id="table-body">
+
                             </tbody>
                         </table>
                         <p class="NullValue" style="display: none;">Không có dữ liệu</p>

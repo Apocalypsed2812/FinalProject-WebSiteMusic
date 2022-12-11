@@ -1,3 +1,10 @@
+<?php
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +32,7 @@
             require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
-                <div class="row mt-90">
+                <div class="row mt-110">
                     <div class="col l-12 PageTitle" id="title_home">
 
                         <span class="new__music-title">
@@ -50,23 +57,34 @@
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song">
-                        <table border="1" class="tableSong">
-                            <thead class="tableHead">
+                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
+                        <table border="1" class="admin__song-table">
+                            <thead class="admin__song-table-head">
                                 <tr>
-                                    <th style="width:5%">ID</th>
-                                    <th>Tên</th>
-                                    <th style="width:30%">Ca sĩ</th>
-                                    <th style="width:7%">Lượt nghe</th>
-                                    <th style="width:7%">Bình luận</th>
-                                    <!-- <th style="width:10%">Tải xuống</th> -->
-                                    <th style="width:12%">Action</th>
-                                    <th id="Search_value" style="display: none;">a</th>
-                                    <th id="Song_Singer_Category" style="display: none;">a</th>
+                                    <td style="width:5%">ID</td>
+                                    <td>Tên</td>
+                                    <td style="width:20%">Ca sĩ</td>
+                                    <td style="width:10%">Lượt nghe</td>
+                                    <td style="width:10%">Bình luận</td>
+                                    <!-- <td style="width:10%">Tải xuống</td> -->
+                                    <td style="width:15%">Action</td>
+                                    <td id="Search_value" style="display: none;">a</td>
+                                    <td id="Song_Singer_Category" style="display: none;">a</td>
                                 </tr>
                             </thead>
-                            <tbody class="" id="table-body">
-
+                            <tbody class="admin__song-table-body" id="table-body">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Ân tình trong em</td>
+                                    <td>Châu khải phong</td>
+                                    <td>1235</td>
+                                    <td>233</td>
+                                    <td>
+                                        <i class="fa-solid fa-eye"></i>
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <p class="NullValue" style="display: none;">Không có dữ liệu</p>
@@ -87,19 +105,19 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="col l-12 m-12 c-12">
-                        <div class="admin__song-btn">
-                            <button>thêm bài hát</button>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
                             <button>thêm bài hát</button>
                         </div>
                     </div>
                 </div>
+                <!-- <div class="row mt-32">
+                    <div class="col l-12 m-12 c-12">
+                        <div class="admin__song-btn">
+                            <button>thêm bài hát</button>
+                        </div>
+                    </div>
+                </div> -->
 
             </div>
         </div>

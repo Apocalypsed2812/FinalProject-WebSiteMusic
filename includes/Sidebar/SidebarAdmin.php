@@ -5,8 +5,8 @@
 <header class="header">
     <div class="header__logo">
         <a href="">
-            <img src="../assets/images/logo.png" alt="" class="header__logo-img">
-            <img src="../assets/images/logo_tablet.png" alt="" class="header__logo-tablet">
+            <img src="../assets/images/music_logo-removebg.png" alt="" class="header__logo-img">
+            <img src="../assets/images/music_logo_tablet-removebg.png" alt="" class="header__logo-tablet">
         </a>
     </div>
     <p class="header__admin-text">Admin</p>

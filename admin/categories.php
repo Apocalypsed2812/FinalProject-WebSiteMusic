@@ -29,7 +29,7 @@ if (!$_SESSION['isLogin']) {
             require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
-                <div class="row mt-110">
+                <div class="row mt-90">
                     <div class="col l-12 PageTitle" id="title_categories">
                         <span class="new__music-title">
                             Thông tin chuyên mục
@@ -51,34 +51,23 @@ if (!$_SESSION['isLogin']) {
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
-                        <table border="1" class="admin__song-table">
-                            <thead class="admin__song-table-head">
+                    <div class="col l-12 m-12 c-12 admin__song">
+                        <table border="1" class="tableSong">
+                            <thead class="tableHead">
                                 <tr>
-                                    <td style="width:5%">ID</td>
-                                    <td style="width:23%">Tên chuyên mục</td>
-                                    <td style="width:23%">Topic</td>
-                                    <td style="width:10%">Lượt thích</td>
-                                    <td style="width:10%">Bài hát</td>
-                                    <td style="width:17%">Ngày tạo</td>
-                                    <td style="width:12%">Action</td>
-                                    <td id="Search_value" style="display: none;">a</td>
-                                    <td id="Categories_value" style="display: none;">a</td>
+                                    <th style="width:5%">ID</th>
+                                    <th style="width:23%">Tên chuyên mục</th>
+                                    <th style="width:23%">Topic</th>
+                                    <th style="width:10%">Lượt thích</th>
+                                    <th style="width:10%">Bài hát</th>
+                                    <th style="width:17%">Ngày tạo</th>
+                                    <th style="width:12%">Action</th>
+                                    <th id="Search_value" style="display: none;">a</th>
+                                    <th id="Categories_value" style="display: none;">a</th>
                                 </tr>
                             </thead>
-                            <tbody class="admin__song-table-body" id="table-body">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Ân tình trong em</td>
-                                    <td>Châu khải phong</td>
-                                    <td>1235</td>
-                                    <td>233</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
+                            <tbody class="" id="table-body">
+
                             </tbody>
 
                         </table>
@@ -99,19 +88,19 @@ if (!$_SESSION['isLogin']) {
                             </li>
                         </ul>
                     </div>
+                    <!-- <div class="col l-12 m-12 c-12">
+                        <div class="admin__song-btn">
+                            <button id="categories_add_btn">thêm chuyên mục</button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row mt-32">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
                             <button id="categories_add_btn">thêm chuyên mục</button>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12">
-                        <div class="admin__song-btn">
-                            <button id="categories_add_btn">thêm chuyên mục</button>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

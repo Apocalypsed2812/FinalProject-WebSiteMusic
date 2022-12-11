@@ -28,7 +28,7 @@ if (!$_SESSION['isLogin']) {
             require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
-                <div class="row mt-110">
+                <div class="row mt-90">
                     <div class="col l-12 PageTitle" id="title_home">
                         <span class="new__music-title">
                             Thông tin người dùng
@@ -49,54 +49,22 @@ if (!$_SESSION['isLogin']) {
                     </div>
                 </div>
                 <div class="row mt-32">
-                    <div class="col l-12 m-12 c-12 admin__song" style="min-height: 380px;">
-                        <table border="1" class="admin__song-table">
-                            <thead class="admin__song-table-head">
+                    <div class="col l-12 m-12 c-12 admin__song">
+                        <table border="1" class="tableSong">
+                            <thead class="tableHead">
                                 <tr>
-                                    <td style="width:10%">ID</td>
-                                    <td>Tên</td>
-                                    <td style="width:15%">Tuổi</td>
-                                    <td style="width:15%">Giới tính</td>
-                                    <td style="width:20%">Action</td>
-                                    <td id="Email_value" style="display: none;">a</td>
-                                    <td id="Username_value" style="display: none;">a</td>
-                                    <td id="UserSearch_value" style="display: none;">a</td>
+                                    <th style="width:10%">ID</th>
+                                    <th>Tên</th>
+                                    <th style="width:15%">Tuổi</th>
+                                    <th style="width:15%">Giới tính</th>
+                                    <th style="width:20%">Action</th>
+                                    <th id="Email_value" style="display: none;">a</th>
+                                    <th id="Username_value" style="display: none;">a</th>
+                                    <th id="UserSearch_value" style="display: none;">a</th>
                                 </tr>
                             </thead>
-                            <tbody class="admin__song-table-body" id="table-body">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Phạm Anh Thư</td>
-                                    <td>20</td>
-                                    <td>Nam</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Phạm Anh Thư</td>
-                                    <td>20</td>
-                                    <td>Nam</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Phạm Anh Thư</td>
-                                    <td>20</td>
-                                    <td>Nam</td>
-                                    <td>
-                                        <i class="fa-solid fa-eye"></i>
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </td>
-                                </tr>
+                            <tbody class="" id="table-body">
+
                             </tbody>
                         </table>
                         <p class="NullValue" style="display: none;">Không có dữ liệu</p>
