@@ -1,3 +1,10 @@
+<?php
+require('../db.php');
+session_start();
+if (!$_SESSION['isLogin']) {
+    header('Location: ../login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +32,7 @@
             require_once('../includes/Header/HeaderAdmin.php')
             ?>
             <div class="grid wide container-tablet container-mobile">
-                <div class="row mt-90">
+                <div class="row mt-110">
                     <div class="col l-12 PageTitle" id="title_home">
 
                         <span class="new__music-title">
@@ -93,7 +100,7 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="row mt-32">
+                <div class="row mt-25">
                     <div class="col l-12 m-12 c-12">
                         <div class="admin__song-btn">
                             <button>thêm bài hát</button>

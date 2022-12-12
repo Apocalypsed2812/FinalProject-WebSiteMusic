@@ -1,50 +1,60 @@
 .AdminPage {
-    font-family: Inter,sans-serif;
+    font-family: Inter, sans-serif;
 }
-.container{
+.container {
     background-color: #f3f5f9;
     padding-bottom: 10px;
 }
 /* ----------SideBar ------------ */
-.header{
+.header {
     background-color: #dee0e2;
 }
-.header__admin-text,.header__content a span{
+.header__admin-text,
+.header__content a span {
     color: black;
 }
-.header__list-separate{
+.header__list-separate {
     background-color: black;
 }
-.header__item--active{
-    background-color:#009879;    
+.header__item--active {
+    background-color: #009879;
 }
-.header__item--active a i{
-    filter: invert(0%);  
+.header__item--active a i {
+    filter: invert(0%);
 }
-.header__item--active a span{
+.header__item--active a span {
     color: white;
 }
-.header__item:hover{
+.header__item:hover {
     background-color: #bdbdbd;
 }
 /* ------------Header------------ */
-.container__header{
+.container__header {
     background-color: #f3f5f9;
+    padding-top: 30px;
 }
-.container__header-with-search,.container__header-control-item{
+.container__header-with-search{
+    border: 1px solid black;
+    box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.container__header-with-search,
+.container__header-control-item {
     background-color: white;
 }
-.fa-solid{
-    filter: invert(100%) ;
+.fa-solid {
+    filter: invert(100%);
 }
-.fa-arrow-down,.fa-arrow-up,.tableSong .fa-solid{
+.fa-arrow-down,
+.fa-arrow-up,
+.tableSong .fa-solid {
     filter: invert(0%);
 }
-.header__logo{
+.header__logo {
     margin-bottom: 5px !important;
 }
 
-.container__header-with-search-result{
+.container__header-with-search-result {
     display: block;
     visibility: hidden;
     position: absolute;
@@ -54,27 +64,24 @@
     background-color: #009879;
 }
 
-.container__header-with-search-result h4{
+.container__header-with-search-result h4 {
     margin-top: 30px;
 }
-.fa-magnifying-glass{
+.fa-magnifying-glass {
     margin-right: 10px !important;
     margin-left: 20px !important;
 }
 
-
-.container__header-with-search-input{
+.container__header-with-search-input {
     width: 100% !important;
 }
 
-
 .autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
-  width: 100%;
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
-
 
 .autocomplete-items div {
     color: #fff;
@@ -83,74 +90,83 @@
     border-radius: 8px;
 }
 .autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #ccc;
-  cursor: pointer;
+    /*when hovering an item:*/
+    background-color: #ccc;
+    cursor: pointer;
 }
 /* ------------------------Container------------------------ */
-button[type="submit"],#btn-submit-edit-song,.btn-edit-staff,.btn-add-staff{
+button[type="submit"],
+#btn-submit-edit-song,
+.btn-edit-staff,
+.btn-add-staff {
     background-color: #009879 !important;
 }
-.mt-90{
+.mt-90 {
     margin-top: 90px;
 }
+.mt-25{
+    margin-top: 10px;
+}
+.container-tablet {
+    width: 100% !important;
+}
 /* ----------------SortDiv---------------- */
-.sortTitle{
+.sortTitle {
     color: black !important;
 }
-#SortList{
+#SortList {
     background-color: white !important;
     color: black !important;
 }
-#Icon_arrow_up,#Icon_arrow_down{
+#Icon_arrow_up,
+#Icon_arrow_down {
     display: inline-block;
-    margin: 0 10px ;
+    margin: 0 10px;
     cursor: pointer;
-
 }
-#Icon_arrow_down{
+#Icon_arrow_down {
     display: none;
 }
-.sortDiv{
+.sortDiv {
     float: right;
     padding: 10px;
     border: 1px solid #fff;
-    background-color:#fff;
-    color: black ;
+    background-color: #fff;
+    color: black;
     border: 1px solid black;
 }
-#SortList{
+#SortList {
     outline: none;
     background-color: #2f2739;
-    border:  none;
+    border: none;
     color: white;
     cursor: pointer;
 }
 /* ----------------Title---------------- */
-.new__music-title{
-    font-family:Tahoma, Geneva, Verdana, sans-serif;
+.new__music-title {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
     display: inline-block;
     font-size: 25px;
     color: black;
 }
-#title_home{
+#title_home {
     flex-direction: row;
     width: 100% !important;
 }
-.PageTitle{
+.PageTitle {
     width: 100%;
 }
-#title_home span:first-child{
+#title_home span:first-child {
     display: inline-block;
 }
-.admin__rank-description-title{
+.admin__rank-description-title {
     color: black;
 }
 /* ----------------Table---------------- */
-.admin__song{
+.admin__song {
     min-height: 360px;
 }
-.tableSong{
+.tableSong {
     background-color: white;
     border-collapse: collapse;
     width: 100%;
@@ -159,10 +175,14 @@ button[type="submit"],#btn-submit-edit-song,.btn-edit-staff,.btn-add-staff{
     border-radius: 5px;
     overflow: hidden;
 }
-table,tr,th,td{
+table,
+tr,
+th,
+td {
     border: transparent;
 }
-.tableSong td ,.tableSong th{
+.tableSong td,
+.tableSong th {
     padding: 5px 10px;
 }
 /* ---------Head--------- */
@@ -174,17 +194,17 @@ table,tr,th,td{
 }
 
 /* ---------t-body--------- */
-table i{
+table i {
     padding: 0 5px;
     cursor: pointer;
 }
 
-tbody tr{
+tbody tr {
     height: 39px !important;
     border: 1px solid transparent;
     border-bottom: 1px solid #dddddd;
     text-overflow: ellipsis;
-    overflow: hidden; 
+    overflow: hidden;
     white-space: nowrap;
 }
 tbody tr:nth-of-type(even) {
@@ -196,18 +216,23 @@ tbody tr:last-of-type {
 }
 
 /* ----------------------Modal--------------------- */
-.AdminPage .modal{
-    align-items: center ;
-    justify-content: center ;
-    display: none ;
+.HomePage #viewSong_file::-webkit-scrollbar{
+    display: none;
 }
-#Add_Error_Mess,#edit_Error_Mess,.Error_Mess{
+.AdminPage .modal {
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+#Add_Error_Mess,
+#edit_Error_Mess,
+.Error_Mess {
     color: red;
     margin-top: 10px;
     display: inline-block;
-    visibility:hidden;
+    visibility: hidden;
 }
-.add-form_input{
+.add-form_input {
     width: 100%;
     height: 40px;
     padding: 0 12px;
@@ -216,52 +241,53 @@ tbody tr:last-of-type {
     border: 1px solid #dbdbdb;
     outline: none;
 }
-.add-form_label{
+.add-form_label {
     margin-top: 16px;
     display: inline-block;
-    font-family:Sans-serif;  
-    margin-bottom: 2px; 
+    font-family: Sans-serif;
+    margin-bottom: 2px;
 }
-input[type="file"]{
+input[type="file"] {
     padding: 8px 12px;
 }
-.auth-form__group textarea{
+.auth-form__group textarea {
     resize: none;
-    height: 70px ;
-    padding: 10px 12px ;
+    height: 70px;
+    padding: 10px 12px;
     width: 100%;
     font-size: 14px;
     border-radius: 2px;
     border: 1px solid #dbdbdb;
     outline: none;
 }
-.HomePage .add-form_label{
+.HomePage .add-form_label {
     margin-top: 8px !important;
 }
-.HomePage .auth-form__controls{
+.HomePage .auth-form__controls {
     margin-top: 10px;
 }
-.auth-form__controls{
+.auth-form__controls {
     margin-top: 10px;
 }
-input[type="text"].add-form_input{
+input[type="text"].add-form_input {
     vertical-align: middle;
 }
-.auth-form__header{
+.auth-form__header {
     padding-left: 0 !important;
-    font-family:Sans-serif;  
+    font-family: Sans-serif;
 }
 
-.TowRowtextarea{
+.TowRowtextarea {
     height: 55px !important;
 }
-#Categories_description,#Categories_singer{
+#Categories_description,
+#Categories_singer {
     height: 55px !important;
 }
-.CategoriesPage .add-form_label{
+.CategoriesPage .add-form_label {
     margin-top: 10px !important;
 }
-.alert_admin{
+.alert_admin {
     position: fixed;
     display: none;
     background-color: #198754;
@@ -275,82 +301,87 @@ input[type="text"].add-form_input{
     top: 70px;
     z-index: 100;
 }
-#myModal_deleteSong p{
+#myModal_deleteSong p {
     margin-top: 10px;
 }
 
-#song_id_edit_song,.EditForm_IdInput{
+#song_id_edit_song,
+.EditForm_IdInput {
     background-color: #dbdbdb !important;
     cursor: not-allowed;
 }
 
-.add-form_input b{
+.add-form_input b {
     display: inline-block;
     width: 120px;
     line-height: 40px;
 }
-#myInput{
+#myInput {
     border: none !important;
     color: black;
 }
-#myViewForm .add-form_input,.ViewForm .add-form_input{
+#myViewForm .add-form_input,
+.ViewForm .add-form_input {
     margin-top: 5px;
 }
-#song_lyric_view_song,#viewRank_lyric{
+#song_lyric_view_song,
+#viewRank_lyric {
     width: 300px;
     padding-left: 0 !important;
     padding-top: 10px !important;
-    border: none ;
+    border: none;
     margin-bottom: 10px;
     outline: none;
     resize: none;
 }
-#categories_singers_view,#categories_description_view,#categories_songs_view{
+#categories_singers_view,
+#categories_description_view,
+#categories_songs_view {
     height: 50px;
     resize: none !important;
-    border: none ;
+    border: none;
     outline: none;
     padding: 10px 5px 0 0;
     width: 310px;
 }
 
-.div_view_categories{
+.div_view_categories {
     height: 55px;
     display: flex;
     padding-right: 0 !important;
 }
-.div_lyric_view_song{
+.div_lyric_view_song {
     height: 100px;
     display: flex;
     padding-right: 0 !important;
 }
 
-#viewSong_file{
+#viewSong_file {
     display: inline-block;
     overflow: hidden;
     overflow-x: auto;
     white-space: nowrap;
-    width: 285px ;
+    width: 285px;
     position: relative;
-    top: 3px
+    top: 3px;
 }
-.NullValue{
+.NullValue {
     margin-top: 20px;
     text-align: center;
     font-size: 25px;
-    color:black;
+    color: black;
 }
-.modal p{
+.modal p {
     margin-top: 10px;
 }
 
-.RankPage .RankTitle p{
+.RankPage .RankTitle p {
     display: inline-block;
 }
-.RankPage .RankTitle p:nth-child(2){
+.RankPage .RankTitle p:nth-child(2) {
     margin-left: 20px;
 }
-.admin__song-btn button{
+.admin__song-btn button {
     border: 1px solid #fff;
     background-color: #009879;
 }
@@ -358,140 +389,156 @@ input[type="text"].add-form_input{
 /* ----------------Table Pagination---------------- */
 .admin__song-pagination-link {
     border: 1px solid black;
-    border-left: 0px ;
-    border-right: 0px ;
+    border-left: 0px;
+    border-right: 0px;
 }
-#Table_pagination li a{
+#Table_pagination li a {
     background-color: white;
     color: black;
     padding: 8px 14px;
     border-radius: 0 !important;
-    margin: 0!important;
+    margin: 0 !important;
     font-size: 15px !important;
 }
-#Table_pagination li a:hover , .admin__song-pagination-link--active{
+#Table_pagination li a:hover,
+.admin__song-pagination-link--active {
     background-color: #009879 !important;
     color: white !important;
     padding: 8px 14px;
 }
 
-.Firstpagination{
+.Firstpagination {
     border-left: 1px solid black;
 }
-.Lastpagination{
+.Lastpagination {
     border-right: 1px solid black;
-
 }
 
-.Firstpagination:hover,.Lastpagination:hover{
+.Firstpagination:hover,
+.Lastpagination:hover {
     border-radius: 0 !important;
 }
-
 
 /* ----------------scrollba ---------------- */
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
-  }
+}
 
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
-
-
-
-@media screen and (max-width: 415px){
-    /* Header */
-
-    .sortDiv{
-        display: block;   
-        margin-top: 20px; 
+@media screen and (min-width: 415px) and (max-width: 800px) {
+    .container,.container__header{
+        padding-right: 30px;
     }
-    .container__header-control-item{
-        width: 40px;
-        height: 40px;
-    }
-    .container__header{
-        padding: 16px;
-    }
-
     /* Table */
-    .tableHead tr th{
+    .tableHead tr th {
         display: none;
     }
-    #table-body tr td{
+    #table-body tr td {
         display: none;
     }
-    .tableHead tr th:nth-child(1){
+    .tableHead tr th:nth-child(1) {
         display: table-cell;
     }
-    #table-body tr td:nth-child(1){
+    #table-body tr td:nth-child(1) {
         display: table-cell;
     }
-    .tableHead tr th:nth-child(2){
+    .tableHead tr th:nth-child(2) {
         display: table-cell;
     }
-    #table-body tr td:nth-child(2){
+    #table-body tr td:nth-child(2) {
         display: table-cell;
-        white-space:break-spaces;
+        white-space: break-spaces;
     }
-    .admin__song{
+    .tableHead tr th:nth-child(3) {
+        display: table-cell;
+    }
+    #table-body tr td:nth-child(3) {
+        display: table-cell;
+        white-space: break-spaces;
+    }
+    .admin__song {
         min-height: 360px;
     }
+    .UserPage .grid,
+    .RankPage .grid {
+        padding-bottom: 20px;
+    }
     /* home page */
-    .HomePage .tableHead tr th:nth-child(6){
+    .HomePage .tableHead tr th:nth-child(6) {
         display: table-cell;
     }
-    .HomePage #table-body tr td:nth-child(6){
+    .HomePage #table-body tr td:nth-child(6) {
         display: table-cell;
     }
-    .HomePage #table-body tr td:nth-child(6) i{
+    .HomePage #table-body tr td:nth-child(6) i {
         padding: 0 4px;
     }
     /* user page */
-    .UserPage .tableHead tr th:nth-child(5){
+    .UserPage .tableHead tr th:nth-child(4) {
         display: table-cell;
     }
-    .UserPage #table-body tr td:nth-child(5){
+    .UserPage #table-body tr td:nth-child(4) {
         display: table-cell;
     }
-    .UserPage #table-body tr td:nth-child(5) i{
+    .UserPage .tableHead tr th:nth-child(5) {
+        display: table-cell;
+    }
+    .UserPage #table-body tr td:nth-child(5) {
+        display: table-cell;
+    }
+    .UserPage #table-body tr td:nth-child(5) i {
         padding: 0 4px;
     }
     /* categorys page */
-    .CategoryPage .tableHead tr th:nth-child(6){
+    .CategoryPage .tableHead tr th:nth-child(4) {
         display: table-cell;
     }
-    .CategoryPage #table-body tr td:nth-child(6){
+    .CategoryPage #table-body tr td:nth-child(4) {
         display: table-cell;
     }
-    .CategoryPage #table-body tr td:nth-child(6) i{
+    .CategoryPage .tableHead tr th:nth-child(6) {
+        display: table-cell;
+    }
+    .CategoryPage #table-body tr td:nth-child(6) {
+        display: table-cell;
+    }
+    .CategoryPage #table-body tr td:nth-child(6) i {
         padding: 0 4px;
     }
     /* categories page */
-    .CategoriesPage .tableHead tr th:nth-child(7){
+    .CategoriesPage .tableHead tr th:nth-child(7) {
         display: table-cell;
     }
-    .CategoriesPage #table-body tr td:nth-child(7){
+    .CategoriesPage #table-body tr td:nth-child(7) {
         display: table-cell;
     }
-    .CategoriesPage #table-body tr td:nth-child(7) i{
+    .CategoriesPage #table-body tr td:nth-child(7) i {
+        padding: 0 4px;
+    }
+    /* rank page */
+    .RankPage .tableHead tr th:nth-child(6) {
+        display: table-cell;
+    }
+    .RankPage #table-body tr td:nth-child(6) {
+        display: table-cell;
+    }
+    .RankPage #table-body tr td:nth-child(6) i {
         padding: 0 4px;
     }
 
@@ -499,17 +546,17 @@ input[type="text"].add-form_input{
     .modal__body {
         width: 90%;
     }
-    .auth-form{
+    .auth-form {
         width: 100%;
         margin: auto;
     }
-    .auth-form__container{
+    .auth-form__container {
         padding: 16px;
     }
 
     /* Home modal */
-    .HomePage #viewSong_file{
-        width: 50%!important;
+    .HomePage #viewSong_file {
+        width: 50% !important;
         top: 3px;
     }
     .HomePage #viewSong_file::-webkit-scrollbar,
@@ -518,25 +565,26 @@ input[type="text"].add-form_input{
         display: none;
     }
 
-    .HomePage #viewSong_name, .HomePage #viewSong_singer{
+    .HomePage #viewSong_name,
+    .HomePage #viewSong_singer {
         display: inline-block;
         overflow-x: scroll;
         white-space: nowrap;
         position: relative;
         top: 3px;
-        width: 50%!important;
+        width: 50% !important;
     }
 
     /* Categories modal */
-    .UserPage .add-form_input{
+    .UserPage .add-form_input {
         overflow: hidden;
     }
-    .CategoriesPage .add-form_input b{
+    .CategoriesPage .add-form_input b {
         width: 35%;
     }
     #categories_singers_view,
     #categories_description_view,
-    #categories_songs_view{
+    #categories_songs_view {
         width: 60%;
         margin-top: 1px;
     }
@@ -546,18 +594,181 @@ input[type="text"].add-form_input{
         display: none;
     }
     /* User modal */
-    .UserPage .add-form_input b{
+    .UserPage .add-form_input b {
         width: 35%;
     }
     #viewUser_email::-webkit-scrollbar {
         display: none;
     }
-    #viewUser_email{
+    #viewUser_email {
         display: inline-block;
         overflow-x: scroll;
         white-space: nowrap;
         position: relative;
         top: 3px;
-        width: 60%!important;
+        width: 60% !important;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .mt-25{
+        margin-top: 30px;
+    }
+    /* title */
+    .admin__rank-description-title {
+        margin: 10px 0 !important;
+    }
+    /* Header */
+
+    .sortDiv {
+        display: block;
+        margin-top: 20px;
+    }
+    .container__header-control-item {
+        width: 40px;
+        height: 40px;
+    }
+    .container__header {
+        padding: 16px;
+    }
+
+    /* Table */
+    .tableHead tr th {
+        display: none;
+    }
+    #table-body tr td {
+        display: none;
+    }
+    .tableHead tr th:nth-child(1) {
+        display: table-cell;
+    }
+    #table-body tr td:nth-child(1) {
+        display: table-cell;
+    }
+    .tableHead tr th:nth-child(2) {
+        display: table-cell;
+    }
+    #table-body tr td:nth-child(2) {
+        display: table-cell;
+        white-space: break-spaces;
+    }
+    .admin__song {
+        min-height: 360px;
+    }
+    /* home page */
+    .HomePage .tableHead tr th:nth-child(6) {
+        display: table-cell;
+    }
+    .HomePage #table-body tr td:nth-child(6) {
+        display: table-cell;
+    }
+    .HomePage #table-body tr td:nth-child(6) i {
+        padding: 0 4px;
+    }
+    /* user page */
+    .UserPage .tableHead tr th:nth-child(5) {
+        display: table-cell;
+    }
+    .UserPage #table-body tr td:nth-child(5) {
+        display: table-cell;
+    }
+    .UserPage #table-body tr td:nth-child(5) i {
+        padding: 0 4px;
+    }
+    /* categorys page */
+    .CategoryPage .tableHead tr th:nth-child(6) {
+        display: table-cell;
+    }
+    .CategoryPage #table-body tr td:nth-child(6) {
+        display: table-cell;
+    }
+    .CategoryPage #table-body tr td:nth-child(6) i {
+        padding: 0 4px;
+    }
+    /* categories page */
+    .CategoriesPage .tableHead tr th:nth-child(7) {
+        display: table-cell;
+    }
+    .CategoriesPage #table-body tr td:nth-child(7) {
+        display: table-cell;
+    }
+    .CategoriesPage #table-body tr td:nth-child(7) i {
+        padding: 0 4px;
+    }
+    /* rank page */
+    .RankPage .tableHead tr th:nth-child(6) {
+        display: table-cell;
+    }
+    .RankPage #table-body tr td:nth-child(6) {
+        display: table-cell;
+    }
+    .RankPage #table-body tr td:nth-child(6) i {
+        padding: 0 4px;
+    }
+    /* modal */
+    .modal__body {
+        width: 90%;
+    }
+    .auth-form {
+        width: 100%;
+        margin: auto;
+    }
+    .auth-form__container {
+        padding: 16px;
+    }
+
+    /* Home modal */
+    .HomePage #viewSong_file {
+        width: 50% !important;
+        top: 3px;
+    }
+    .HomePage #viewSong_file::-webkit-scrollbar,
+    .HomePage #viewSong_name::-webkit-scrollbar,
+    .HomePage #viewSong_singer::-webkit-scrollbar {
+        display: none;
+    }
+
+    .HomePage #viewSong_name,
+    .HomePage #viewSong_singer {
+        display: inline-block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        position: relative;
+        top: 3px;
+        width: 50% !important;
+    }
+
+    /* Categories modal */
+    .UserPage .add-form_input {
+        overflow: hidden;
+    }
+    .CategoriesPage .add-form_input b {
+        width: 35%;
+    }
+    #categories_singers_view,
+    #categories_description_view,
+    #categories_songs_view {
+        width: 60%;
+        margin-top: 1px;
+    }
+    #categories_singers_view::-webkit-scrollbar,
+    #categories_description_view::-webkit-scrollbar,
+    #categories_songs_view::-webkit-scrollbar {
+        display: none;
+    }
+    /* User modal */
+    .UserPage .add-form_input b {
+        width: 35%;
+    }
+    #viewUser_email::-webkit-scrollbar {
+        display: none;
+    }
+    #viewUser_email {
+        display: inline-block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        position: relative;
+        top: 3px;
+        width: 60% !important;
     }
 }
