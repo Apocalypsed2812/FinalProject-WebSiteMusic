@@ -28,9 +28,9 @@
                 </a>
             </li>
             <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../../user/music_chart.php" class="header__item-link">
                     <i class="fa-regular fa-circle-dot"></i>
-                    <span>#zingchat</span>
+                    <span>#MusicChart</span>
                 </a>
             </li>
             <li class="header__item">
@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../../user/top100.php" class="header__item-link">
                     <i class="fa-solid fa-star"></i>
                     <span>Top 100</span>
                 </a>

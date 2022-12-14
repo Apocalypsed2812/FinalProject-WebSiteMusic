@@ -351,6 +351,20 @@ a {
     margin-left: 91.66667%;
   }
 }
+.MusicChartPage .new__music-song-rank-number{
+  display: inline-block;
+  width: 57px;
+}
+.MusicChartPage .new__music-song-action{
+  display: block !important;
+  position: relative;
+}
+.MusicChartPage .new__music-song-rank{
+  width: auto;
+}
+.MusicChartPage .new__music-song-rank-separate{
+  margin: 0 20px;
+}
 /* PC medium resolution > */
 @media (min-width: 1113px) {
   .row {

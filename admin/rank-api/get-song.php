@@ -2,7 +2,7 @@
 
 require_once('connection.php');
 
-$sql = 'SELECT * FROM `songs` ORDER BY `listens` DESC , `downloads` DESC';
+$sql = 'SELECT * FROM `songs` ORDER BY `listens` DESC , `downloads` DESC LIMIT 100';
 
 
 
