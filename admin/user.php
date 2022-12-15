@@ -112,7 +112,7 @@ if (!$_SESSION['isLogin']) {
         </div>
     </div>
 
-    <!-- Modal edit song -->
+    <!-- Modal edit user -->
     <div class="modal modal-add-song" id="myModal_EditUser">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">
@@ -167,7 +167,7 @@ if (!$_SESSION['isLogin']) {
         </div>
     </div>
 
-    <!-- Modal view song -->
+    <!-- Modal view user -->
     <div class="modal modal-add-song" id="myModal_ViewUser">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">

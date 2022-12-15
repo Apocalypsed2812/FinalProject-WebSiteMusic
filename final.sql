@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th12 14, 2022 lúc 03:52 PM
+-- Thời gian đã tạo: Th12 15, 2022 lúc 09:21 AM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 7.4.30
 
@@ -119,8 +119,8 @@ CREATE TABLE `categorys` (
 
 INSERT INTO `categorys` (`id`, `name`, `numberOfsong`, `follow`, `date`) VALUES
 (4, 'Trữ tình & bolero', 102, 0, '2022-11-16 12:58:41'),
-(5, 'EDM', 105, 0, '2022-11-16 12:58:41'),
-(6, 'Hip-hop', 102, 0, '2022-11-16 12:58:41'),
+(5, 'EDM', 104, 0, '2022-11-16 12:58:41'),
+(6, 'Hip-hop', 103, 0, '2022-11-16 12:58:41'),
 (7, 'R&B', 30, 0, '2022-11-16 12:58:41'),
 (8, 'Nhạc thiếu nhi', 30, 0, '2022-11-16 12:58:41'),
 (9, 'Piano', 5, 0, '2022-11-16 12:58:41'),

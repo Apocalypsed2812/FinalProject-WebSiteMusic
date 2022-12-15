@@ -1,10 +1,8 @@
 let XIcon = $(".auth-form__header i.fa-xmark"),
     cancelSongForm = $(".auth-form__controls-back"),
-    target_id,
-    TableBody,
-    current_tablePage = 1,
-    Suggestions,
-    search = $(".RankPage .container__header-with-search-input");
+    search = $(".RankPage .container__header-with-search-input"),
+    target_id, TableBody, current_tablePage = 1,
+    Suggestions;
 
 $(document).ready(function () {
     // Add active cho sidebar

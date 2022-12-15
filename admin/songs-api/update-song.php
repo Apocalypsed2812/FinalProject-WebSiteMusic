@@ -1,5 +1,5 @@
 <?php
-require_once('connection.php');
+require_once('../connection.php');
 
 if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['singer']) || !isset($_POST['category'])) {
     die(json_encode(array('status' => false, 'data' => 'Parameters not valid')));

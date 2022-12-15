@@ -86,11 +86,7 @@ if (!$_SESSION['isLogin']) {
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="col l-12 m-12 c-12">
-                        <div class="admin__song-btn">
-                            <button id="category_add_btn">thêm thể loại</button>
-                        </div>
-                    </div> -->
+
                 </div>
                 <div class="row mt-25">
                     <div class="col l-12 m-12 c-12">
@@ -103,7 +99,7 @@ if (!$_SESSION['isLogin']) {
         </div>
     </div>
 
-    <!-- Modal add song -->
+    <!-- Modal add Category -->
     <div class="modal modal-add-song" id="myModal_AddCategory">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">
@@ -133,7 +129,7 @@ if (!$_SESSION['isLogin']) {
         </div>
     </div>
 
-    <!-- Modal Delete-->
+    <!-- Modal Delete Category-->
     <div class="modal modal-add-song" id="myModal_DeleteCategory">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">
@@ -153,7 +149,6 @@ if (!$_SESSION['isLogin']) {
             </div>
         </div>
     </div>
-
 
     <!-- Modal edit category -->
     <div class="modal modal-add-song" id="myModal_EditCategory">

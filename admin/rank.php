@@ -39,11 +39,6 @@ if (!$_SESSION['isLogin']) {
                         </p>
                         <span class="alert_admin" id="Add_alert">ADD Successful</span>
                     </div>
-                    <!-- <div class="col l-12 mt-32">
-                        <p class="admin__rank-description-title">
-                            Top 100 bài nhạc hát nghe nhiều nhất
-                        </p>
-                    </div> -->
                 </div>
                 <div class="row mt-32">
                     <div class="col l-12 m-12 c-12 admin__song">

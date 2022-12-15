@@ -88,11 +88,7 @@ if (!$_SESSION['isLogin']) {
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="col l-12 m-12 c-12">
-                        <div class="admin__song-btn">
-                            <button id="categories_add_btn">thêm chuyên mục</button>
-                        </div>
-                    </div> -->
+
                 </div>
                 <div class="row mt-25">
                     <div class="col l-12 m-12 c-12">
@@ -105,7 +101,7 @@ if (!$_SESSION['isLogin']) {
         </div>
     </div>
 
-    <!-- Modal add song -->
+    <!-- Modal add Categories -->
     <div class="modal modal-add-song" id="myModal_AddCategories">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">
@@ -164,7 +160,7 @@ if (!$_SESSION['isLogin']) {
         </div>
     </div>
 
-    <!-- Modal Delete-->
+    <!-- Modal Delete Categories-->
     <div class="modal modal-add-song" id="myModal_DeleteCategories">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">
@@ -186,7 +182,7 @@ if (!$_SESSION['isLogin']) {
     </div>
 
 
-    <!-- Modal edit categories -->
+    <!-- Modal edit Categories -->
     <div class="modal modal-add-song" id="myModal_EditCategories">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">
@@ -236,7 +232,7 @@ if (!$_SESSION['isLogin']) {
             </div>
         </div>
     </div>
-    <!-- Modal view song -->
+    <!-- Modal view Categories -->
     <div class="modal modal-add-song" id="myModal_ViewCategories">
         <div class="modal__overlay modal__overlay-register"></div>
         <div class="modal__body modal__container">

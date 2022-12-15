@@ -1,9 +1,7 @@
 let XIcon = $(".auth-form__header i.fa-xmark"),
     cancelSongForm = $(".auth-form__controls-back"),
-    target_id,
-    TableBody,
+    target_id, TableBody, Suggestions,
     current_tablePage = 1,
-    Suggestions,
     search = $(".CategoryPage .container__header-with-search-input");
 
 $(document).ready(function () {
@@ -613,9 +611,6 @@ function autocomplete(inp, arr) {
 }
 
 //sort
-
-
-
 $("#Icon_arrow_down").click(function () {
     $("#Icon_arrow_down").css("display", "none")
     $("#Icon_arrow_up").css("display", "inline-block")

@@ -1,6 +1,6 @@
 <?php
 
-require_once('connection.php');
+require_once('../connection.php');
 
 // $sql = "SELECT * FROM `account` WHERE `role` LIKE 'user'";
 $sql = "SELECT * FROM `categories`";

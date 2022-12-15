@@ -94,11 +94,7 @@ if (!$_SESSION['isLogin']) {
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="col l-12 m-12 c-12">
-                        <div class="admin__song-btn">
-                            <button>thêm bài hát</button>
-                        </div>
-                    </div> -->
+
                 </div>
                 <div class="row mt-25">
                     <div class="col l-12 m-12 c-12">

@@ -3,23 +3,15 @@ let addBtn = $(".admin__song-btn button"),
     cancelSongForm = $(".auth-form__controls-back"),
     table_page1 = $(".admin__song-pagination-list li:first-child a"),
     search = $(".HomePage .container__header-with-search-input"),
-    table_page,
-    target_id,
-    target_name,
-    current_tablePage = 1,
-    TableBody,
-    SearchTable,
-    Suggestions,
-    pageAmount,
-    endNum,
-    beginNum,
+    table_page, target_id, target_name,
+    TableBody, SearchTable, Suggestions, pageAmount,
+    endNum, beginNum, isFirst, First,
+    tablePageDisplay, Last,
+    Table_NumHtml, active,
     tableDisplay = "",
-    isFirst,
-    First,
-    tablePageDisplay,
-    Last,
-    Table_NumHtml,
-    active;
+    current_tablePage = 1;
+
+
 // sau khi trang tải xong
 $(document).ready(function () {
     // Add active cho sidebar
@@ -585,7 +577,7 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
-
+// Sort
 $("#Icon_arrow_down").click(function () {
     $("#Icon_arrow_down").css("display", "none");
     $("#Icon_arrow_up").css("display", "inline-block");

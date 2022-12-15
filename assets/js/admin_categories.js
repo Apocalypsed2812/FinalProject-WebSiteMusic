@@ -1,11 +1,8 @@
 let XIcon = $(".auth-form__header i.fa-xmark"),
     cancelSongForm = $(".auth-form__controls-back"),
-    target_id,
-    TableBody,
-    current_tablePage = 1,
-    Suggestions,
     search = $(".CategoriesPage .container__header-with-search-input"),
-    target_name_topic;
+    target_id, TableBody, Suggestions, target_name_topic,
+    current_tablePage = 1;
 
 $(document).ready(function () {
     // Add active cho sidebar
@@ -16,13 +13,11 @@ $(document).ready(function () {
 
 // lấy data
 function getData() {
-    // let Suggestions = "";
-
     $.get(
         "http://localhost:" + location.port + "/admin/categories-api/get-categories.php",
         function (data, status) {
+
             TableBody = [];
-            // let EmailValue = '', UsernameValue = '';
             let categoriesValue = '',
                 searchValue = '';
             data["data"].forEach((e) => {
@@ -55,6 +50,8 @@ function getData() {
                     searchValue += e["topic"] + ",";
                 }
             });
+
+            // Table pagination
             let endNum = current_tablePage * 8,
                 beginNum = endNum - 8,
                 tableDisplay = "",
@@ -77,7 +74,6 @@ function getData() {
                     tablePageDisplay = isFirst == 1 ? 3 : current_tablePage + 1;
                     Last = current_tablePage == pageAmount ? current_tablePage : tablePageDisplay;
             }
-
 
             Table_NumHtml +=
                 '<li class="admin__song-pagination-item" onclick="FirstPagination_click($(this),`Main`)">' +
@@ -452,11 +448,13 @@ function edit_categories() {
             break;
     }
 }
+// Hiện modal Delete
 function Open_Dialog_Delete(id, name) {
     $("#deleteCategories_Name").html(name)
     target_id = id;
     $("#myModal_DeleteCategories").css("display", "flex")
 }
+// Hiện modal Edit
 function Open_Dialog_Edit(id, name, topic, description, singers, songs) {
     $("#categories_name_edit").val(name);
     $("#topic_name_edit option:selected").text(topic)
@@ -467,6 +465,7 @@ function Open_Dialog_Edit(id, name, topic, description, singers, songs) {
     target_id = id;
     $("#myModal_EditCategories").css("display", "flex")
 }
+// Hiện modal View
 function Open_Dialog_View(id, name, topic, follow, date, image, description, singers, songs) {
     let songValue, singerValue;
     songValue = songs.replaceAll(",", "\n")
@@ -662,19 +661,6 @@ $(".CategoriesPage .fa-magnifying-glass").click(function () {
     });
     searchClick();
 });
-
-// // click các gợi ý trong  - 'Đề xuất cho bạn'
-// $("#myInputautocomplete-list").click(function () {
-//     search.val($(this).html());
-
-//     SearchTable = [];
-//     TableBody.forEach((i) => {
-//         if (i.toLowerCase().indexOf(search.val().toLowerCase()) > -1) {
-//             SearchTable.push(i);
-//         }
-//     });
-//     searchClick();
-// });
 function searchClick() {
     current_tablePage = 1;
     let pageAmount,
@@ -741,6 +727,7 @@ function searchClick() {
     }
 }
 
+// Gợi ý cho input search
 function autocomplete(inp, arr) {
     var currentFocus;
 
@@ -836,7 +823,7 @@ function autocomplete(inp, arr) {
 }
 
 
-
+// Sort
 $("#Icon_arrow_down").click(function () {
     $("#Icon_arrow_down").css("display", "none")
     $("#Icon_arrow_up").css("display", "inline-block")
