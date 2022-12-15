@@ -1,52 +1,15 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-// // sau khi trang tải xong
-// $(document).ready(function () {
-//     // Lấy dữ liệu bài hát
-//     let songs = getData();
-// });
+const playlist = $('.playlist')
+let musicPlay = $('.music__play')
 
-// Toast message
-const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener("mouseenter", Swal.stopTimer);
-        toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-});
-
-function formatNumber(number){
-    let num = format_number(number)
-    num = num + '.000'
-    return num
-}
-
-function format_number(num) {
-    let dollarUSLocale = Intl.NumberFormat("en-US");
-    let number = dollarUSLocale.format(parseInt(num));
-    return number;
-}
-
-function showSuccessToast(message){
-    Swal.fire({
-        icon: "success",
-        title: "Oops...",
-        text: message,
-    });
-}
-
-function showErrorToast(message){
-    Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: message,
-    });
-}
+let isHasSongs = false
+let isPlaying = false
+let isRandom = false
+let isRepeat = false
+let currentIndex = 0
+let songsList = []
 
 // Hàm load bài hát
 function loadCurrentSongNew(image, name, singer, path){
@@ -96,70 +59,57 @@ function loadCurrentSongNew(image, name, singer, path){
     return currentSongNew 
 } 
 
-function renderPlaylist(playlist, content){
-    if(playlist){
-        // playlist.html(content.join(''))
-        playlist.innerHTML = content.join('')
-    }
-}
+function getSongs(){
+    const songnew = $$('.container__song-new')
+    songnew.forEach(item => {
+        let image = item.getAttribute("data-image")
+        let name = item.getAttribute("data-name")
+        let singer = item.getAttribute("data-singer")
+        let file = item.getAttribute("data-file")
+        let index = item.getAttribute("data-index")
+        let id = item.getAttribute("data-id")
+        let rank = item.getAttribute("data-rank")
 
-const playlist = $('.playlist')
-let musicPlay = $('.music__play')
-
-async function getMethod(url) {
-    const result = await fetch(url,{
-      method: 'GET',
-    });
-    return result;
-}
-
-let songsList = []
-let isHasSongs = false
-let isPlaying = false
-let currentIndex = 0
-let isRandom = false
-let isRepeat = false
-
-async function getSongs(url){
-    await fetch(url,{
-        method: 'GET',
+        songsList.push({
+            index,
+            id,
+            name,
+            singer,
+            file,
+            image,
+            rank,
+        })
     })
-    .then(res => res.json())
-    .then(json => {
-        for(let i = 0; i < 10; i++){
-            console.log("For i ----> push")
-            songsList.push(json.data[i]);
-            isHasSongs = true;
-        }
-    })
-    console.log("Danh sách bài hát là: ", songsList)
-    console.log("Is has song in getSongs: ", isHasSongs)
-    render()
-    handleEvents()
 }
 
 function render(){
-    console.log("Danh sách bài hát render là: ", songsList)
-
     const htmls = songsList.map((song, index) => {
-        return `<div class="col l-4 m-6 c-12">
-                    <div class="container__song-new" data-image="${song.image}" data-name="${song.name}" data-singer="${song.singer}" data-file="${song.file}" data-index="${index}" data-id="${song.id}">
-                        <img src="../assets/images/songs/${song.image}" alt="" class="container__song-new-img">
-                        <div class="container__song-info">
-                            <p class="container__song-new-title">${song.name}</p>
-                            <p class="container__song-new-description">${song.singer}</p>
-                            <P class="container__song-new-ago">1 ngày trước</P>
+        return `<div class="col l-12 m-12 c-12">
+                    <div class="new__music-song container__song-new" data-image="${song.image}" data-name="${song.name}" data-singer="${song.singer}" data-file="${song.file}" data-index="${index}" data-id="${song.id}">
+                        <div class="new__music-song-rank">
+                            <p class="new__music-song-rank-number">${song.rank}</p>
+                            <p class="new__music-song-rank-separate">-</p>
+                            <div class="new__music-song-info">
+                                <img src="../assets/images/songs/${song.image}" alt="">
+                                <div>
+                                    <p>${song.name}</p>
+                                    <p class="new__music-song-info-o mt-8">${song.singer}</p>
+                                </div>
+                                <div class="new__music-song-click">
+                                    <i class="fa-solid fa-circle-play"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="container__song-new-click">
-                            <i class="fa-solid fa-circle-play"></i>
-                        </div>
-                        <div class="container__song-new-dot">
+                        <p class="hide-on-mobile new__music-song-info-o">${song.name} (Single)</p>
+                        <p class="new__music-song-time new__music-song-info-o">05:20</p>
+                        <div class="new__music-song-action">
+                            <i class="fa-solid fa-heart"></i>
                             <i class="fa-solid fa-ellipsis"></i>
                         </div>
                     </div>
                 </div>`
     })
-    renderPlaylist(playlist, htmls)
+    playlist.innerHTML = htmls
 }
 
 function handleEvents(){
@@ -171,7 +121,6 @@ function handleEvents(){
             let name = item.getAttribute("data-name")
             let singer = item.getAttribute("data-singer")
             let file = item.getAttribute("data-file")
-            let index = item.getAttribute("data-index")
 
             path = "../assets/audio/" + file
 
@@ -206,7 +155,6 @@ function handleEvents(){
                     console.log("Onplay")
                     isPlaying = true
                     musicPlay.classList.add('playing')
-                    // cdThumAnimate.play()
                 }
 
                 //Khi song được play
@@ -214,7 +162,6 @@ function handleEvents(){
                     console.log("Onpause")
                     isPlaying = false
                     musicPlay.classList.remove('playing')
-                    // cdThumAnimate.pause()
                 }
 
                 //Khi tiến độ bài hát thay đổi
@@ -244,7 +191,7 @@ function handleEvents(){
                         nextSong()
                     }
                     audio.play()
-                    render()
+                    // render()
                     //_this.scrollToActiveSong()
                 }
 
@@ -259,7 +206,7 @@ function handleEvents(){
                         prevSong()
                     }
                     audio.play()
-                    render()
+                    // render()
                     //_this.scrollToActiveSong()
                 }
 
@@ -289,28 +236,13 @@ function handleEvents(){
 
                 //Lắng nghe hành vi click vào playlist 
                 playlist.onclick = function(e){
-                    // console.log("Click vào playlist")
                     const songNode = e.target.closest('.container__song-new')
-                    if(songNode || e.target.closest('.option')){
-                        // console.log("Click vào playlist 1")
-                        //Xử lý khi click vào song
-                        if(songNode){
-                            // console.log("Click vào playlist 2")
-                            currentIndex = Number(songNode.dataset.index)
-                            updateListenSong(songNode.dataset.id)
-                            loadCurrentSong()
-                            render()
-                            audio.play()
-                            .then(() => {
-                                console.log("Thành công")
-                            })
-                            .catch(err => console.log("Error là: ", err))   
-                        }
-
-                        //Xử lý khi click vào song option
-                        if(e.target.closest('.option')){
-                            
-                        }
+                    if(songNode){
+                        currentIndex = Number(songNode.dataset.index)
+                        updateListenSong(songNode.dataset.id)
+                        loadCurrentSong()
+                        render()
+                        audio.play() 
                     }
                 }
             }
@@ -369,12 +301,6 @@ async function updateListenSong(id){
     })
 }
 
-getSongs("http://localhost:" + location.port + "/admin/songs-api/get-song.php")
-
-
-
-
-
-
-
-
+getSongs()
+// console.log(songsList)
+handleEvents()

@@ -7,6 +7,7 @@ if (!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['singer']) |
 
 $id = $_POST['id'];
 $name = $_POST['name'];
+$name = $_POST['name'];
 $singer = $_POST['singer'];
 $category = $_POST['category'];
 $nation = $_POST['nation'];

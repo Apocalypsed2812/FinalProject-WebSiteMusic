@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-32">
+                <div class="row mt-32 playlist">
                     <?php
                     require_once("connectdb.php");
                     $sql = "SELECT * FROM `songs` ORDER BY `listens` DESC , `downloads` DESC LIMIT 100";
@@ -40,9 +40,10 @@
                         }
                     }
                     $rank = 1;
+                    $index = 0;
                     foreach ($getsong as $value) {
                         echo '<div class="col l-12 m-12 c-12">' .
-                            '<div class="new__music-song">' .
+                            '<div class="new__music-song container__song-new" data-id="'.$value['id'].'" data-index="'.$index.'" data-image="'.$value['image'].'" data-name="'.$value['name'].'" data-singer="'.$value['singer'].'" data-file="'.$value['file'].'" data-rank="'.$rank.'"">' .
                             '<div class="new__music-song-rank">' .
                             '<p class="new__music-song-rank-number">' . $rank . '</p>' .
                             '<p class="new__music-song-rank-separate">-</p>' .
@@ -64,10 +65,9 @@
                             '</div>' .
                             '</div>';
                         $rank += 1;
+                        $index += 1;
                     }
                     ?>
-
-
                     <!-- <div class="col l-12 m-12 c-12 zing__chart-view-100">
                         <button class="zing__chart-view-100-btn">Xem top 100</button>
                     </div> -->
@@ -240,14 +240,15 @@
                         </div>
                     </div>
                </div> -->
+            <div class="music__play">
+                
+            </div>
             </div>
         </div>
-
-
     </div>
 
 
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/music_chart.js"></script>
 </body>
 
 </html>
