@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zing MP3</title>
+    <title>Web Music</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
 </head>
@@ -63,11 +63,13 @@
                                 <span><?php echo $row['description']; ?></span>
                             </p>
                         </div>
+                        <div class="playlist">
                         <?php
                                         $getsong = $row['songs'];
                                     }
                                 }
                                 $songs = explode("\n", $getsong);
+                                $index = 0;
                                 for($i = 0; $i < count($songs); $i++){
                                     $name = trim($songs[$i]);
                                     $sql2 = "SELECT * FROM songs where name = '$name'";
@@ -75,10 +77,10 @@
                                     if($result->num_rows > 0){
                                         while($row = $result->fetch_assoc()){
                                             echo '<div class="col l-12 m-12 c-12">';
-                                            echo '<div class="new__music-song container__song-new" data-image="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" data-name="'.$row['name'].'" data-singer="'.$row['singer'].'" data-path="../assets/audio/'.$row['file'].'" data-index="${index}">';
+                                            echo '<div class="new__music-song container__song-new" data-image="'.$row['image'].'" data-name="'.$row['name'].'" data-singer="'.$row['singer'].'" data-file="'.$row['file'].'" data-index="'.$index.'" data-id="'.$row['id'].'">';
                                             echo '<div class="new__music-song-rank">';
                                             echo '<div class="new__music-song-info">';
-                                            echo '<img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">';
+                                            echo '<img src="../assets/images/songs/'.$row['image'].'" alt="">';
                                             echo '<div>';
                                             echo '<p>'.$row['name'].'</p>';
                                             echo '<p class="new__music-song-info-o mt-8">'.$row['singer'].'</p>';
@@ -96,10 +98,12 @@
                                                     </div>';
                                             echo '</div>';
                                             echo '</div>';
+                                            $index++;
                                         }
                                     }
                                 }
-                        ?>                       
+                        ?>   
+                        </div>                    
                    </div>
                    </div>
                 </div>
@@ -114,6 +118,6 @@
     </div>
 
 
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/music_list.js"></script>
 </body>
 </html>

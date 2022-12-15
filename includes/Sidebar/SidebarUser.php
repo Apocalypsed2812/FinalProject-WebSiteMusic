@@ -34,14 +34,7 @@
                 </a>
             </li>
             <li class="header__item">
-                <a href="" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
-                    <span>Radio</span>
-                    <span class="header__item-link-live">LIVE</span>
-                </a>
-            </li>
-            <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../../user/follow.php" class="header__item-link">
                     <i class="fa-regular fa-circle-dot"></i>
                     <span>Theo dõi</span>
                 </a>
@@ -67,12 +60,6 @@
                 <a href="../../user/top100.php" class="header__item-link">
                     <i class="fa-solid fa-star"></i>
                     <span>Top 100</span>
-                </a>
-            </li>
-            <li class="header__item hide-on-mobile">
-                <a href="" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
-                    <span>MV</span>
                 </a>
             </li>
 
