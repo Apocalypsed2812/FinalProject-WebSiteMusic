@@ -147,20 +147,21 @@
                 </div>
 
                 <!-- Bài hát -->
-                <div id="songs" class="row mt-32 tag">
+                <div id="songs" class="row mt-32 tag ">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Mới phát hành</h1>
                     </div>
                     <div class="col l-12">
-                        <div class="row search-playlist">
+                        <div class="row search-playlist playlist">
                             <?php
-                                $sql="SELECT * FROM songs WHERE name LIKE '$info %' or name LIKE '% $info'";
+                                $sql="SELECT * FROM songs WHERE name LIKE '$info %' or name LIKE '% $info' or name = '$info'";
                                 $result = $conn->query($sql);
+                                $index = 0;
                                 if($result->num_rows > 0){
                                     while($row = $result->fetch_assoc()){
                                         echo "<div class='col l-6 m-6 c-12'>";
-                                        echo '<div class="container__song-new" data-image="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" data-name="'.$row["name"].'" data-singer="'.$row["singer"].'" data-path="../assets/audio/'.$row["file"].'" data-index="${index}">';
-                                        echo '<img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/e/6/4/be64a8856566400dc3e2b959f252f363.jpg" alt="" class="container__song-new-img">';
+                                        echo '<div class="container__song-new" data-id="'.$row['id'].'"  data-image="'.$row['image'].'" data-name="'.$row["name"].'" data-singer="'.$row["singer"].'" data-file="'.$row["file"].'" data-index="'.$index.'">';
+                                        echo '<img src="../assets/images/songs/'.$row['image'].'" alt="" class="container__song-new-img">';
                                         echo '<div class="container__song-info container__song-info-search">';
                                         echo '<p class="container__song-new-title">'. $row["name"] .'</p>';
                                         echo '<p class="container__song-new-description">'. $row["singer"] .'</p>';
@@ -173,6 +174,7 @@
                                             </div>';
                                         echo '</div>';
                                         echo '</div>';
+                                        $index += 1;
                                     }
                                 }else{
                                     echo "<div class='col l-6 m-6 c-12'>";
@@ -258,7 +260,7 @@
         
     </div>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/search.js"></script>
     <script src="../assets/js/searchPaging.js"></script>
     
 </body>

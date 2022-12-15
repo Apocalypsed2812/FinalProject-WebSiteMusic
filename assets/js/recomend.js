@@ -1,5 +1,7 @@
 var songs = ["Ăn năn","Xin má rước dâu","Tấm lòng son", "Gõ cửa", "Bằng lăng tím mong chờ", "Cậu ba", "Buồn làm chi em ơi", "Phận tơ tằm", "Nỗi buồn gác trọ", "Mèo hoang", "Đò sang ngang",
-"Mẹ ơi con đã già","Phận đời con gái","Mười năm đợi chờ", "Tình nhân", "Khổ lắm Anh ơi", "Tâm sự tuổi 30", "Mặt mộc", "Bước qua đời nhau", "Em Iu", "Tìm em", "Pass Off", "Em ơi đừng khóc"];
+"Mẹ ơi con đã già","Phận đời con gái","Mười năm đợi chờ", "Tình nhân", "Khổ lắm Anh ơi", "Tâm sự tuổi 30", "Mặt mộc", "Bước qua đời nhau", "Em Iu", "Tìm em", "Pass Off", "Em ơi đừng khóc", "Bằng lăng tím mong chờ",
+"Cậu ba","Pink Venom","City", "Spectre", "Dragostea Din Tei", "MR.BAD", "Mèo hoang", "Áo em chưa mặc một lần", "Lệ Đá", "Nỗi Buồn Gác Trọ", "Gửi em người hà tĩnh", "Điệu hò trao duyên", "Ode to joy", 
+"Eyes blue like the atlantic", "Nothing","Ngồi hát đỡ buồn", "Dòng thời gian", "Hạ cánh", "Cuối cùng thì"];
 
 let wraper = document.getElementsByClassName("container__header-with-search");
 let inputBox = document.getElementById("search");
