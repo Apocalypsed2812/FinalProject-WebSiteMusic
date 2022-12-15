@@ -42,8 +42,9 @@
                     $rank = 1;
                     $index = 0;
                     foreach ($getsong as $value) {
+                        $lyric = str_replace('"', "'", $value["lyric"]);
                         echo '<div class="col l-12 m-12 c-12">' .
-                            '<div class="new__music-song container__song-new" data-id="'.$value['id'].'" data-index="'.$index.'" data-image="'.$value['image'].'" data-name="'.$value['name'].'" data-singer="'.$value['singer'].'" data-file="'.$value['file'].'" data-rank="'.$rank.'"">' .
+                            '<div class="new__music-song container__song-new" data-id="' . $value['id'] . '" data-index="' . $index . '" data-image="' . $value['image'] . '" data-name="' . $value['name'] . '" data-singer="' . $value['singer'] . '" data-file="' . $value['file'] . '" data-rank="' . $rank . '"">' .
                             '<div class="new__music-song-rank">' .
                             '<p class="new__music-song-rank-number">' . $rank . '</p>' .
                             '<p class="new__music-song-rank-separate">-</p>' .
@@ -60,7 +61,24 @@
                             '</div>' .
                             '<div class="new__music-song-action">' .
                             '<i class="fa-solid fa-heart"></i>' .
-                            '<i class="fa-solid fa-ellipsis"></i>' .
+                            '<i class="fa-solid fa-ellipsis onclick="ellipsisClick(' . $value['id'] . ')"></i>' .
+                            '</div>' .
+                            '</div>' .
+                            '<div id="Song_dialog' . $value["id"] . '" class="Song_dialog">' .
+                            '<div class="new__music-song-info">' .
+                            '<img src="../assets/images/songs/' . $value["image"] . '" alt="">' .
+                            '<div>' .
+                            '<p>' . $value["name"] . '</p>' .
+                            '<p class="new__music-song-info-o mt-8">' . $value["singer"] . '</p>' .
+                            '</div>' .
+                            '</div>' .
+                            '<div class="Song_dialog_item"><i class="fa-solid fa-plus"></i>Thêm vào playlist' .
+                            '</div>' .
+                            '<div class="Song_dialog_item"><i class="fa-solid fa-comment"></i>Xem bình luận' .
+                            '</div>' .
+                            '<div onclick="SongLyricView(`' . $lyric . '`)" class="Song_dialog_item"><i class="fa-solid fa-book"></i>Lời bài hát' .
+                            '</div>' .
+                            '<div onclick="SongDownload(`' . $value['file'] . '`)" class="Song_dialog_item"><i class="fa-solid fa-download"></i>Tải xuống' .
                             '</div>' .
                             '</div>' .
                             '</div>';
@@ -68,186 +86,38 @@
                         $index += 1;
                     }
                     ?>
-                    <!-- <div class="col l-12 m-12 c-12 zing__chart-view-100">
-                        <button class="zing__chart-view-100-btn">Xem top 100</button>
-                    </div> -->
+
                 </div>
 
-                <!-- <div class="row zing__chart-rank">
-                    <div class="col l-12 m-12 c-12">
-                        <h1 class="zing__chart-rank-title">Bảng xếp hạng tuần</h1>
-                    </div>
+                <div class="music__play">
 
-                    <div class="col l-4 m-6 c-12">
-                        <div class="zing__chart-item">
-                            <p class="zing__chart-item-title">
-                                Việt Nam
-                                <i class="fa-solid fa-circle-play new__music-icon-play"></i>
-                            </p>
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <p class="new__music-song-rank-number">1</p>
-                                    <p class="new__music-song-rank-separate">-</p>
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <p class="new__music-song-rank-number">1</p>
-                                    <p class="new__music-song-rank-separate">-</p>
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                            <div class="zing__chart-view-100">
-                                <button class="zing__chart-view-100-btn">Xem tất cả</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col l-4 m-6 c-12">
-                        <div class="zing__chart-item">
-                            <p class="zing__chart-item-title">
-                                us-uk
-                                <i class="fa-solid fa-circle-play new__music-icon-play"></i>
-                            </p>
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <p class="new__music-song-rank-number">1</p>
-                                    <p class="new__music-song-rank-separate">-</p>
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <p class="new__music-song-rank-number">1</p>
-                                    <p class="new__music-song-rank-separate">-</p>
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                            <div class="zing__chart-view-100">
-                                <button class="zing__chart-view-100-btn">Xem tất cả</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col l-4 m-6 c-12">
-                        <div class="zing__chart-item">
-                            <p class="zing__chart-item-title">
-                                K-pop
-                                <i class="fa-solid fa-circle-play new__music-icon-play"></i>
-                            </p>
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <p class="new__music-song-rank-number">1</p>
-                                    <p class="new__music-song-rank-separate">-</p>
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                            <div class="new__music-song">
-                                <div class="new__music-song-rank">
-                                    <p class="new__music-song-rank-number">1</p>
-                                    <p class="new__music-song-rank-separate">-</p>
-                                    <div class="new__music-song-info">
-                                        <img src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/4/9/6/f/496fa84f1a008e3fa51668545deb33ca.jpg" alt="">
-                                        <div>
-                                            <p>Ân Tình Sang Trang</p>
-                                            <p class="new__music-song-info-o mt-8">Châu Khải Phong, ACV</p>
-                                        </div>
-                                        <div class="new__music-song-click">
-                                            <i class="fa-solid fa-circle-play"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="new__music-song-time new__music-song-info-o">05:20</p>
-                                <div class="new__music-song-action">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </div>
-                            </div>
-                            <div class="zing__chart-view-100">
-                                <button class="zing__chart-view-100-btn">Xem tất cả</button>
-                            </div>
-                        </div>
-                    </div>
-               </div> -->
-            <div class="music__play">
-                
-            </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal view song -->
+    <div class="modal modal-song-lyric" id="myModal_SongLyric">
+        <div class="modal__overlay"></div>
+        <div class="modal__body ">
+            <div class="auth-form">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h3>Lời bài hát</h3>
+                        <i class="fa-solid fa-xmark" onclick="closeModel()"></i>
+                    </div>
 
+                    <div class="add-form_input">
+                        <textarea readonly id="song_lyric_textarea" placeholder="Lyric" name="song_Lyric"></textarea>
+                    </div>
+
+                    <div class="auth-form__controls">
+                        <button onclick="closeModel()" type="button" id="btn-close" class="btn auth-form__controls-back btn--normal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../assets/js/music_chart.js"></script>
 </body>
 

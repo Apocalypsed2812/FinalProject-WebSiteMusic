@@ -164,17 +164,17 @@ if (!$_SESSION['isLogin']) {
                     <div class="row mt-32">
                         <div class="col l-4">
                             <a href="" class="container__zing-song">
-                                <img src="https://zmp3-static.zmdcdn.me/skins/zmp3-v5.2/images/song-vn-2x.jpg" alt="">
+                                <img src="../assets/images/Capture1_cleanup.PNG" alt="">
                             </a>
                         </div>
                         <div class="col l-4">
                             <a href="" class="container__zing-song">
-                                <img src="https://zmp3-static.zmdcdn.me/skins/zmp3-v5.2/images/web_song_usuk.jpg" alt="">
+                                <img src="../assets/images/Capture2_cleanup.PNG" alt="">
                             </a>
                         </div>
                         <div class="col l-4">
                             <a href="" class="container__zing-song">
-                                <img src="https://zmp3-static.zmdcdn.me/skins/zmp3-v5.2/images/web_song_kpop.jpg" alt="">
+                                <img src="../assets/images/Capture3_cleanup.PNG" alt="">
                             </a>
                         </div>
                     </div>

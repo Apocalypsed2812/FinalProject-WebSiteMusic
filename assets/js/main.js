@@ -20,7 +20,7 @@ const Toast = Swal.mixin({
     },
 });
 
-function formatNumber(number){
+function formatNumber(number) {
     let num = format_number(number)
     num = num + '.000'
     return num
@@ -32,7 +32,7 @@ function format_number(num) {
     return number;
 }
 
-function showSuccessToast(message){
+function showSuccessToast(message) {
     Swal.fire({
         icon: "success",
         title: "Oops...",
@@ -40,7 +40,7 @@ function showSuccessToast(message){
     });
 }
 
-function showErrorToast(message){
+function showErrorToast(message) {
     Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -49,7 +49,7 @@ function showErrorToast(message){
 }
 
 // Hàm load bài hát
-function loadCurrentSongNew(image, name, singer, path){
+function loadCurrentSongNew(image, name, singer, path) {
     console.log("Path là: ", path)
     let currentSongNew = `<div class="music__play-song">
                             <img src="../assets/images/songs/${image}" alt="" class="music__play-song-img">
@@ -93,11 +93,11 @@ function loadCurrentSongNew(image, name, singer, path){
                             <div class="music__play-add--separate hide-on-tablet"></div>
                             <i class="fa-solid fa-music hide-on-tablet"></i>
                         </div>`
-    return currentSongNew 
-} 
+    return currentSongNew
+}
 
-function renderPlaylist(playlist, content){
-    if(playlist){
+function renderPlaylist(playlist, content) {
+    if (playlist) {
         // playlist.html(content.join(''))
         playlist.innerHTML = content.join('')
     }
@@ -107,8 +107,8 @@ const playlist = $('.playlist')
 let musicPlay = $('.music__play')
 
 async function getMethod(url) {
-    const result = await fetch(url,{
-      method: 'GET',
+    const result = await fetch(url, {
+        method: 'GET',
     });
     return result;
 }
@@ -120,25 +120,25 @@ let currentIndex = 0
 let isRandom = false
 let isRepeat = false
 
-async function getSongs(url){
-    await fetch(url,{
+async function getSongs(url) {
+    await fetch(url, {
         method: 'GET',
     })
-    .then(res => res.json())
-    .then(json => {
-        for(let i = 0; i < 10; i++){
-            console.log("For i ----> push")
-            songsList.push(json.data[i]);
-            isHasSongs = true;
-        }
-    })
+        .then(res => res.json())
+        .then(json => {
+            for (let i = 0; i < 10; i++) {
+                console.log("For i ----> push")
+                songsList.push(json.data[i]);
+                isHasSongs = true;
+            }
+        })
     console.log("Danh sách bài hát là: ", songsList)
     console.log("Is has song in getSongs: ", isHasSongs)
     render()
     handleEvents()
 }
 
-function render(){
+function render() {
     console.log("Danh sách bài hát render là: ", songsList)
 
     const htmls = songsList.map((song, index) => {
@@ -162,11 +162,11 @@ function render(){
     renderPlaylist(playlist, htmls)
 }
 
-function handleEvents(){
+function handleEvents() {
     // Khi click vào bài hát
     const songnew = $$('.container__song-new')
     songnew.forEach(item => {
-        item.onclick = function(){
+        item.onclick = function () {
             let image = item.getAttribute("data-image")
             let name = item.getAttribute("data-name")
             let singer = item.getAttribute("data-singer")
@@ -175,12 +175,12 @@ function handleEvents(){
 
             path = "../assets/audio/" + file
 
-            if(!musicPlay.classList.contains('playing')){
+            if (!musicPlay.classList.contains('playing')) {
                 musicPlay.classList.add('playing')
             }
 
             let currentSongNew = loadCurrentSongNew(image, name, singer, path)
-    
+
             musicPlay.innerHTML = currentSongNew
             musicPlay.style.display = 'flex'
             $('.header').style.minHeight = 'calc(100% - 90px)'
@@ -189,20 +189,20 @@ function handleEvents(){
 
             //Xử lý khi click play
             const playBtn = $('.btn-toggle-play')
-            if(playBtn){
+            if (playBtn) {
                 //Khi click vào nút play
-                playBtn.onclick = function(){
+                playBtn.onclick = function () {
                     console.log("Click")
-                    if(isPlaying){
+                    if (isPlaying) {
                         audio.pause()
                     }
-                    else{
+                    else {
                         audio.play()
                     }
                 }
 
                 //Khi song được play
-                audio.onplay = function(){
+                audio.onplay = function () {
                     console.log("Onplay")
                     isPlaying = true
                     musicPlay.classList.add('playing')
@@ -210,7 +210,7 @@ function handleEvents(){
                 }
 
                 //Khi song được play
-                audio.onpause = function(){
+                audio.onpause = function () {
                     console.log("Onpause")
                     isPlaying = false
                     musicPlay.classList.remove('playing')
@@ -219,27 +219,27 @@ function handleEvents(){
 
                 //Khi tiến độ bài hát thay đổi
                 const progress = $('#progress')
-                audio.ontimeupdate = function(){
-                    if(audio.duration){
+                audio.ontimeupdate = function () {
+                    if (audio.duration) {
                         const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
                         progress.value = progressPercent
                     }
                 }
 
                 //Xử lý khi tua song
-                progress.onchange = function(e){
+                progress.onchange = function (e) {
                     const seekTime = audio.duration / 100 * e.target.value
                     audio.currentTime = seekTime
                 }
 
                 //Khi next song
                 const nextBtn = $('.btn-next')
-                nextBtn.onclick = function(){
+                nextBtn.onclick = function () {
                     // console.log("Da click vao next")
-                    if(isRandom){
+                    if (isRandom) {
                         playRandomSong()
                     }
-                    else{
+                    else {
                         console.log("Da vao")
                         nextSong()
                     }
@@ -250,12 +250,12 @@ function handleEvents(){
 
                 //Khi prev song
                 const prevBtn = $('.btn-prev')
-                prevBtn.onclick = function(){
+                prevBtn.onclick = function () {
                     // console.log("Da click vao prev")
-                    if(isRandom){
+                    if (isRandom) {
                         playRandomSong()
                     }
-                    else{
+                    else {
                         prevSong()
                     }
                     audio.play()
@@ -265,51 +265,51 @@ function handleEvents(){
 
                 //Khi random bài hát
                 const randomBtn = $('.btn-random')
-                randomBtn.onclick = function(){
+                randomBtn.onclick = function () {
                     isRandom = !isRandom
                     randomBtn.classList.toggle('active', isRandom)
                 }
 
                 //Xử lý next song khi audio ended
-                audio.onended = function(){
-                    if(isRepeat){
+                audio.onended = function () {
+                    if (isRepeat) {
                         audio.play()
                     }
-                    else{
+                    else {
                         nextBtn.click()
                     }
                 }
 
                 //Xử lý repeat song
                 const repeatBtn = $('.btn-repeat')
-                repeatBtn.onclick = function(){
-                    isRepeat= !isRepeat
+                repeatBtn.onclick = function () {
+                    isRepeat = !isRepeat
                     repeatBtn.classList.toggle('active', isRepeat)
                 }
 
                 //Lắng nghe hành vi click vào playlist 
-                playlist.onclick = function(e){
+                playlist.onclick = function (e) {
                     // console.log("Click vào playlist")
                     const songNode = e.target.closest('.container__song-new')
-                    if(songNode || e.target.closest('.option')){
+                    if (songNode || e.target.closest('.option')) {
                         // console.log("Click vào playlist 1")
                         //Xử lý khi click vào song
-                        if(songNode){
+                        if (songNode) {
                             // console.log("Click vào playlist 2")
                             currentIndex = Number(songNode.dataset.index)
                             updateListenSong(songNode.dataset.id)
                             loadCurrentSong()
                             render()
                             audio.play()
-                            .then(() => {
-                                console.log("Thành công")
-                            })
-                            .catch(err => console.log("Error là: ", err))   
+                                .then(() => {
+                                    console.log("Thành công")
+                                })
+                                .catch(err => console.log("Error là: ", err))
                         }
 
                         //Xử lý khi click vào song option
-                        if(e.target.closest('.option')){
-                            
+                        if (e.target.closest('.option')) {
+
                         }
                     }
                 }
@@ -319,60 +319,57 @@ function handleEvents(){
 }
 
 //Hàm xử lý next song
-function nextSong(){
+function nextSong() {
     currentIndex++
-    if(currentIndex >= songsList.length){
+    if (currentIndex >= songsList.length) {
         currentIndex = 0
     }
     loadCurrentSong()
 }
 
 //Hàm xử lý previous song
-function prevSong(){
+function prevSong() {
     currentIndex--
-    if(currentIndex < 0){
+    if (currentIndex < 0) {
         currentIndex = songsList.length - 1
     }
     loadCurrentSong()
 }
 
 //Hàm xử lý chọn nhạc random
-function playRandomSong(){
+function playRandomSong() {
     let newIndex
-    do{
+    do {
         newIndex = Math.floor(Math.random() * songsList.length)
-    }while(newIndex === currentIndex)
+    } while (newIndex === currentIndex)
     currentIndex = newIndex
     loadCurrentSong()
 }
 
 //Hàm load ra bài hát hiện tại (khi next hoặc prev)
-function loadCurrentSong(){
-    let currentSong =  songsList[currentIndex]
+function loadCurrentSong() {
+    let currentSong = songsList[currentIndex]
     $('.music__play-song-img').src = `../assets/images/songs/${currentSong.image}`
     $('.music__play-song-title').textContent = `${currentSong.name}`
     $('.music__play-song-singer').textContent = `${currentSong.singer}`
     $('#audio').src = `../assets/audio/${currentSong.file}`
 }
 
-async function updateListenSong(id){
-    await fetch("http://localhost:" + location.port + "/admin/songs-api/update-listen-song.php",{
+async function updateListenSong(id) {
+    await fetch("http://localhost:" + location.port + "/admin/songs-api/update-listen-song.php", {
         method: 'POST',
-        headers:{
-            'Content-Type':'application/x-www-form-urlencoded'
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: 'id=' + id,
     })
-    .then(res => res.json())
-    .then(json => {
-        console.log(json)
-    })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+        })
 }
 
 getSongs("http://localhost:" + location.port + "/admin/songs-api/get-song.php")
-
-
-
 
 
 

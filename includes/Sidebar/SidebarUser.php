@@ -45,7 +45,7 @@
 
         <ul class="header__list">
             <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../../user/new_music.php" class="header__item-link">
                     <i class="fa-solid fa-music"></i>
                     <span>Nhạc Mới</span>
                 </a>

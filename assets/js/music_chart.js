@@ -100,14 +100,37 @@ function render(){
                                 </div>
                             </div>
                         </div>
-                        <p class="hide-on-mobile new__music-song-info-o">${song.name} (Single)</p>
-                        <p class="new__music-song-time new__music-song-info-o">05:20</p>
                         <div class="new__music-song-action">
                             <i class="fa-solid fa-heart"></i>
-                            <i class="fa-solid fa-ellipsis"></i>
+                            <i class="fa-solid fa-ellipsis" onclick="ellipsisClick(${song.id})"></i>
                         </div>
                     </div>
                 </div>`
+                // <div id="Song_dialog${song.id}" class="Song_dialog">
+                //     <div class="new__music-song-info">
+                //         <img src="../assets/images/songs/${song.image}" alt="">
+                //         <div>
+                //             <p> ${song.name}</p>
+                //             <p class="new__music-song-info-o mt-8"> ${song.singer}</p>
+                //         </div>
+                //     </div>
+                //     <div class="Song_dialog_item">
+                //         <i class="fa-solid fa-plus"></i>
+                //         Thêm vào playlist
+                //     </div>
+                //     <div class="Song_dialog_item">
+                //         <i class="fa-solid fa-comment"></i>
+                //         Xem bình luận
+                //     </div>
+                //     <div onclick="SongLyricView('${song.lyric}')" class="Song_dialog_item">
+                //         <i class="fa-solid fa-book"></i>
+                //         Lời bài hát
+                //     </div>
+                //     <div onclick="SongDownload('${song.file}')" class="Song_dialog_item">
+                //         <i class="fa-solid fa-download"></i>
+                //         Tải xuống
+                //     </div>
+                // </div>
     })
     playlist.innerHTML = htmls
 }
@@ -304,3 +327,36 @@ async function updateListenSong(id){
 getSongs()
 // console.log(songsList)
 handleEvents()
+
+
+// // click vào ellipsis trong bài hát => mở menu
+// function ellipsisClick(id) {
+//     document.querySelectorAll(".Song_dialog").forEach(e => {
+//         e.style.display = "none"
+//     });
+//     document.querySelector("#Song_dialog" + id).style.display = "inline-block";
+// }
+// // đóng menu khi click ra ngoài
+// document.addEventListener('click', function handleClickOutsideBox(event) {
+//     if (event.target.className != 'fa-solid fa-ellipsis') {
+//         document.querySelectorAll(".Song_dialog").forEach(e => {
+//             e.style.display = "none"
+//         });
+//     }
+// });
+// // mở modal song lyric view
+// function SongLyricView(lyric) {
+//     document.getElementById("song_lyric_textarea").innerHTML = lyric
+//     document.getElementById("myModal_SongLyric").style.display = "block";
+// }
+// // đóng modal song lyric view
+// function closeModel(){
+//     document.getElementById("myModal_SongLyric").style.display = "none";
+// }
+// // tải file
+// function SongDownload(file){
+//     console.log(file)
+// }
+
+
+

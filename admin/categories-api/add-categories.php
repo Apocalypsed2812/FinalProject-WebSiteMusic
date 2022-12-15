@@ -1,5 +1,5 @@
 <?php
-require_once('../connection.php');
+require_once('connection.php');
 
 $name = $_POST['name'];
 $topic = $_POST['topic'];

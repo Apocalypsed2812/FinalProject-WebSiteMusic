@@ -351,19 +351,97 @@ a {
     margin-left: 91.66667%;
   }
 }
-.MusicChartPage .new__music-song-rank-number{
+.MusicChartPage .new__music-song-rank-number,.NewMusicList .new__music-song-rank-number{
   display: inline-block;
   width: 57px;
 }
-.MusicChartPage .new__music-song-action{
+.MusicChartPage .new__music-song-action,.NewMusicList .new__music-song-action{
   display: block !important;
   position: relative;
 }
-.MusicChartPage .new__music-song-rank{
+.MusicChartPage .new__music-song-rank,.NewMusicList .new__music-song-rank{
   width: auto;
 }
-.MusicChartPage .new__music-song-rank-separate{
+.MusicChartPage .new__music-song-rank-separate,.NewMusicList .new__music-song-rank-separate{
   margin: 0 20px;
+}
+.fa-heart:hover{
+  color: red;
+}
+.Song_dialog{
+  z-index: 100;
+  display: inline-block;
+  position:absolute;
+  display: none;
+  right: 6vw;
+  background-color: #231b2e;
+  width: 250px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+
+}  
+
+.Song_dialog_item{
+  padding: 15px 0px 15px 15px;
+  color: #fff;
+  cursor: pointer;
+}
+.Song_dialog_item:hover{
+  background-color: #2f2739;
+}
+
+.NewMusicPage .modal__body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.NewMusicPage .auth-form{
+  background-color: #231b2e;
+
+}
+.NewMusicPage .auth-form__header{
+  padding: 10px 0 0 0;
+  color: #fff;
+}
+.NewMusicPage textarea{
+  width: 100%;
+  height: 200px;
+  padding: 10px 15px;
+  background-color: #2f2739;
+  margin-top: 10px;
+  border: 1px solid #2f2739;
+  resize: none;
+  outline: none;
+  color: white;
+}
+.NewMusicPage .auth-form__controls{
+  margin-top: 20px;
+}
+.NewMusicPage .auth-form__controls button{
+  color: #fff;
+  background-color: #2f2739;
+  margin: 0;
+}
+.NewMusicPage{
+  background-color: #170f23;
+}
+.Song_dialog .new__music-song-info{
+  padding: 15px 15px;
+  display: flex;
+  align-items: start;
+}
+.Song_dialog .new__music-song-info>div>p:first-child{
+  color: white;
+}
+.Song_dialog i{
+  margin-right: 20px;
+}
+.NewMusicPage .new__music-song-action i{
+  margin: 0 !important;
+  padding: 16px;
 }
 /* PC medium resolution > */
 @media (min-width: 1113px) {
