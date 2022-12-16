@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../user/home.php#NewMusicToday" class="header__item-link">
                     <i class="fa-regular fa-circle-dot"></i>
                     <span>Khám Phá</span>
                 </a>
@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="header__item">
-                <a href="" class="header__item-link">
+                <a href="../../user/category.php" class="header__item-link">
                     <i class="fa-regular fa-circle-dot"></i>
                     <span>Thể Loại</span>
                 </a>

@@ -49,7 +49,7 @@ if (!$_SESSION['isLogin']) {
                 </div>
 
                 <!-- Nhạc mới phát hành -->
-                <div class="row mt-32 music-new-mobile">
+                <div class="row mt-32 music-new-mobile" id="NewMusicTitle">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Mới phát hành</h1>
                     </div>
@@ -57,11 +57,13 @@ if (!$_SESSION['isLogin']) {
                         <div class="row container__choose">
                             <div class="container__album col l-10 m-8 c-8">
                                 <p class="container__album-song">Bài Hát</p>
-                                <p class="container__album-album">Album</p>
+                                <!-- <p class="container__album-album">Album</p> -->
                             </div>
                             <p class="container__album-all col l-2 m-4 c-4">
-                                Tất cả
-                                <i class="fa-solid fa-angle-right"></i>
+                                <a href="../user/new_music.php" style="color: white">
+                                    Tất cả
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -72,7 +74,7 @@ if (!$_SESSION['isLogin']) {
                 </div>
 
                 <!-- Lựa chọn hôm nay -->
-                <div class="row mt-32">
+                <div class="row mt-32" id="NewMusicToday">
                     <div class="col l-12 m-12 c-12">
                         <h1 class="container__today">Lựa chọn hôm nay</h1>
                     </div>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.1.1-web/css/all.min.css">
 </head>
 
-<body class="MusicChartPage">
+<body class="MusicPage">
     <div class="app">
         <?php
         require_once('../includes/Sidebar/SidebarUser.php')
@@ -44,11 +44,11 @@
                     foreach ($getsong as $value) {
                         $lyric = str_replace('"', "'", $value["lyric"]);
                         echo '<div class="col l-12 m-12 c-12">' .
-                            '<div class="new__music-song container__song-new" data-id="' . $value['id'] . '" data-index="' . $index . '" data-image="' . $value['image'] . '" data-name="' . $value['name'] . '" data-singer="' . $value['singer'] . '" data-file="' . $value['file'] . '" data-rank="' . $rank . '"">' .
+                            '<div class="new__music-song">' .
                             '<div class="new__music-song-rank">' .
                             '<p class="new__music-song-rank-number">' . $rank . '</p>' .
                             '<p class="new__music-song-rank-separate">-</p>' .
-                            '<div class="new__music-song-info">' .
+                            '<div class="new__music-song-info container__song-new" data-id="' . $value['id'] . '" data-index="' . $index . '" data-image="' . $value['image'] . '" data-name="' . $value['name'] . '" data-singer="' . $value['singer'] . '" data-file="' . $value['file'] . '" data-rank="' . $rank . '" data-lyric="' . $lyric . '">' .
                             '<img src="../assets/images/songs/' . $value["image"] . '" alt="">' .
                             '<div>' .
                             '<p>' . $value["name"] . '</p>' .
@@ -61,7 +61,7 @@
                             '</div>' .
                             '<div class="new__music-song-action">' .
                             '<i class="fa-solid fa-heart"></i>' .
-                            '<i class="fa-solid fa-ellipsis onclick="ellipsisClick(' . $value['id'] . ')"></i>' .
+                            '<i class="fa-solid fa-ellipsis" onclick="ellipsisClick(' . $value['id'] . ')"></i>' .
                             '</div>' .
                             '</div>' .
                             '<div id="Song_dialog' . $value["id"] . '" class="Song_dialog">' .
@@ -118,7 +118,7 @@
             </div>
         </div>
     </div>
-    <script src="../assets/js/music_chart.js"></script>
+    <script src="../assets/js/new_music.js"></script>
 </body>
 
 </html>

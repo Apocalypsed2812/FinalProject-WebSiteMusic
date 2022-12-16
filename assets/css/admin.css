@@ -33,6 +33,14 @@
     background-color: #f3f5f9;
     padding-top: 30px;
 }
+.container__header-control-mobile a{
+    padding: 12px 8px 10px 14px !important;
+}
+.container__header-control-mobile,.container__header-control-item{
+    width: 42px ;
+    height: 42px ;
+    margin: 0 !important;
+}
 .container__header-with-search{
     border: 1px solid black;
     box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);

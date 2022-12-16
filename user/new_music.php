@@ -20,7 +20,7 @@ if (!$_SESSION['isLogin']) {
 
 </head>
 
-<body class="NewMusicPage">
+<body class="MusicPage">
     <div class="app">
         <?php
         require_once('../includes/Sidebar/SidebarUser.php')
@@ -97,11 +97,11 @@ if (!$_SESSION['isLogin']) {
                     }
                     ?>
                 </div>
-                
+
                 <div class="music__play">
 
                 </div>
-                
+
             </div>
         </div>
         <!-- Modal view song -->
