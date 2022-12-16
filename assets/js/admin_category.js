@@ -268,7 +268,7 @@ function Open_Dialog_Edit(id, name) {
 // sự kiện onchange search input
 $(".CategoryPage .container__header-with-search-input").on("input", function (e) {
     setTimeout(function () {
-        let rowSuggestions = $("#myInputautocomplete-list>div").length;
+        let rowSuggestions = $("#myInputsuggestions_search-list>div").length;
         if (search.val() != "" && rowSuggestions != 0) {
             $(".container__header-with-search-result").css("visibility", "visible");
         } else {
@@ -424,7 +424,7 @@ function Pagination_click(e, table) {
 $(".CategoryPage .container__header-with-search-input").click(function () {
     Suggestions = $("#Category_value").html().split(",");
     Suggestions.pop();
-    autocomplete(document.getElementById("myInput"), Suggestions);
+    suggestions_search(Suggestions);
 });
 $("body").click(function (e) {
     if (e.target.className != "container__header-with-search-result" &&
@@ -444,18 +444,18 @@ $(".CategoryPage .fa-magnifying-glass").click(function () {
     searchClick();
 });
 
-// click các gợi ý trong  - 'Đề xuất cho bạn'
-$("#myInputautocomplete-list").click(function () {
-    search.val($(this).html());
+// // click các gợi ý trong  - 'Đề xuất cho bạn'
+// $("#myInputsuggestions_search-list").click(function () {
+//     search.val($(this).html());
 
-    SearchTable = [];
-    TableBody.forEach((i) => {
-        if (i.toLowerCase().indexOf(search.val().toLowerCase()) > -1) {
-            SearchTable.push(i);
-        }
-    });
-    searchClick();
-});
+//     SearchTable = [];
+//     TableBody.forEach((i) => {
+//         if (i.toLowerCase().indexOf(search.val().toLowerCase()) > -1) {
+//             SearchTable.push(i);
+//         }
+//     });
+//     searchClick();
+// });
 function searchClick() {
     current_tablePage = 1;
     let pageAmount,
@@ -516,99 +516,133 @@ function searchClick() {
 
     }
 }
+function SearchItemClick(e) {
+    $("#myInput").val(e)
+    SearchTable = [];
+    TableBody.forEach((i) => {
+        if (i.toLowerCase().indexOf(e.toLowerCase()) > -1) {
+            SearchTable.push(i);
+        }
+    });
+    searchClick();
+};
+// Gợi ý cho input search
+function suggestions_search(arr) {
+    var suggestionsItem, suggestionsList;
+    $("#myInput").on('input', function () {
+        let n = 0, SearchValue = this.value;
 
-function autocomplete(inp, arr) {
-    var currentFocus;
-
-    inp.addEventListener("input", function (e) {
-        var a, b, i, n = 0,
-            val = this.value;
-        closeAllLists();
-        if (!val) {
+        if (SearchValue == "") {
             return false;
         }
-        currentFocus = -1;
-        a = document.createElement("DIV");
-        a.setAttribute("id", this.id + "autocomplete-list");
-        a.setAttribute("class", "autocomplete-items");
-
-        $(".container__header-with-search-result").append(a);
+        $(".container__header-with-search-result").html(`<h4>Đề xuất cho bạn</h4>`)
+        suggestionsList = `<div id="` + this.id + `suggestions_search-list" class="suggestions_search-items">`
+        suggestionsItem = ''
 
         for (i = 0; i < arr.length; i++) {
-
-            if (
-                arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() &&
-                n < 5
-            ) {
-                b = document.createElement("DIV");
-                b.innerHTML =
-                    "<strong>" +
-                    arr[i].substr(0, val.length) +
-                    "</strong>" +
-                    arr[i].substr(val.length) +
-                    "<input type='hidden' value='" +
-                    arr[i] +
-                    "'>";
-
-                b.addEventListener("click", function (e) {
-                    inp.value = this.getElementsByTagName("input")[0].value;
-                    SearchTable = [];
-                    TableBody.forEach((i) => {
-                        if (i.toLowerCase().indexOf(inp.value.toLowerCase()) > -1) {
-                            SearchTable.push(i);
-                        }
-                    });
-                    searchClick();
-                    closeAllLists();
-                });
-                a.appendChild(b);
+            if (arr[i].substr(0, SearchValue.length).toUpperCase() == SearchValue.toUpperCase() && n < 5) {
+                suggestionsItem += `<div onclick="SearchItemClick('` + arr[i] + `')"><strong>` +
+                    arr[i].substr(0, SearchValue.length) + `</strong>` + arr[i].substr(SearchValue.length) +
+                    `<input type='hidden' value='` + arr[i] + `'></div>`;
                 n += 1;
             }
         }
-    });
-    inp.addEventListener("keydown", function (e) {
-        var x = document.getElementById(this.id + "autocomplete-list");
-        if (x) x = x.getElementsByTagName("div");
-        if (e.keyCode == 40) {
-            currentFocus++;
-            addActive(x);
-        } else if (e.keyCode == 38) {
-
-            currentFocus--;
-            addActive(x);
-        } else if (e.keyCode == 13) {
-            e.preventDefault();
-            if (currentFocus > -1) {
-                if (x) x[currentFocus].click();
-            }
-        }
-    });
-    function addActive(x) {
-        if (!x) return false;
-        removeActive(x);
-        if (currentFocus >= x.length) currentFocus = 0;
-        if (currentFocus < 0) currentFocus = x.length - 1;
-        x[currentFocus].classList.add("autocomplete-active");
-    }
-    function removeActive(x) {
-        for (var i = 0; i < x.length; i++) {
-            x[i].classList.remove("autocomplete-active");
-        }
-    }
-    function closeAllLists(elmnt) {
-
-        var x = document.getElementsByClassName("autocomplete-items");
-        for (var i = 0; i < x.length; i++) {
-            if (elmnt != x[i] && elmnt != inp) {
-                x[i].parentNode.removeChild(x[i]);
-            }
-        }
-    }
-
-    document.addEventListener("click", function (e) {
-        closeAllLists(e.target);
-    });
+        suggestionsList += suggestionsItem + `</div>`
+        $(".container__header-with-search-result").append(suggestionsList)
+    })
 }
+// function suggestions_search(inp, arr) {
+//     var currentFocus;
+
+//     inp.addEventListener("input", function (e) {
+//         var a, b, i, n = 0,
+//             val = this.value;
+//         closeAllLists();
+//         if (!val) {
+//             return false;
+//         }
+//         currentFocus = -1;
+//         a = document.createElement("DIV");
+//         a.setAttribute("id", this.id + "suggestions_search-list");
+//         a.setAttribute("class", "suggestions_search-items");
+
+//         $(".container__header-with-search-result").append(a);
+
+//         for (i = 0; i < arr.length; i++) {
+
+//             if (
+//                 arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() &&
+//                 n < 5
+//             ) {
+//                 b = document.createElement("DIV");
+//                 b.innerHTML =
+//                     "<strong>" +
+//                     arr[i].substr(0, val.length) +
+//                     "</strong>" +
+//                     arr[i].substr(val.length) +
+//                     "<input type='hidden' value='" +
+//                     arr[i] +
+//                     "'>";
+
+//                 b.addEventListener("click", function (e) {
+//                     inp.value = this.getElementsByTagName("input")[0].value;
+//                     SearchTable = [];
+//                     TableBody.forEach((i) => {
+//                         if (i.toLowerCase().indexOf(inp.value.toLowerCase()) > -1) {
+//                             SearchTable.push(i);
+//                         }
+//                     });
+//                     searchClick();
+//                     closeAllLists();
+//                 });
+//                 a.appendChild(b);
+//                 n += 1;
+//             }
+//         }
+//     });
+//     inp.addEventListener("keydown", function (e) {
+//         var x = document.getElementById(this.id + "suggestions_search-list");
+//         if (x) x = x.getElementsByTagName("div");
+//         if (e.keyCode == 40) {
+//             currentFocus++;
+//             addActive(x);
+//         } else if (e.keyCode == 38) {
+
+//             currentFocus--;
+//             addActive(x);
+//         } else if (e.keyCode == 13) {
+//             e.preventDefault();
+//             if (currentFocus > -1) {
+//                 if (x) x[currentFocus].click();
+//             }
+//         }
+//     });
+//     function addActive(x) {
+//         if (!x) return false;
+//         removeActive(x);
+//         if (currentFocus >= x.length) currentFocus = 0;
+//         if (currentFocus < 0) currentFocus = x.length - 1;
+//         x[currentFocus].classList.add("suggestions_search-active");
+//     }
+//     function removeActive(x) {
+//         for (var i = 0; i < x.length; i++) {
+//             x[i].classList.remove("suggestions_search-active");
+//         }
+//     }
+//     function closeAllLists(elmnt) {
+
+//         var x = document.getElementsByClassName("suggestions_search-items");
+//         for (var i = 0; i < x.length; i++) {
+//             if (elmnt != x[i] && elmnt != inp) {
+//                 x[i].parentNode.removeChild(x[i]);
+//             }
+//         }
+//     }
+
+//     document.addEventListener("click", function (e) {
+//         closeAllLists(e.target);
+//     });
+// }
 
 //sort
 $("#Icon_arrow_down").click(function () {

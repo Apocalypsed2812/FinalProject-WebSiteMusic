@@ -91,15 +91,15 @@
     width: 100%;
 }
 
-.autocomplete-items div {
+.suggestions_search-items div {
     color: #fff;
     font-size: 17px;
     padding: 8px;
     border-radius: 8px;
 }
-.autocomplete-items div:hover {
+.suggestions_search-items div:hover {
     /*when hovering an item:*/
-    background-color: #ccc;
+    background-color: #01886d;
     cursor: pointer;
 }
 /* ------------------------Container------------------------ */

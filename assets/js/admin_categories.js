@@ -485,7 +485,7 @@ function Open_Dialog_View(id, name, topic, follow, date, image, description, sin
 // sự kiện onchange search input
 $(".CategoriesPage .container__header-with-search-input").on("input", function (e) {
     setTimeout(function () {
-        let rowSuggestions = $("#myInputautocomplete-list>div").length;
+        let rowSuggestions = $("#myInputsuggestions_search-list>div").length;
         if (search.val() != "" && rowSuggestions != 0) {
             $(".container__header-with-search-result").css("visibility", "visible");
         } else {
@@ -642,7 +642,7 @@ function Pagination_click(e, table) {
 $(".CategoriesPage .container__header-with-search-input").click(function () {
     Suggestions = $("#Search_value").html().split(",");
     Suggestions.pop();
-    autocomplete(document.getElementById("myInput"), Suggestions);
+    suggestions_search(Suggestions);
 });
 $("body").click(function (e) {
     if (e.target.className != "container__header-with-search-result" &&
@@ -726,100 +726,40 @@ function searchClick() {
 
     }
 }
-
+function SearchItemClick(e) {
+    $("#myInput").val(e)
+    SearchTable = [];
+    TableBody.forEach((i) => {
+        if (i.toLowerCase().indexOf(e.toLowerCase()) > -1) {
+            SearchTable.push(i);
+        }
+    });
+    searchClick();
+};
 // Gợi ý cho input search
-function autocomplete(inp, arr) {
-    var currentFocus;
+function suggestions_search(arr) {
+    var suggestionsItem, suggestionsList;
+    $("#myInput").on('input', function () {
+        let n = 0, SearchValue = this.value;
 
-    inp.addEventListener("input", function (e) {
-        var a,
-            b,
-            i,
-            n = 0,
-            val = this.value;
-
-        closeAllLists();
-        if (!val) {
+        if (SearchValue == "") {
             return false;
         }
-        currentFocus = -1;
-        a = document.createElement("DIV");
-        a.setAttribute("id", this.id + "autocomplete-list");
-        a.setAttribute("class", "autocomplete-items");
+        $(".container__header-with-search-result").html(`<h4>Đề xuất cho bạn</h4>`)
+        suggestionsList = `<div id="` + this.id + `suggestions_search-list" class="suggestions_search-items">`
+        suggestionsItem = ''
 
-        $(".container__header-with-search-result").append(a);
         for (i = 0; i < arr.length; i++) {
-            if (
-                arr[i].substr(0, val.length).toUpperCase() ==
-                val.toUpperCase() &&
-                n < 5
-            ) {
-                b = document.createElement("DIV");
-                b.innerHTML =
-                    "<strong>" +
-                    arr[i].substr(0, val.length) +
-                    "</strong>" +
-                    arr[i].substr(val.length) +
-                    "<input type='hidden' value='" +
-                    arr[i] +
-                    "'>";
-
-                b.addEventListener("click", function (e) {
-                    inp.value = this.getElementsByTagName("input")[0].value;
-                    SearchTable = [];
-                    TableBody.forEach((i) => {
-                        if (i.toLowerCase().indexOf(inp.value.toLowerCase()) > -1) {
-                            SearchTable.push(i);
-                        }
-                    });
-                    searchClick();
-                    closeAllLists();
-                });
-                a.appendChild(b);
+            if (arr[i].substr(0, SearchValue.length).toUpperCase() == SearchValue.toUpperCase() && n < 5) {
+                suggestionsItem += `<div onclick="SearchItemClick('` + arr[i] + `')"><strong>` +
+                    arr[i].substr(0, SearchValue.length) + `</strong>` + arr[i].substr(SearchValue.length) +
+                    `<input type='hidden' value='` + arr[i] + `'></div>`;
                 n += 1;
             }
         }
-    });
-
-    inp.addEventListener("keydown", function (e) {
-        var x = document.getElementById(this.id + "autocomplete-list");
-        if (x) x = x.getElementsByTagName("div");
-        if (e.keyCode == 40) {
-            currentFocus++;
-            addActive(x);
-        } else if (e.keyCode == 38) {
-            currentFocus--;
-            addActive(x);
-        } else if (e.keyCode == 13) {
-            e.preventDefault();
-            if (currentFocus > -1) {
-                if (x) x[currentFocus].click();
-            }
-        }
-    });
-    function addActive(x) {
-        if (!x) return false;
-        removeActive(x);
-        if (currentFocus >= x.length) currentFocus = 0;
-        if (currentFocus < 0) currentFocus = x.length - 1;
-        x[currentFocus].classList.add("autocomplete-active");
-    }
-    function removeActive(x) {
-        for (var i = 0; i < x.length; i++) {
-            x[i].classList.remove("autocomplete-active");
-        }
-    }
-    function closeAllLists(elmnt) {
-        var x = document.getElementsByClassName("autocomplete-items");
-        for (var i = 0; i < x.length; i++) {
-            if (elmnt != x[i] && elmnt != inp) {
-                x[i].parentNode.removeChild(x[i]);
-            }
-        }
-    }
-    document.addEventListener("click", function (e) {
-        closeAllLists(e.target);
-    });
+        suggestionsList += suggestionsItem + `</div>`
+        $(".container__header-with-search-result").append(suggestionsList)
+    })
 }
 
 

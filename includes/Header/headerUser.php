@@ -8,7 +8,7 @@
         <div class="container__header-with-search">
             <form method="post" action="search.php">
                 <button type="submit" id="btnSubmit" name="btnSubmit" style="border:none;background-color:#2f2739"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <input type="text" id="search" name="search" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,..." class="container__header-with-search-input" style="width:470px;">
+                <input type="text" id="search" name="search" placeholder="Tìm kiếm bài hát, nghệ sĩ,..." class="container__header-with-search-input">
                 <div class="auto-box" id="autoBox">
                     <h4>Từ khóa liên quan</h4>
                     <div id="items">
