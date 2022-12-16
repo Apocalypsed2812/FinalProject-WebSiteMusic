@@ -2231,5 +2231,127 @@ button:hover {
   font-size: 18px;
 }
 
+.index__main{
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%) , url(../images/background_index.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 150vh;
+}
+
+.index__navbar{
+  padding-top: 10px;
+  width: 1200px;
+  height: 75px;
+  margin: auto;
+}
+
+.index__icon{
+  width: 200px;
+  float: left;
+  height: 70px;
+}
+
+.index__logo{
+  color: #ff7200;
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 20px;
+  float: left;
+  padding-top: 16px;
+}
+
+.index__menu{
+  width: 400px;
+  float: left;
+  height: 70px;
+}
+
+.index__list{
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.index__list .index__item{
+  list-style: none;
+  margin-left: 62px;
+  margin-top: 27px;
+  font-size: 14px;
+}
+
+.index__list .index__item a{
+  text-decoration: none;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  transition: 0.4 ease-in-out;
+}
+
+.index__list .index__item a:hover{
+  color: #ff7200;
+}
+
+.index__content{
+  width: 1200px;
+  height: auto;
+  color: #fff;
+  position: relative;
+  margin-left: 50px;
+}
+
+.index__content .par{
+  padding-left: 20px;
+  padding-bottom: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1.2px;
+  line-height: 30px;
+}
+
+.index__content h1{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 50px;
+  padding-left: 20px;
+  margin-top: 9%;
+  letter-spacing: 2;
+  margin-bottom: 10px;
+}
+
+.index__content .cn{
+  width: 160px;
+  height: 40px;
+  background: #ff7200;
+  border: none;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .4 ease-in;
+}
+
+.index__content .cn a{
+  text-decoration: none;
+  color: #000;
+  transition: .3 ease-in;
+}
+
+.cn:hover{
+  background: #fff;
+}
+
+.index__login{
+  background: #ff7200;
+  padding: 10px 24px;
+  border-radius: 24px;
+  color: #fff;
+}
+
+.index__login:hover{
+  background: #fff;
+  color: #ff7200;
+}
+
 /*# sourceMappingURL=style.css.map */
 
