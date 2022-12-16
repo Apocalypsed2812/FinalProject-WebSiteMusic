@@ -443,6 +443,7 @@ a {
   margin: 0 !important;
   padding: 16px;
 }
+
 /* PC medium resolution > */
 @media (min-width: 1113px) {
   .row {
@@ -1692,6 +1693,24 @@ button:hover {
 }
 
 @media (max-width: 520px) {
+  .index__menu{
+    display: none;
+  }
+  .index__logo{
+    margin-top: 20px;
+  }
+  .index__content,.index__navbar{
+    margin: 0 !important;
+    width: 100vw !important;
+  }
+  .IndexPage h1{
+    width: 100vw !important;
+    font-size: 30px !important;
+    margin:  0 !important;
+    text-align: left !important;
+    display: inline-block;
+    margin-top: 30px !important;
+  }
   .login-form,
 .forgot-form,
 .change-password-form {
@@ -2040,6 +2059,31 @@ button:hover {
 }
 /* Tablet */
 @media (min-width: 740px) and (max-width: 1023px) {
+  .index__menu{
+    width: 100vw !important; 
+    margin: 20px !important;
+ }
+ .index__item{
+    margin: 0 !important;
+    padding: 20px 30px 0 0;
+ }
+  .index__icon{
+    margin-top: 20px;
+    display: none;
+  }
+  .index__content,.index__navbar{
+    margin: 0px !important;
+    width: 100vw !important;
+  }
+  .IndexPage h1{
+    width: 100vw !important;
+    font-size: 30px !important;
+    margin:  0 !important;
+    text-align: left !important;
+    display: inline-block;
+    margin-top: 30px !important;
+  }
+
   .hide-on-tablet {
     display: none;
   }
@@ -2236,12 +2280,12 @@ button:hover {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%) , url(../images/background_index.jpg);
   background-position: center;
   background-size: cover;
-  height: 150vh;
+  height: 100vh;
 }
 
 .index__navbar{
   padding-top: 10px;
-  width: 1200px;
+  width: 100vw;
   height: 75px;
   margin: auto;
 }
@@ -2256,7 +2300,7 @@ button:hover {
   color: #ff7200;
   font-size: 35px;
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 20px;
+  padding-left: 70px;
   float: left;
   padding-top: 16px;
 }
@@ -2292,9 +2336,11 @@ button:hover {
 .index__list .index__item a:hover{
   color: #ff7200;
 }
-
+.index__main{
+  overflow: hidden;
+}
 .index__content{
-  width: 1200px;
+  width: 100vw;
   height: auto;
   color: #fff;
   position: relative;
