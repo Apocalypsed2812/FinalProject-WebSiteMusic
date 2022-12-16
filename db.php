@@ -77,6 +77,25 @@
             return false; 
         } else return true; 
     }
+
+    function check_password($username, $password){
+        $sql = "SELECT password FROM account WHERE username=?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('s', $username);
+        if (!$stm->execute()){
+            die($stm->error);
+        } 
+
+        $result = $stm->get_result();
+        $data = $result->fetch_assoc();
+        $hashed_password = $data['password'];
+        if (!password_verify($password, $hashed_password)){
+            return false;
+        }
+        return true;
+    }
 	
 	//register
 	function register($username, $password, $role, $email){
@@ -119,37 +138,20 @@
     }
 	
 	//change password when login first
-	function change_password($username, $pass){
-        // kiểm tra email token
-        /*$sql = 'SELECT * FROM reset_token WHERE email=? and token=? and expire_on>?';
-        $conn = open_database();
-        $stm = $conn->prepare($sql);
-        $exp = time();
-        $stm->bind_param('ssi', $email, $token, $exp);
-        if (!$stm->execute()){
-            return array('code'=> 5, 'message'=>'không thể thực thi câu lệnh sql');
+	function change_password($username, $pass, $new_pass){
+
+        if(!check_password($username, $pass)){
+            return array('code'=> 1, 'message'=>'Mật khẩu cũ không đúng');
         }
-        $result = $stm->get_result();
-        if ($result->num_rows == 0){
-            return array('code'=>8, 'message'=>'Email không hợp lệ hoặc token đã hết hạn');
-        }*/
-        // đổi mật khẩu
-        $hash = password_hash($pass, PASSWORD_BCRYPT);
+        
+        $hash = password_hash($new_pass, PASSWORD_BCRYPT);
 		$conn = open_database();
-        $sql = "UPDATE employee SET password=?, role = 'employee' WHERE username = ?";
+        $sql = "UPDATE account SET password=? WHERE username = ?";
         $stm = $conn->prepare($sql);
         $stm->bind_param('ss',$hash,$username);
         if (!$stm->execute()){
-            return array('code'=> 1, 'message'=>'không thể thực thi câu lệnh sql');
+            return array('code'=> 2, 'message'=>'không thể thực thi câu lệnh sql');
         }
-        //xóa token 
-        /*$sql = 'DELETE FROM reset_token WHERE email=?';
-        $stm = $conn->prepare($sql);
-        $exp = time();
-        $stm->bind_param('s', $email);
-        if (!$stm->execute()){
-            return array('code'=> 9, 'message'=>'không thể xóa token');
-        }*/
 
         return array('code' => 0 , 'message' => 'success');
     }

@@ -78,6 +78,7 @@
             <?php
                 if (!empty($error)){
                     echo "<div class='alert alert-danger'>$error</div>";
+                    echo "<div>Quay về trang đăng nhập <a href='./login.php'>tại đây</a></div>";
                 } else {
                     ?>
                     <form novalidate method="post" action="" class="border rounded w-100 mb-5 mx-auto px-3 pt-3 bg-light">

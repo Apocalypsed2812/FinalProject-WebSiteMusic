@@ -34,8 +34,8 @@
         <a class="container__header-control-item">
             <i class="fa-solid fa-arrow-up-from-bracket"></i>
         </a>
-        <a class="container__header-control-item">
-            <i class="fa-solid fa-gear"></i>
+        <a href="../change_password.php" class="container__header-control-item">
+            <i class="fa-solid fa-lock"></i>
         </a>
         <a href="../logout.php" class="container__header-control-item">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -49,4 +49,6 @@
 </div>
 
 <script src="../assets/js/recomend.js"></script>
+
+
 

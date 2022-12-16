@@ -1847,7 +1847,7 @@ button:hover {
 }
 .new__music-song-info .new__music-song-click {
   position: absolute;
-  left: 10px;
+  left: 20px;
   display: none;
   cursor: pointer;
 }

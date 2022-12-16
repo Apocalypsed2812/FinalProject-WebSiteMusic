@@ -104,6 +104,9 @@
                     exit();
                 }               
             } 
+            else if ($result['code']==3){
+                echo "<script>showErrorToast('Sai mật khẩu')</script>";
+            }
 			else {
                 $error = 'Invalid username or password';
             }

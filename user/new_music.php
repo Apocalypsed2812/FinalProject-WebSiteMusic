@@ -39,7 +39,7 @@ if (!$_SESSION['isLogin']) {
                     </div>
                 </div>
 
-                <div class="row mt-32 NewMusicList">
+                <div class="row mt-32 NewMusicList playlist">
                     <?php
                     require_once("connectdb.php");
                     $sql = "SELECT * FROM `songs` ORDER BY `id` DESC LIMIT 100";
@@ -54,11 +54,11 @@ if (!$_SESSION['isLogin']) {
                     foreach ($getsong as $value) {
                         $lyric = str_replace('"', "'", $value["lyric"]);
                         echo '<div class="col l-12 m-12 c-12">' .
-                            '<div class="new__music-song container__song-new" data-id="' . $value['id'] . '" data-index="' . $index . '" data-image="' . $value['image'] . '" data-name="' . $value['name'] . '" data-singer="' . $value['singer'] . '" data-file="' . $value['file'] . '" data-rank="' . $rank . '"">' .
+                            '<div class="new__music-song">' .
                             '<div class="new__music-song-rank">' .
                             '<p class="new__music-song-rank-number">' . $rank . '</p>' .
                             '<p class="new__music-song-rank-separate">-</p>' .
-                            '<div class="new__music-song-info">' .
+                            '<div class="new__music-song-info container__song-new" data-id="' . $value['id'] . '" data-index="' . $index . '" data-image="' . $value['image'] . '" data-name="' . $value['name'] . '" data-singer="' . $value['singer'] . '" data-file="' . $value['file'] . '" data-rank="' . $rank . '" data-lyric="' . $lyric . '">' .
                             '<img src="../assets/images/songs/' . $value["image"] . '" alt="">' .
                             '<div>' .
                             '<p>' . $value["name"] . '</p>' .
@@ -97,6 +97,11 @@ if (!$_SESSION['isLogin']) {
                     }
                     ?>
                 </div>
+                
+                <div class="music__play">
+
+                </div>
+                
             </div>
         </div>
         <!-- Modal view song -->
