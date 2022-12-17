@@ -88,8 +88,11 @@ if (!$_SESSION['isLogin']) {
                             '</div>' .
                             '<div onclick="SongLyricView(`' . $lyric . '`)" class="Song_dialog_item"><i class="fa-solid fa-book"></i>Lời bài hát' .
                             '</div>' .
-                            '<div onclick="SongDownload(`' . $value['file'] . '`)" class="Song_dialog_item"><i class="fa-solid fa-download"></i>Tải xuống' .
-                            '</div>' .
+                            '<a href="../assets/audio/'. $value['file'] .'" download >
+                                <div class="Song_dialog_item"><i class="fa-solid fa-download"></i>Tải xuống 
+                                </div>' .
+                            '</a>' .
+                            
                             '</div>' .
                             '</div>';
                         $rank += 1;

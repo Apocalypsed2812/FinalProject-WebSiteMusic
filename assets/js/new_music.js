@@ -152,8 +152,12 @@ function render() {
                         </div>
                         <div onclick="SongLyricView(${song.lyric})" class="Song_dialog_item"><i class="fa-solid fa-book"></i>Lời bài hát
                         </div>
-                        <div onclick="SongDownload(` + '`' + `${song.file}` + '`' + `)" class="Song_dialog_item"><i class="fa-solid fa-download"></i>Tải xuống
+
+                        <a href="../assets/audio/${song.file}" download >
+                        <div class="Song_dialog_item">
+                        <i class="fa-solid fa-download"></i>Tải xuống
                         </div>
+                        </a>
                     </div>
                 </div>`
     })
