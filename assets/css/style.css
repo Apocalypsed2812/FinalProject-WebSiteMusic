@@ -404,6 +404,21 @@ a {
 	color: red;
 }
 
+.Song_dialog_search {
+	z-index: 100;
+	display: inline-block;
+	position: absolute;
+	display: none;
+	background-color: #231b2e;
+	width: 250px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	margin-top: 5px;
+	margin-left: 278px;
+	border-radius: 5px;
+	overflow: hidden;
+
+}
+
 .Song_dialog {
 	z-index: 100;
 	display: inline-block;

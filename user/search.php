@@ -161,8 +161,9 @@ if (isset($_POST['btnSubmit'])) {
                             $index = 0;
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
+                                    $lyric = str_replace('"', "'", $row["lyric"]);
                                     echo "<div class='col l-6 m-6 c-12'>";
-                                    echo '<div class="container__song-new" data-id="' . $row['id'] . '"  data-image="' . $row['image'] . '" data-name="' . $row["name"] . '" data-singer="' . $row["singer"] . '" data-file="' . $row["file"] . '" data-index="' . $index . '">';
+                                    echo '<div class="container__song-new" data-id="' . $row['id'] . '"  data-image="' . $row['image'] . '" data-name="' . $row["name"] . '" data-singer="' . $row["singer"] . '" data-file="' . $row["file"] . '" data-index="' . $index . ' data-lyric='.$lyric.'">';
                                     echo '<img src="../assets/images/songs/' . $row['image'] . '" alt="" class="container__song-new-img">';
                                     echo '<div class="container__song-info container__song-info-search">';
                                     echo '<p class="container__song-new-title">' . $row["name"] . '</p>';
@@ -170,11 +171,28 @@ if (isset($_POST['btnSubmit'])) {
                                     echo '</div>';
                                     echo '<div class="container__song-new-click">
                                                 <i class="fa-solid fa-circle-play"></i>
-                                            </div>
-                                            <div class="container__song-new-dot">
-                                                <i class="fa-solid fa-ellipsis"></i>
                                             </div>';
+                                    echo '<div class="container__song-new-dot">
+                                            <i class="fa-solid fa-ellipsis" onclick="ellipsisClick(' . $row['id'] . ')"></i>
+                                        </div>';
                                     echo '</div>';
+                                    echo  '<div id="Song_dialog' . $row["id"] . '" class="Song_dialog_search">' .
+                                    '<div class="new__music-song-info">' .
+                                    '<img src="../assets/images/songs/' . $row["image"] . '" alt="">' .
+                                    '<div>' .
+                                    '<p style="color:white;">' . $row["name"] . '</p>' .
+                                    '<p class="new__music-song-info-o mt-8">' . $row["singer"] . '</p>' .
+                                    '</div>' .
+                                    '</div>' .
+                                    '<div class="Song_dialog_item"><i class="fa-solid fa-plus"></i>Thêm vào playlist' .
+                                    '</div>' .
+                                    '<div onclick="SongLyricView(`' . $lyric . '`)" class="Song_dialog_item"><i class="fa-solid fa-book"></i>Lời bài hát' .
+                                    '</div>' .
+                                    '<a href="../assets/audio/'. $row['file'] .'" download >
+                                        <div class="Song_dialog_item"><i class="fa-solid fa-download"></i>Tải xuống 
+                                        </div>' .
+                                    '</a>' .
+                                    '</div>';
                                     echo '</div>';
                                     $index += 1;
                                 }
