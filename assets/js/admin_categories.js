@@ -734,6 +734,7 @@ function SearchItemClick(e) {
             SearchTable.push(i);
         }
     });
+    $(".NullValue").css("display", "none")
     searchClick();
 };
 // Gợi ý cho input search
