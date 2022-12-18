@@ -72,7 +72,7 @@
                                 $index = 0;
                                 for($i = 0; $i < count($songs); $i++){
                                     $name = trim($songs[$i]);
-                                    $sql2 = "SELECT * FROM songs where name = '$name'";
+                                    $sql2 = "SELECT * FROM songs where name = \"$name\"";
                                     $result = $conn->query($sql2);
                                     if($result->num_rows > 0){
                                         while($row = $result->fetch_assoc()){
