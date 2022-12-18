@@ -46,10 +46,10 @@
                             <p>Cập Nhật: <span>29/09/2022</span></p>
                             <p><?php echo $row['singers']; ?></p>
                             <p>1.9 M người yêu thích</p>
-                            <button>
+                            <!-- <button>
                                 <i class="fa-solid fa-circle-play"></i>
                                 Tiếp tục phát
-                            </button>
+                            </button> -->
                             <div class="music__list-img-click">
                                 <i class="fa-solid fa-circle-play"></i>
                             </div>

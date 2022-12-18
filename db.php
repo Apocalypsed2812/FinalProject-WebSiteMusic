@@ -119,7 +119,7 @@
             return array('code' => 1, 'message' => 'không thể thực thi câu lệnh sql');; // return array(code, message)
         }
         // send verification email
-        send_email_register($email, $username, $password);
+        send_email_register($email, $username, $password, $_SERVER['SERVER_PORT']);
         return array('code' => 0, 'message' => 'thành công');
     }
 	
@@ -232,12 +232,12 @@
             }
             // thành công
         }
-        send_email_forgot_password($email, $token);
-        return array('code' =>0, 'message' =>'thành công');
+        send_email_forgot_password($email, $token, $_SERVER['SERVER_PORT']);
+        return array('code' => 0, 'message' =>'thành công');
     }
 
     //send email register
-    function send_email_register($email, $username, $password){
+    function send_email_register($email, $username, $password, $port){
 
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -272,8 +272,7 @@
             Bạn đã đăng kí tài khoản thành công\n
             Username của bạn là $username\n
             Password của bạn là $password\n
-            Click <a href='http://localhost:8080/FinalProject/login.php'>vào đây</a> để tiến hành đăng nhập
-            ";
+            Click <a href='http://localhost:$port/login.php'>vào đây</a> để tiến hành đăng nhập";
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
@@ -284,7 +283,7 @@
     }
 
     //send email reset password
-    function send_email_forgot_password($email, $token){
+    function send_email_forgot_password($email, $token, $port){
 
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -315,7 +314,7 @@
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Reset Password';
-            $mail->Body    = "Click <a href='http://localhost:8080/FinalProject/reset_password.php?email=$email&token=$token''>vào đây</a> để đổi mật khẩu";
+            $mail->Body    = "Click <a href='http://localhost:$port/reset_password.php?email=$email&token=$token''>vào đây</a> để đổi mật khẩu";
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

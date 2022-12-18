@@ -1,8 +1,34 @@
 <?php
     require_once('./db.php');
     session_start();
-    // $_SESSION['forgot'] = 'forgot password admin';
-    // $_SESSION['wait_admin_reset'] = 'đợi admin reset account';
+?>
+<?php
+    $error = '';
+    $email = '';
+    $message = '';
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+
+        if (empty($email)) {
+            $error = 'Please enter your email';
+        }
+        else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+            $error = 'This is not a valid email address';
+        }
+        else {
+            // reset password
+            $result = forgot_password($email);
+            if($result['code'] == 0)
+            {
+                // echo "<script>showSuccessToast('Vui lòng kiểm tra email để reset password')</script>";
+                $message = 'Vui lòng kiểm tra email để reset password';
+
+            }
+            else{
+                $error = $result['message'];
+            }
+        }
+    }
 ?>
 <DOCTYPE html>
 <html lang="en">
@@ -31,7 +57,12 @@
                 </div> -->
                 <div class="form-group">
 				<?php
-                    echo "<div class='alert alert-primary'>Nhập email để tiếp tục hoặc tiếp tục <a href='./login.php'>đăng nhập</a></div>"
+                    if (!empty($message)) {
+                        echo "<div class='alert alert-primary'>$message</div>";
+                    }
+                    else{
+                        echo "<div class='alert alert-primary'>Nhập email để tiếp tục hoặc tiếp tục <a href='./login.php'>đăng nhập</a></div>";
+                    }
 				?>
                 </div>
                 <div class="form-group">
@@ -48,30 +79,5 @@
     </div>
 </div>
 <script src="./assets/js/main.js"></script>
-<?php
-    $error = '';
-    $email = '';
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-
-        if (empty($email)) {
-            $error = 'Please enter your email';
-        }
-        else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
-            $error = 'This is not a valid email address';
-        }
-        else {
-            // reset password
-            $result = forgot_password($email);
-            if($result['code'] == 0)
-            {
-                echo "<script>showSuccessToast('Vui lòng kiểm tra email để reset password')</script>";
-            }
-            else{
-                $error = $result['message'];
-            }
-        }
-    }
-?>
 </body>
 </html>
