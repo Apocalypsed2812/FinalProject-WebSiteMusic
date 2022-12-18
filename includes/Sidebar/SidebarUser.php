@@ -17,26 +17,20 @@
         <ul class="header__list">
             <li class="header__item">
                 <a href="../user/personal.php" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-solid fa-user"></i>
                     <span>Cá Nhân</span>
                 </a>
             </li>
             <li class="header__item">
                 <a href="../user/home.php#NewMusicToday" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-solid fa-compass"></i>
                     <span>Khám Phá</span>
                 </a>
             </li>
             <li class="header__item">
                 <a href="../../user/music_chart.php" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-solid fa-chart-simple"></i>
                     <span>#MusicChart</span>
-                </a>
-            </li>
-            <li class="header__item">
-                <a href="../../user/follow.php" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
-                    <span>Theo dõi</span>
                 </a>
             </li>
         </ul>
@@ -52,7 +46,7 @@
             </li>
             <li class="header__item">
                 <a href="../../user/category.php" class="header__item-link">
-                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-solid fa-bars"></i>
                     <span>Thể Loại</span>
                 </a>
             </li>
